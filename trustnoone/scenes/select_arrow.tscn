@@ -1,10 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://xi5dvi5ehx1g"]
+[gd_scene load_steps=3 format=3 uid="uid://xi5dvi5ehx1g"]
 
+[ext_resource type="Script" uid="uid://bg7wxhr5obq1c" path="res://scripts/level_controller/select_arrow.gd" id="1_00frt"]
 [ext_resource type="Texture2D" uid="uid://bbomh1amxoufy" path="res://assets/sprites/arrows.png" id="1_n61cy"]
 
 [node name="SelectArrow" type="Area2D"]
+script = ExtResource("1_00frt")
 
-[node name="Up" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(0, -28)
 texture = ExtResource("1_n61cy")
 hframes = 2
