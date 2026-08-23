@@ -1,7 +1,7 @@
 class_name PropertyType 
 enum {
 	AURA,
-	KNOLEDGE,
+	KNOWLEDGE,
 	SPEED,
 	STRENGTH
 }
