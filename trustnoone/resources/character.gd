@@ -11,3 +11,6 @@ class_name CharacterRes
 
 @export var strenght: int
 @export var strenght_min: int
+
+@export var aura: int 
+@export var aura_min: int
