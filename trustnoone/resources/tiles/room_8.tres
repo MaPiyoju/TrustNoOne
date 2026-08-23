@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RoomRes" load_steps=2 format=3 uid="uid://dmlnw3u157t7c"]
+
+[ext_resource type="Script" uid="uid://bfwg6dcgwhawp" path="res://resources/room.gd" id="1_kt8ec"]
+
+[resource]
+script = ExtResource("1_kt8ec")
+name = ""
+texture = "res://assets/sprites/tiles/tile9.png"
+coordinates = Array[int]([0, 0])
+connection_type = 8
+connections = Array[int]([0, 1, 2, 3, 4, 5, 6, 7, 9, 10])
+room_type = 0
+room_threshold = 0.0
+metadata/_custom_type_script = "uid://bfwg6dcgwhawp"

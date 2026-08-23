@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://xi5dvi5ehx1g"]
+
+[ext_resource type="Texture2D" uid="uid://bbomh1amxoufy" path="res://assets/sprites/arrows.png" id="1_n61cy"]
+
+[node name="SelectArrow" type="Area2D"]
+
+[node name="Up" type="Sprite2D" parent="."]
+position = Vector2(0, -28)
+texture = ExtResource("1_n61cy")
+hframes = 2
+vframes = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, -33)
+polygon = PackedVector2Array(0, 0, 8.5, 8.5, -8.5, 8.5)

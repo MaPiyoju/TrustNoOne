@@ -5,11 +5,14 @@
 [resource]
 script = ExtResource("1_h80xh")
 name = "JuanRod"
-profile_poc = ""
+mini_figure = "res://assets/sprites/character1.png"
+profile_pic = ""
 description = "Un trollazo del monton"
 age = 22
 speed = 7
 speed_min = 3
 strenght = 6
 strenght_min = 3
+aura = 0
+aura_min = 0
 metadata/_custom_type_script = "uid://b2e7225olpkio"

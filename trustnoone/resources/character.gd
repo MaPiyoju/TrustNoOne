@@ -2,7 +2,8 @@ extends Resource
 class_name CharacterRes
 
 @export var name: String
-@export var profile_poc: String
+@export var mini_figure: String
+@export var profile_pic: String
 @export var description: String
 @export var age: int
 
