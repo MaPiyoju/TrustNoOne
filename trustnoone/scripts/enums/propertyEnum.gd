@@ -1,4 +1,4 @@
-class_name PropeortyType 
+class_name PropertyType 
 enum {
 	AURA,
 	KNOLEDGE,
