@@ -43,14 +43,14 @@ func explore_room(newDir: Vector2i):
 	var available_rooms = base_tiles.filter(func(x:RoomRes): 
 		return (rooms[currentRoom] as RoomRes).connections.has(x.connection_type)
 	)
-	var rnd_room = randi_range(0,available_rooms.size()-1)
-	rooms[new_coordinates] = available_rooms[rnd_room]
-	
-	var newRoom = room_prefab.instantiate()
-	rooms_node.add_child(newRoom)
-	(newRoom as Node2D).position = Vector2(baseRoomDistance.x * new_coordinates.x, baseRoomDistance.y * new_coordinates.y)
-	(newRoom as RoomController).RoomConfig = available_rooms[rnd_room]
-	(newRoom as RoomController).load()
+	var rnd_room = randi_range(0,available_rooms.size()-1)	
+	if !rooms.has(new_coordinates):
+		rooms[new_coordinates] = available_rooms[rnd_room]
+		var newRoom = room_prefab.instantiate()
+		rooms_node.add_child(newRoom)
+		(newRoom as Node2D).position = Vector2(baseRoomDistance.x * new_coordinates.x, baseRoomDistance.y * new_coordinates.y)
+		(newRoom as RoomController).RoomConfig = available_rooms[rnd_room]
+		(newRoom as RoomController).load()
 	
 	check_arrows(0, true)
 	
@@ -58,7 +58,7 @@ func explore_room(newDir: Vector2i):
 	move_room.emit(new_coordinates)
 	
 	await get_tree().create_timer(1.0).timeout
-	check_arrows((available_rooms[rnd_room] as RoomRes).connection_type)
+	check_arrows((rooms[new_coordinates] as RoomRes).connection_type)
 
 func check_arrows(room_type: int, disable_all: bool = false):
 	up_arrow.enable(false)
