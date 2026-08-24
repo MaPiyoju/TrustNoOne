@@ -6,22 +6,17 @@ extends Control
 @onready var knowledge: RichTextLabel = $knowledge
 @onready var speed: RichTextLabel = $speed
 
-var characters: Dictionary = {
-	"1": preload("res://assets/sprites/characters/bluecharacter.png"),
-	"2": preload("res://assets/sprites/characters/greencharacter.png"),
-	"3": preload("res://assets/sprites/characters/purplecharacter.png"),
-	"4": preload("res://assets/sprites/characters/yellowcharacter.png"),
-}
-
-func _ready() -> void:
-	load_character("1", 80, 15, 10, 20)
-
-func load_character(id: String, aura_val: int, strength_val: int, knowledge_val: int, speed_val: int) -> void:
-	if characters.has(id):
-		character_sprite.texture = characters[id]
-		aura.text = str(aura_val)
-		strenght.text = str(strength_val)
-		knowledge.text = str(knowledge_val)
-		speed.text = str(speed_val)
+func load_character_data(res: CharacterRes) -> void:
+	if res == null:
+		return
+		
+	if res.profile_pic != "" and ResourceLoader.exists(res.profile_pic):
+		character_sprite.texture = load(res.profile_pic)
 	else:
-		push_warning("Character ID not found: " + id)
+		character_sprite.texture = null
+		
+	# Asignar textos con valores reales del Resource
+	aura.text = "aur: %d" % res.aura
+	strenght.text = "str: %d" % res.strenght
+	knowledge.text = "knw: %d" % res.knowledge
+	speed.text = "spd: %d" % res.speed

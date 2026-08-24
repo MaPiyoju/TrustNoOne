@@ -20,6 +20,8 @@ signal move_room(dir: Vector2i)
 @onready var game_info: GameInfoController = $Character/GameInfo
 
 @onready var rooms_node: Node = $Rooms
+
+@onready var sheets_canvas = $Character/CharacterSheets
 var room_prefab: PackedScene
 
 var rooms: Dictionary = {}
@@ -31,9 +33,23 @@ var currSpeed: int
 
 func _ready() -> void:
 	room_prefab = preload("res://scenes/room.tscn")
+
+	var active_player: CharacterRes = GlobalContext.player
+	if active_player == null:
+		active_player = player_test if player_test != null else characters[0]
+		
+	character.CharacterConfig = active_player
+	character.load()
+	if sheets_canvas != null and sheets_canvas.has_method("setup_sheets"):
+		sheets_canvas.setup_sheets(active_player, characters)
 	
-	var rndCharacter = randi_range(0,characters.size()-1)
-	character.CharacterConfig = characters[rndCharacter]
+	if GlobalContext.player != null:
+		character.CharacterConfig = GlobalContext.player
+	elif player_test != null:
+		character.CharacterConfig = player_test
+	else:
+		character.CharacterConfig = characters[0]
+		
 	character.load()
 	
 	rooms[Vector2i(0, 0)] = base_tiles[0]
@@ -53,9 +69,9 @@ func _ready() -> void:
 	action_canvas.btn_use_item_signal.connect(use_item_action)
 	action_canvas.btn_end_signal.connect(end_action)
 	
-	GlobalContext.player = player_test
-	currSpeed = GlobalContext.player.speed
-	game_info.update_actions(GlobalContext.player.speed, currSpeed)
+
+	currSpeed = character.CharacterConfig.speed
+	game_info.update_actions(character.CharacterConfig.speed, currSpeed)
 	game_info.update_turns()
 
 func _process(delta: float) -> void:

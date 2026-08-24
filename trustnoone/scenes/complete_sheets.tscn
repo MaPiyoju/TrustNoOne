@@ -1,31 +1,33 @@
-[gd_scene load_steps=2 format=3 uid="uid://dbplx2n80v8fr"]
+[gd_scene load_steps=3 format=3 uid="uid://dbplx2n80v8fr"]
 
+[ext_resource type="Script" uid="uid://c2srp2py6f28" path="res://scripts/complete_sheets.gd" id="1_d5bw7"]
 [ext_resource type="PackedScene" uid="uid://cacg70hy4ngww" path="res://scenes/character_sheet.tscn" id="1_mx0xp"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_d5bw7")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-custom_minimum_size = Vector2(180, 250)
+custom_minimum_size = Vector2(200, 250)
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -240.0
-offset_bottom = 250.0
+offset_left = -350.15
+offset_top = 1.0
+offset_right = 114.85
+offset_bottom = 273.595
 grow_horizontal = 0
+scale = Vector2(0.75, 0.75)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
 [node name="Control" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_mx0xp")]
-custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 
 [node name="Control2" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_mx0xp")]
-custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 
 [node name="Control3" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_mx0xp")]
-custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 
 [node name="Control4" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_mx0xp")]

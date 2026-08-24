@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0vvgqh8qugx7"]
+
+[ext_resource type="Script" uid="uid://dtiyc0hmec2fk" path="res://scripts/main_menu.gd" id="1_ekxnf"]
+[ext_resource type="FontFile" uid="uid://cnbhdxi81hf6w" path="res://ui/Early GameBoy.ttf" id="1_l6cm7"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ekxnf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 321.0
+offset_top = 434.0
+offset_right = 874.0
+offset_bottom = 509.0
+
+[node name="PlayButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_l6cm7")
+text = "PLAY"
+
+[node name="ExitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_l6cm7")
+text = "EXIT"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 402.0
+offset_top = 216.0
+offset_right = 804.0
+offset_bottom = 342.0
+theme_override_fonts/normal_font = ExtResource("1_l6cm7")
+theme_override_font_sizes/normal_font_size = 40
+text = "TRUST NO ONE"
+horizontal_alignment = 1

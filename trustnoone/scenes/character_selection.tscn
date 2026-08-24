@@ -1,0 +1,116 @@
+[gd_scene load_steps=12 format=3 uid="uid://8rswpyjnnchq"]
+
+[ext_resource type="Script" uid="uid://cq2qirm05dsv0" path="res://scripts/character_selection.gd" id="1_7xed0"]
+[ext_resource type="FontFile" uid="uid://cnbhdxi81hf6w" path="res://ui/Early GameBoy.ttf" id="1_dd54q"]
+[ext_resource type="Script" uid="uid://b2e7225olpkio" path="res://resources/character.gd" id="2_v724p"]
+[ext_resource type="Resource" uid="uid://cd34cwwd1xix3" path="res://resources/characters/Dimitri.tres" id="3_7rsvw"]
+[ext_resource type="Texture2D" uid="uid://bh5kntt5x3hbn" path="res://assets/sprites/id_background.png" id="3_l56u2"]
+[ext_resource type="Texture2D" uid="uid://crnxxy3uqfy3l" path="res://assets/sprites/characters/purplecharacter.png" id="4_7xed0"]
+[ext_resource type="Resource" uid="uid://c747qjr8ictqu" path="res://resources/characters/Dorian.tres" id="4_y8tcv"]
+[ext_resource type="Resource" uid="uid://cij4e37thpcv3" path="res://resources/characters/Rolando.tres" id="5_gckxq"]
+[ext_resource type="Resource" uid="uid://b4q02kw3ha5pm" path="res://resources/characters/Yasuri.tres" id="6_li4x4"]
+[ext_resource type="Texture2D" uid="uid://bbomh1amxoufy" path="res://assets/sprites/arrows.png" id="6_wh1ae"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqj7k"]
+atlas = ExtResource("6_wh1ae")
+region = Rect2(0, 14.767, 17.2604, 15.2288)
+
+[node name="CharacterSelection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7xed0")
+characters = Array[ExtResource("2_v724p")]([ExtResource("3_7rsvw"), ExtResource("4_y8tcv"), ExtResource("5_gckxq"), ExtResource("6_li4x4")])
+
+[node name="SelectCharacterButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 462.0
+offset_top = 532.0
+offset_right = 652.0
+offset_bottom = 593.0
+theme_override_fonts/font = ExtResource("1_dd54q")
+text = "SELECT"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 322)
+
+[node name="CharacterSelectTitle" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 57.0
+offset_right = 1153.0
+offset_bottom = 97.0
+theme_override_fonts/normal_font = ExtResource("1_dd54q")
+theme_override_font_sizes/normal_font_size = 27
+text = "Character Selection"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ID" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="IdBackground" type="Sprite2D" parent="ID"]
+position = Vector2(575, 321)
+scale = Vector2(7, 7)
+texture = ExtResource("3_l56u2")
+
+[node name="character" type="TextureRect" parent="ID"]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 170.0
+offset_right = 264.0
+offset_bottom = 210.0
+scale = Vector2(6, 6)
+texture = ExtResource("4_7xed0")
+stretch_mode = 6
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ID"]
+layout_mode = 0
+offset_left = 493.0
+offset_top = 177.0
+offset_right = 899.0
+offset_bottom = 460.0
+theme_override_colors/default_color = Color(0.0901961, 0.054902, 0.0980392, 1)
+theme_override_colors/font_shadow_color = Color(0.466667, 0.454902, 0.309804, 1)
+theme_override_fonts/normal_font = ExtResource("1_dd54q")
+theme_override_fonts/mono_font = ExtResource("1_dd54q")
+theme_override_fonts/italics_font = ExtResource("1_dd54q")
+theme_override_fonts/bold_italics_font = ExtResource("1_dd54q")
+theme_override_fonts/bold_font = ExtResource("1_dd54q")
+bbcode_enabled = true
+text = "Name: Yasuri
+AGE: 23
+STATS: 
+	Aura: 1
+	Knowledge: 1
+	Strenght: 1
+	Speed: 1
+Description: She wears her divorce like a perfume—subtle, expensive, and lingering. No one knows if she's healing or hunting. She doesn't correct their guesses."
+fit_content = true
+scroll_active = false
+
+[node name="Right" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 953.0
+offset_top = 274.0
+offset_right = 970.0
+offset_bottom = 290.0
+scale = Vector2(7, 7)
+texture_normal = SubResource("AtlasTexture_cqj7k")
+
+[node name="Left" type="TextureButton" parent="."]
+offset_left = 199.0
+offset_top = 384.0
+offset_right = 216.0
+offset_bottom = 400.0
+rotation = 3.14159
+scale = Vector2(7, 7)
+texture_normal = SubResource("AtlasTexture_cqj7k")
