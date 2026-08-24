@@ -9,9 +9,12 @@ class_name CharacterRes
 
 @export var speed: int
 @export var speed_min: int
+@export var speed_max: int
 
 @export var strenght: int
 @export var strenght_min: int
+@export var strenght_max: int
 
 @export var aura: int 
 @export var aura_min: int
+@export var aura_max: int

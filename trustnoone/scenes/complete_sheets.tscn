@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbplx2n80v8fr"]
+
+[ext_resource type="PackedScene" uid="uid://b54vw2drkuxdj" path="res://scenes/character_sheet.tscn" id="1_mx0xp"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Control" parent="VBoxContainer" instance=ExtResource("1_mx0xp")]
+layout_mode = 2
+
+[node name="Control2" parent="VBoxContainer" instance=ExtResource("1_mx0xp")]
+layout_mode = 2
+
+[node name="Control3" parent="VBoxContainer" instance=ExtResource("1_mx0xp")]
+layout_mode = 2
+
+[node name="Control4" parent="VBoxContainer" instance=ExtResource("1_mx0xp")]
+layout_mode = 2

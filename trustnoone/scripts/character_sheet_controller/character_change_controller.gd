@@ -1,6 +1,6 @@
-extends CanvasLayer
+extends Control
 
-@onready var character_sprite: Sprite2D = $character
+@onready var character_sprite: TextureRect = $character
 @onready var aura: RichTextLabel = $aura
 @onready var strenght: RichTextLabel = $strenght
 @onready var knowledge: RichTextLabel = $knowledge
@@ -14,7 +14,6 @@ var characters: Dictionary = {
 }
 
 func _ready() -> void:
-	# Test with character "1" (aura, strength, knowledge, speed)
 	load_character("1", 80, 15, 10, 20)
 
 func load_character(id: String, aura_val: int, strength_val: int, knowledge_val: int, speed_val: int) -> void:
