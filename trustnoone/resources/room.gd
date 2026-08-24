@@ -8,3 +8,4 @@ class_name RoomRes
 @export var connections: Array[int]
 @export var room_type: RoomType.RoomEnum
 @export var room_threshold: float
+@export var item: ItemRes

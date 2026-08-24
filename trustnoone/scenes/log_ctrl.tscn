@@ -38,3 +38,4 @@ theme_override_fonts/normal_font = ExtResource("1_o864i")
 theme_override_font_sizes/normal_font_size = 14
 theme_override_styles/normal = SubResource("StyleBoxFlat_x2fux")
 bbcode_enabled = true
+scroll_following = true

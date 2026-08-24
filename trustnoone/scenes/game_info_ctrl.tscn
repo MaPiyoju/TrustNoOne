@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7tlixb161wf5"]
+
+[ext_resource type="Script" uid="uid://c7vainst7xr7v" path="res://scripts/level_controller/game_info_controller.gd" id="1_kcypt"]
+[ext_resource type="FontFile" uid="uid://cnbhdxi81hf6w" path="res://ui/Early GameBoy.ttf" id="1_rtlr5"]
+
+[node name="GameInfo" type="CanvasLayer"]
+script = ExtResource("1_kcypt")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(350, 50)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -175.0
+offset_right = 175.0
+offset_bottom = 50.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="actions" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_rtlr5")
+text = "ACTIONS: 1/ 5"
+
+[node name="turns" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_rtlr5")
+text = "Turns: 1/ 20"

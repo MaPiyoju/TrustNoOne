@@ -6,3 +6,6 @@ class_name ItemRes
 @export var description	: String
 @export var effect: String 
 @export var effect_value: String
+@export var dice_condition: int
+@export var min_knowledge: int
+@export var threshold: float

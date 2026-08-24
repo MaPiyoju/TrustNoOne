@@ -16,7 +16,8 @@ signal move_room(dir: Vector2i)
 
 @onready var dice: DiceController = $Character/Dice
 @onready var log_canvas: LogController = $Character/LogCanvas
-
+@onready var action_canvas: ActionController = $Character/ActionCanvas
+@onready var game_info: GameInfoController = $Character/GameInfo
 
 @onready var rooms_node: Node = $Rooms
 var room_prefab: PackedScene
@@ -24,6 +25,8 @@ var room_prefab: PackedScene
 var rooms: Dictionary = {}
 var currentRoom: Vector2i
 var baseRoomDistance := Vector2(48,40)
+
+@export var player_test: CharacterRes
 
 func _ready() -> void:
 	room_prefab = preload("res://scenes/room.tscn")
@@ -42,6 +45,16 @@ func _ready() -> void:
 	left_arrow.direction_changed.connect(explore_room)
 	
 	dice.dice_ended.connect(validate_event)
+	
+	action_canvas.btn_move_signal.connect(move_action)
+	action_canvas.btn_inspect_signal.connect(inspect_action)
+	action_canvas.btn_talk_signal.connect(talk_action)
+	action_canvas.btn_use_item_signal.connect(use_item_action)
+	action_canvas.btn_end_signal.connect(end_action)
+	
+	GlobalContext.player = player_test
+	game_info.update_actions(GlobalContext.player.speed, GlobalContext.player.speed)
+	game_info.update_turns()
 
 func _process(delta: float) -> void:
 	pass
@@ -79,15 +92,18 @@ func explore_room(newDir: Vector2i):
 	move_room.emit(new_coordinates)
 	
 	if(!isTrigger):
-		await get_tree().create_timer(1.0).timeout
-		check_arrows((rooms[new_coordinates] as RoomRes).connection_type)
+		action_canvas.enable_btns()
 
 func set_room(room_coord: Vector2i):
 	var room_type = randi_range(0, 3)
-	var room_threshold = randf_range(0, 1)
+	var item_threshold = randf_range(0, 1)
 	(rooms[room_coord] as RoomRes).coordinates = room_coord
 	(rooms[room_coord] as RoomRes).room_type = room_type as RoomType.RoomEnum
-	(rooms[room_coord] as RoomRes).room_threshold = room_threshold
+	(rooms[room_coord] as RoomRes).room_threshold = item_threshold
+	
+	var item_rnd = randi_range(0, items.size()-1)
+	if(item_threshold > items[item_rnd].threshold):
+		(rooms[room_coord] as RoomRes).item = items[item_rnd]
 
 func check_arrows(room_type: int, disable_all: bool = false):
 	up_arrow.enable(false)
@@ -142,6 +158,25 @@ func validate_event(dice_value: int):
 	enable_next_turn()
 		
 func enable_next_turn():
-	await get_tree().create_timer(1.0).timeout
-	check_arrows((rooms[currentRoom] as RoomRes).connection_type)
 	dice.hide_dice()
+	action_canvas.enable_btns()
+	#await get_tree().create_timer(1.0).timeout
+	
+func move_action():
+	check_arrows((rooms[currentRoom] as RoomRes).connection_type)
+	
+func inspect_action():
+	if((rooms[currentRoom] as RoomRes).item == null):
+		log_canvas.add_log("There's nothing in this room")
+	else:
+		log_canvas.add_log("You've found: [color=#FFCD75]"+(rooms[currentRoom] as RoomRes).item.name+"[/color]")
+	
+func talk_action():
+	pass
+	
+func use_item_action():
+	pass
+	
+func end_action():
+	pass
+	

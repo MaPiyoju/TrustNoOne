@@ -1,10 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4m54ua8ishvm"]
+[gd_scene load_steps=8 format=3 uid="uid://b4m54ua8ishvm"]
 
+[ext_resource type="Script" uid="uid://cukuh36kkweo3" path="res://scripts/level_controller/action_controller.gd" id="1_omlyc"]
 [ext_resource type="FontFile" uid="uid://cnbhdxi81hf6w" path="res://ui/Early GameBoy.ttf" id="1_sp2st"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_673sj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e77a7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_omlyc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8lv1d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_abd8a"]
 
 [node name="ActionCanvas" type="CanvasLayer"]
 offset = Vector2(0, 60)
 transform = Transform2D(1, 0, 0, 1, 0, 60)
+script = ExtResource("1_omlyc")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(350, 204)
@@ -31,28 +43,39 @@ columns = 2
 custom_minimum_size = Vector2(173, 50)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_sp2st")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_673sj")
 text = "Move"
 
 [node name="btnInspect" type="Button" parent="MarginContainer/VBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(173, 50)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_sp2st")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_e77a7")
 text = "Inspect"
 
 [node name="btnTalk" type="Button" parent="MarginContainer/VBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_sp2st")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_omlyc")
 text = "Talk	"
 
 [node name="btnUseItem" type="Button" parent="MarginContainer/VBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_sp2st")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8lv1d")
 text = "Use item"
 
 [node name="btnEnd" type="Button" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_sp2st")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_abd8a")
 text = "End turn"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/btnMove" to="." method="_on_btn_move_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/btnInspect" to="." method="_on_btn_inspect_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/btnTalk" to="." method="_on_btn_talk_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/btnUseItem" to="." method="_on_btn_use_item_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/btnEnd" to="." method="_on_btn_end_pressed"]
