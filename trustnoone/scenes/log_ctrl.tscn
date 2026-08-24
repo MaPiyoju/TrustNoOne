@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://cc7g7loep3swn"]
+
+[ext_resource type="FontFile" uid="uid://cnbhdxi81hf6w" path="res://ui/Early GameBoy.ttf" id="1_o864i"]
+[ext_resource type="Script" uid="uid://cx8vi22b3pjp0" path="res://scripts/level_controller/log_controller.gd" id="1_vwsf2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wbtxt"]
+font = ExtResource("1_o864i")
+font_size = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x2fux"]
+bg_color = Color(0.184314, 0.129412, 0.231373, 0.521569)
+
+[node name="LogCanvas" type="CanvasLayer"]
+script = ExtResource("1_vwsf2")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(350, 204)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -204.0
+offset_right = 350.0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "ACTION LOG"
+label_settings = SubResource("LabelSettings_wbtxt")
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 170)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("1_o864i")
+theme_override_font_sizes/normal_font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_x2fux")
+bbcode_enabled = true

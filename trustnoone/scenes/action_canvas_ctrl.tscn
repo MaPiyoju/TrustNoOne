@@ -1,0 +1,58 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4m54ua8ishvm"]
+
+[ext_resource type="FontFile" uid="uid://cnbhdxi81hf6w" path="res://ui/Early GameBoy.ttf" id="1_sp2st"]
+
+[node name="ActionCanvas" type="CanvasLayer"]
+offset = Vector2(0, 60)
+transform = Transform2D(1, 0, 0, 1, 0, 60)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(350, 204)
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -102.0
+offset_bottom = 102.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="btnMove" type="Button" parent="MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(173, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_sp2st")
+text = "Move"
+
+[node name="btnInspect" type="Button" parent="MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(173, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_sp2st")
+text = "Inspect"
+
+[node name="btnTalk" type="Button" parent="MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_sp2st")
+text = "Talk	"
+
+[node name="btnUseItem" type="Button" parent="MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_sp2st")
+text = "Use item"
+
+[node name="btnEnd" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_sp2st")
+text = "End turn"

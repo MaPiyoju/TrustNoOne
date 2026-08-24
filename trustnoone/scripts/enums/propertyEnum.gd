@@ -1,5 +1,5 @@
 class_name PropertyType 
-enum {
+enum PropertyEnum{
 	AURA,
 	KNOWLEDGE,
 	SPEED,

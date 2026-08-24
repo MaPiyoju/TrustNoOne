@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EventRes" load_steps=2 format=3 uid="uid://c30srrtom8l40"]
+
+[ext_resource type="Script" uid="uid://bnix6barmivun" path="res://resources/event.gd" id="1_vi317"]
+
+[resource]
+script = ExtResource("1_vi317")
+title = "Squeaky floor"
+description = "Uh oh! Either the room is very old or there was a big fight. One wrong step and it'll break.Roll more than {0} and you'll tread lightly, otherwise suffer {1} of damage in {2}"
+effect = 2
+effect_value = 1
+threshold = 3
+bad_action = "Ouch, you have suffered {0} damage in {1}"
+good_action = "You enter the room as if you're skimming the floor."
+metadata/_custom_type_script = "uid://bnix6barmivun"

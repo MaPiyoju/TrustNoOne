@@ -1,5 +1,5 @@
 class_name RoomType 
-enum {
+enum RoomEnum{
 	REGULAR,
 	ITEM,
 	EVENT
