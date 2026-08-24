@@ -6,7 +6,7 @@
 [ext_resource type="Resource" uid="uid://tie5hk1d5btr" path="res://resources/characters/juan.tres" id="3_fcfvj"]
 [ext_resource type="Resource" uid="uid://drc4cjmfi8icj" path="res://resources/tiles/room_0.tres" id="3_x2xxo"]
 [ext_resource type="Resource" uid="uid://b35ip8nn071j4" path="res://resources/tiles/room_1.tres" id="4_2cbcq"]
-[ext_resource type="Resource" uid="uid://cij4e37thpcv3" path="res://resources/characters/rolando.tres" id="4_4nkto"]
+[ext_resource type="Resource" uid="uid://cij4e37thpcv3" path="res://resources/characters/Rolando.tres" id="4_4nkto"]
 [ext_resource type="PackedScene" uid="uid://ddcjk4xflf7ef" path="res://scenes/character.tscn" id="4_pa8r4"]
 [ext_resource type="Resource" uid="uid://do8pfq00l2gyv" path="res://resources/tiles/room_2.tres" id="5_isj1j"]
 [ext_resource type="Resource" uid="uid://dufgqwnsculjv" path="res://resources/tiles/room_3.tres" id="6_so66j"]

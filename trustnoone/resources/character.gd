@@ -18,3 +18,7 @@ class_name CharacterRes
 @export var aura: int 
 @export var aura_min: int
 @export var aura_max: int
+
+@export var knowledge: int
+@export var knowledge_min: int
+@export var knowledge_max: int
