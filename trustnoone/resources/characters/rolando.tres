@@ -5,14 +5,20 @@
 [resource]
 script = ExtResource("1_0o8pw")
 name = "Rolando"
-mini_figure = "res://assets/sprites/character2.png"
-profile_pic = ""
+mini_figure = "res://assets/sprites/character4.png"
+profile_pic = "res://assets/sprites/characters/yellowcharacter.png"
 description = "Personaje prueba"
 age = 37
 speed = 5
 speed_min = 2
+speed_max = 0
 strenght = 3
 strenght_min = 1
+strenght_max = 0
 aura = 0
 aura_min = 0
+aura_max = 0
+knowledge = 0
+knowledge_min = 0
+knowledge_max = 0
 metadata/_custom_type_script = "uid://b2e7225olpkio"

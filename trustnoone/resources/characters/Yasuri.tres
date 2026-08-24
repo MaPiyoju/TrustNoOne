@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CharacterRes" load_steps=2 format=3 uid="uid://b4q02kw3ha5pm"]
+
+[ext_resource type="Script" uid="uid://b2e7225olpkio" path="res://resources/character.gd" id="1_ki88v"]
+
+[resource]
+script = ExtResource("1_ki88v")
+name = "Yasuri"
+mini_figure = "res://assets/sprites/character1.png"
+profile_pic = "res://assets/sprites/characters/purplecharacter.png"
+description = "She wears her divorce like a perfume—subtle, expensive, and lingering. No one knows if she's healing or hunting. She doesn't correct their guesses."
+age = 43
+speed = 3
+speed_min = 1
+speed_max = 6
+strenght = 4
+strenght_min = 1
+strenght_max = 4
+aura = 7
+aura_min = 0
+aura_max = 10
+metadata/_custom_type_script = "uid://b2e7225olpkio"
