@@ -7,7 +7,7 @@ func _ready() -> void:
 
 func _on_play_pressed() -> void:
 	# Transición hacia la selección de personajes
-	GlobalContext.change_scene("res://scenes/character_selection.tscn")
+	GlobalContext.change_scene("res://scenes/characters/character_selection.tscn")
 
 func _on_exit_pressed() -> void:
 	# Cierra el juego

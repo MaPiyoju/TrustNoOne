@@ -72,4 +72,4 @@ func _on_left_pressed() -> void:
 func _on_select_pressed() -> void:
 	if not characters.is_empty():
 		GlobalContext.player = characters[current_index]
-		GlobalContext.change_scene("res://scenes/level_1.tscn")
+		GlobalContext.change_scene("res://scenes/levels/level_1.tscn")

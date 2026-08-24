@@ -4,7 +4,7 @@ var max_turns := 20
 var current_turn := 20
 var player: CharacterRes
 
-var transition_scene = preload("res://scenes/scene_transition.tscn")
+var transition_scene = preload("res://scenes/levels/scene_transition.tscn")
 
 func change_scene(target_scene_path: String) -> void:
 	var transition_instance = transition_scene.instantiate()

@@ -6,7 +6,7 @@
 script = ExtResource("1_ns0od")
 name = ""
 texture = "res://assets/sprites/tiles/tile6.png"
-coordinates = Array[int]([0, 0])
+coordinates = Vector2i(0, 0)
 connection_type = 5
 connections = Array[int]([1, 2, 4, 6, 7, 8, 9, 10])
 room_type = 0

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://noo5ex5gwiwj"]
+
+[ext_resource type="Script" uid="uid://845wqp7s22rg" path="res://scripts/level_controller/room_controller.gd" id="1_fo53o"]
+[ext_resource type="Texture2D" uid="uid://b2yydp31nadxe" path="res://assets/sprites/tiles/tile1.png" id="2_maom3"]
+
+[node name="Room" type="Node2D"]
+z_index = -1
+script = ExtResource("1_fo53o")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_maom3")

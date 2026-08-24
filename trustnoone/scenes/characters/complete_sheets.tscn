@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dbplx2n80v8fr"]
 
-[ext_resource type="Script" uid="uid://c2srp2py6f28" path="res://scripts/complete_sheets.gd" id="1_d5bw7"]
-[ext_resource type="PackedScene" uid="uid://cacg70hy4ngww" path="res://scenes/character_sheet.tscn" id="1_mx0xp"]
+[ext_resource type="Script" uid="uid://c2srp2py6f28" path="res://scripts/character/complete_sheets.gd" id="1_d5bw7"]
+[ext_resource type="PackedScene" uid="uid://cacg70hy4ngww" path="res://scenes/characters/character_sheet.tscn" id="1_mx0xp"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_d5bw7")

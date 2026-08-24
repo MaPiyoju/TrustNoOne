@@ -32,11 +32,12 @@ var baseRoomDistance := Vector2(48,40)
 var currSpeed: int
 
 func _ready() -> void:
-	room_prefab = preload("res://scenes/room.tscn")
+	room_prefab = preload("res://scenes/components/room.tscn")
 
 	var active_player: CharacterRes = GlobalContext.player
 	if active_player == null:
 		active_player = player_test if player_test != null else characters[0]
+		GlobalContext.player = active_player
 		
 	character.CharacterConfig = active_player
 	character.load()

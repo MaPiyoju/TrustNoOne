@@ -1,13 +1,13 @@
 [gd_scene load_steps=12 format=3 uid="uid://8rswpyjnnchq"]
 
-[ext_resource type="Script" uid="uid://cq2qirm05dsv0" path="res://scripts/character_selection.gd" id="1_7xed0"]
+[ext_resource type="Script" uid="uid://cq2qirm05dsv0" path="res://scripts/character/character_selection.gd" id="1_7xed0"]
 [ext_resource type="FontFile" uid="uid://cnbhdxi81hf6w" path="res://ui/Early GameBoy.ttf" id="1_dd54q"]
 [ext_resource type="Script" uid="uid://b2e7225olpkio" path="res://resources/character.gd" id="2_v724p"]
 [ext_resource type="Resource" uid="uid://cd34cwwd1xix3" path="res://resources/characters/Dimitri.tres" id="3_7rsvw"]
 [ext_resource type="Texture2D" uid="uid://bh5kntt5x3hbn" path="res://assets/sprites/id_background.png" id="3_l56u2"]
 [ext_resource type="Texture2D" uid="uid://crnxxy3uqfy3l" path="res://assets/sprites/characters/purplecharacter.png" id="4_7xed0"]
 [ext_resource type="Resource" uid="uid://c747qjr8ictqu" path="res://resources/characters/Dorian.tres" id="4_y8tcv"]
-[ext_resource type="Resource" uid="uid://cij4e37thpcv3" path="res://resources/characters/Rolando.tres" id="5_gckxq"]
+[ext_resource type="Resource" uid="uid://cij4e37thpcv3" path="res://resources/characters/rolando.tres" id="5_gckxq"]
 [ext_resource type="Resource" uid="uid://b4q02kw3ha5pm" path="res://resources/characters/Yasuri.tres" id="6_li4x4"]
 [ext_resource type="Texture2D" uid="uid://bbomh1amxoufy" path="res://assets/sprites/arrows.png" id="6_wh1ae"]
 

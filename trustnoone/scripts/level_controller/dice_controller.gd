@@ -41,6 +41,12 @@ func set_event(event: EventRes):
 	print(newTxt)
 	rich_text_label.text = newTxt
 	btn_throw.disabled = false
+	
+	var viewport := get_viewport()
+	if viewport:
+		var camera := viewport.get_camera_2d() as CameraController
+		if camera:
+			camera.shake(15.0, 0.25)
 
 func hide_dice():
 	btn_throw.disabled = true
