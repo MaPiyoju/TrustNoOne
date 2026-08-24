@@ -4,21 +4,21 @@
 
 [resource]
 script = ExtResource("1_bsotg")
-name = ""
-mini_figure = ""
-profile_pic = ""
-description = ""
-age = 0
-speed = 0
-speed_min = 0
-speed_max = 0
-strenght = 0
-strenght_min = 0
-strenght_max = 0
-aura = 0
+name = "Dorian"
+mini_figure = "res://assets/sprites/character2.png"
+profile_pic = "res://assets/sprites/characters/greencharacter.png"
+description = "Nobody knows who Dorian is. But sometimes, late at night, he picks up the phone and dials a number. No one answers."
+age = 50
+speed = 5
+speed_min = 1
+speed_max = 6
+strenght = 2
+strenght_min = 1
+strenght_max = 6
+aura = 7
 aura_min = 0
-aura_max = 0
-knowledge = 0
-knowledge_min = 0
-knowledge_max = 0
+aura_max = 10
+knowledge = 2
+knowledge_min = 1
+knowledge_max = 9
 metadata/_custom_type_script = "uid://b2e7225olpkio"
