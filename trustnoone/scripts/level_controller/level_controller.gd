@@ -95,6 +95,8 @@ func explore_room(newDir: Vector2i):
 	
 	if(!isTrigger && currSpeed > 0):
 		action_canvas.enable_btns()
+	else:
+		action_canvas.disable_all()
 
 func set_room(room_coord: Vector2i):
 	var room_type = randi_range(0, 3)
