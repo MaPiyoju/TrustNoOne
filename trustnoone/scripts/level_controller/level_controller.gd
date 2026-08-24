@@ -27,6 +27,7 @@ var currentRoom: Vector2i
 var baseRoomDistance := Vector2(48,40)
 
 @export var player_test: CharacterRes
+var currSpeed: int
 
 func _ready() -> void:
 	room_prefab = preload("res://scenes/room.tscn")
@@ -53,7 +54,8 @@ func _ready() -> void:
 	action_canvas.btn_end_signal.connect(end_action)
 	
 	GlobalContext.player = player_test
-	game_info.update_actions(GlobalContext.player.speed, GlobalContext.player.speed)
+	currSpeed = GlobalContext.player.speed
+	game_info.update_actions(GlobalContext.player.speed, currSpeed)
 	game_info.update_turns()
 
 func _process(delta: float) -> void:
@@ -91,7 +93,7 @@ func explore_room(newDir: Vector2i):
 	currentRoom = new_coordinates
 	move_room.emit(new_coordinates)
 	
-	if(!isTrigger):
+	if(!isTrigger && currSpeed > 0):
 		action_canvas.enable_btns()
 
 func set_room(room_coord: Vector2i):
@@ -159,17 +161,21 @@ func validate_event(dice_value: int):
 		
 func enable_next_turn():
 	dice.hide_dice()
-	action_canvas.enable_btns()
+	if(currSpeed > 0):
+		action_canvas.enable_btns()
 	#await get_tree().create_timer(1.0).timeout
 	
 func move_action():
 	check_arrows((rooms[currentRoom] as RoomRes).connection_type)
+	perform_action()
 	
 func inspect_action():
 	if((rooms[currentRoom] as RoomRes).item == null):
 		log_canvas.add_log("There's nothing in this room")
 	else:
 		log_canvas.add_log("You've found: [color=#FFCD75]"+(rooms[currentRoom] as RoomRes).item.name+"[/color]")
+	
+	perform_action()
 	
 func talk_action():
 	pass
@@ -180,3 +186,8 @@ func use_item_action():
 func end_action():
 	pass
 	
+func perform_action():
+	currSpeed-=1
+	game_info.update_actions(GlobalContext.player.speed, currSpeed)
+	if(currSpeed < 1):
+		action_canvas.disable_all()

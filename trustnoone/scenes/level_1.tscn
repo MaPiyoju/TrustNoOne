@@ -27,7 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://cc7g7loep3swn" path="res://scenes/log_ctrl.tscn" id="23_d5akn"]
 [ext_resource type="PackedScene" uid="uid://b4m54ua8ishvm" path="res://scenes/action_canvas_ctrl.tscn" id="24_x2fux"]
 [ext_resource type="PackedScene" uid="uid://b7tlixb161wf5" path="res://scenes/game_info_ctrl.tscn" id="25_mbb35"]
-[ext_resource type="PackedScene" uid="uid://d68stuhhxmo7" path="res://scenes/complete_sheets.tscn" id="25_s7g0b"]
+[ext_resource type="PackedScene" uid="uid://dbplx2n80v8fr" path="res://scenes/complete_sheets.tscn" id="25_s7g0b"]
 [ext_resource type="PackedScene" uid="uid://10s4dnkmurqr" path="res://scenes/item_ctrl.tscn" id="29_mbb35"]
 
 [node name="Level1" type="Node2D"]

@@ -26,6 +26,13 @@ func enable_btns():
 	#btn_talk	.disabled = false
 	#btn_use_item.disabled = false
 	btn_end.disabled = false
+	
+func disable_all():
+	btn_move.disabled = true
+	btn_inspect.disabled = true
+	btn_talk	.disabled = true
+	btn_use_item.disabled = true
+	btn_end.disabled = true
 
 func _on_btn_move_pressed() -> void:
 	btn_move_signal.emit()
