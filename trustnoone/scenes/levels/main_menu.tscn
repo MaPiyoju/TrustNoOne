@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://duwgtvhjum480"]
+[gd_scene load_steps=11 format=3 uid="uid://duwgtvhjum480"]
 
 [ext_resource type="Script" uid="uid://dtiyc0hmec2fk" path="res://scripts/main_menu.gd" id="1_leamy"]
 [ext_resource type="FontFile" uid="uid://cnbhdxi81hf6w" path="res://ui/Early GameBoy.ttf" id="2_721jg"]
@@ -6,6 +6,18 @@
 [ext_resource type="Texture2D" uid="uid://dsr0blc5d3egh" path="res://assets/sprites/menu/bg.png" id="2_keln3"]
 [ext_resource type="AudioStream" uid="uid://bf4mekmuvs7ra" path="res://assets/audio/trusnoone_main.wav" id="4_geflf"]
 [ext_resource type="PackedScene" uid="uid://bw1bcfoeoi8pe" path="res://scenes/levels/scene_transition.tscn" id="5_fkd6t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_keln3"]
+bg_color = Color(0.0901961, 0.054902, 0.0980392, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_crctu"]
+bg_color = Color(0.184314, 0.129412, 0.231373, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sn5u3"]
+bg_color = Color(0.0901961, 0.054902, 0.0980392, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cn35j"]
+bg_color = Color(0.184314, 0.129412, 0.231373, 1)
 
 [node name="MainMenu" type="Node"]
 script = ExtResource("1_leamy")
@@ -39,18 +51,24 @@ texture = ExtResource("2_geflf")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
 offset_left = 420.0
-offset_top = 550.0
+offset_top = 530.0
 offset_right = 770.0
-offset_bottom = 625.0
+offset_bottom = 605.0
 
 [node name="PlayButton" type="Button" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_721jg")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/hover = SubResource("StyleBoxFlat_keln3")
+theme_override_styles/normal = SubResource("StyleBoxFlat_crctu")
 text = "PLAY"
 
 [node name="ExitButton" type="Button" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_721jg")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/hover = SubResource("StyleBoxFlat_sn5u3")
+theme_override_styles/normal = SubResource("StyleBoxFlat_cn35j")
 text = "EXIT"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
