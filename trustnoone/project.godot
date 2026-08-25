@@ -94,4 +94,4 @@ dialogic_default_action={
 textures/canvas_textures/default_texture_filter=0
 textures/decals/filter=0
 textures/light_projectors/filter=0
-environment/defaults/default_clear_color=Color(0.101961, 0.109804, 0.172549, 1)
+environment/defaults/default_clear_color=Color(0.0901961, 0.054902, 0.0980392, 1)
