@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cex6pjjisul1s"]
+[gd_scene load_steps=34 format=3 uid="uid://cex6pjjisul1s"]
 
 [ext_resource type="Script" uid="uid://b5fp487xdkdsu" path="res://scripts/level_controller/level_controller.gd" id="1_4yk0h"]
 [ext_resource type="Script" uid="uid://bfwg6dcgwhawp" path="res://resources/room.gd" id="2_vmrhw"]
@@ -16,7 +16,7 @@
 [ext_resource type="Script" uid="uid://b2e7225olpkio" path="res://resources/character.gd" id="14_prmli"]
 [ext_resource type="Resource" uid="uid://cd34cwwd1xix3" path="res://resources/characters/Dimitri.tres" id="15_dwx2n"]
 [ext_resource type="Resource" uid="uid://c747qjr8ictqu" path="res://resources/characters/Dorian.tres" id="16_wtkl1"]
-[ext_resource type="Resource" uid="uid://cij4e37thpcv3" path="res://resources/characters/rolando.tres" id="17_ovy75"]
+[ext_resource type="Resource" uid="uid://cij4e37thpcv3" path="res://resources/characters/Rolando.tres" id="17_ovy75"]
 [ext_resource type="Resource" uid="uid://b4q02kw3ha5pm" path="res://resources/characters/Yasuri.tres" id="18_wk6bc"]
 [ext_resource type="Script" uid="uid://beejdb5dcjh44" path="res://resources/item.gd" id="19_ugk5q"]
 [ext_resource type="Resource" uid="uid://cr33dopc5vto" path="res://resources/items/dagger.tres" id="20_4u6u3"]
@@ -32,6 +32,7 @@
 [ext_resource type="PackedScene" uid="uid://b4m54ua8ishvm" path="res://scenes/components/action_canvas_ctrl.tscn" id="29_y73h4"]
 [ext_resource type="PackedScene" uid="uid://dbplx2n80v8fr" path="res://scenes/characters/complete_sheets.tscn" id="30_yhfkw"]
 [ext_resource type="PackedScene" uid="uid://10s4dnkmurqr" path="res://scenes/components/item_ctrl.tscn" id="31_klc0n"]
+[ext_resource type="PackedScene" uid="uid://caaveio72skfm" path="res://scenes/components/mission_canvas.tscn" id="33_cfnpk"]
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_4yk0h")
@@ -89,6 +90,8 @@ scale = Vector2(2, 2)
 npc_sprite_figure = [null, null, null]
 
 [node name="ItemCanvas" parent="Character" instance=ExtResource("31_klc0n")]
+
+[node name="MissionCanvas" parent="Character" instance=ExtResource("33_cfnpk")]
 
 [node name="NPC" type="Node" parent="."]
 

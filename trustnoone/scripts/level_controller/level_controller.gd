@@ -19,6 +19,7 @@ signal move_room(dir: Vector2i, character: CharacterRes)
 @onready var action_canvas: ActionController = $Character/ActionCanvas
 @onready var game_info: GameInfoController = $Character/GameInfo
 @onready var item_canvas: ItemController = $Character/ItemCanvas
+@onready var mission_canvas: MissionController = $Character/MissionCanvas
 
 @onready var rooms_node: Node = $Rooms
 
@@ -41,6 +42,7 @@ var currSpeed: int
 var isInEvent := false
 
 func _ready() -> void:
+	mission_canvas.add_misssion_description(GlobalContext.mission.description)
 	npcs = [npc_1, npc_2, npc_3]
 	room_prefab = preload("res://scenes/components/room.tscn")	
 	
