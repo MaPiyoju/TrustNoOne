@@ -66,6 +66,9 @@ text = "PLAY"
 [node name="CreditsButton" type="Button" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_721jg")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/hover = SubResource("StyleBoxFlat_keln3")
+theme_override_styles/normal = SubResource("StyleBoxFlat_crctu")
 text = "Credits"
 
 [node name="ExitButton" type="Button" parent="CanvasLayer/VBoxContainer"]
