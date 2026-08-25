@@ -29,4 +29,4 @@ func load_character_data(res: CharacterRes) -> void:
 	speed.text = "spd: %d" % res.speed
 
 func enable_turn(_enable: bool):
-	disable_screen.visible = !_enable
+	disable_screen.visible = !_enable	

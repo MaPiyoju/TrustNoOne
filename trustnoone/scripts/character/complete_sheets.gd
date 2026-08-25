@@ -41,3 +41,7 @@ func next_player():
 	for i in range(sheets.size()):
 		if(i != currentPlayer):
 			sheets[currentPlayer].enable_turn(true)
+
+func add_item(newItem: ItemRes):
+	if(ordered_list[currentPlayer].items.size() < 4):#4 items max
+		ordered_list[currentPlayer].items.append(newItem)

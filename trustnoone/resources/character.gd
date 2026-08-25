@@ -22,3 +22,5 @@ class_name CharacterRes
 @export var knowledge: int
 @export var knowledge_min: int
 @export var knowledge_max: int
+
+@export var items: Array[ItemRes]

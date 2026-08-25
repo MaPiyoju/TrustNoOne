@@ -3,6 +3,7 @@ extends Node
 var max_turns := 20
 var current_turn := 20
 var player: CharacterRes
+var playerItems: Array[ItemRes]
 
 var transition_scene = preload("res://scenes/levels/scene_transition.tscn")
 

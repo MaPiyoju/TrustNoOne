@@ -14,7 +14,7 @@ signal move_room(dir: Vector2i, character: CharacterRes)
 @onready var right_arrow: DirectionArrow = $Character/Arrows/RightArrow
 @onready var left_arrow: DirectionArrow = $Character/Arrows/LeftArrow
 
-@onready var dice: DiceController = $Character/Dice
+@onready var dice: DiceController = $Character/Camera2D/Dice
 @onready var log_canvas: LogController = $Character/LogCanvas
 @onready var action_canvas: ActionController = $Character/ActionCanvas
 @onready var game_info: GameInfoController = $Character/GameInfo
@@ -126,16 +126,16 @@ func explore_room(newDir: Vector2i):
 	#Enable actions if there is no event happening
 	if(!isTrigger && currSpeed > 0):
 		#Player
-		if(character_sheets.currentPlayer == 0):
+		if(check_if_player()):
 			action_canvas.enable_btns()
 	else:
 		action_canvas.disable_all()
 		
-	if(character_sheets.currentPlayer == 0):
+	if(check_if_player()):
 		check_arrows(0, true)
 		playerCurrentRoom = new_coordinates
 		move_room.emit(new_coordinates, current_player())
-		perform_action(character_sheets.currentPlayer == 0)
+		perform_action(check_if_player())
 	else:
 		character_sheets.sheets[character_sheets.currentPlayer].current_room = new_coordinates
 
@@ -255,7 +255,7 @@ func inspect_action(isPlayer: bool = true):
 	if((rooms[currentRoom] as RoomRes).item == null):
 		log_canvas.add_log("There's nothing in this room")
 	else:
-		item_canvas.add_item((rooms[currentRoom] as RoomRes).item)		
+		character_sheets.add_item((rooms[currentRoom] as RoomRes).item)
 		log_canvas.add_log("[color=#38B764]"+itemUser+"[/color] found: [color=#FFCD75]"+(rooms[currentRoom] as RoomRes).item.name+"[/color]")
 	
 	perform_action(isPlayer)
@@ -291,7 +291,8 @@ func npc_action_turn():
 	if(rnd < 0.1):
 		end_action()
 	else:
-		var rndAction = randi_range(0,3)
+		#Avoid use item if NPC has no items
+		var rndAction = randi_range(0,(3 if current_player().items.size() > 0 else 2))
 		match rndAction:
 			0:
 				move_action(false)

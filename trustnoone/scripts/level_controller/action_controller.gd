@@ -23,8 +23,9 @@ func _ready() -> void:
 func enable_btns():
 	btn_move.disabled = false
 	btn_inspect.disabled = false
-	#btn_talk	.disabled = false
-	#btn_use_item.disabled = false
+	btn_talk.disabled = false
+	if(GlobalContext.playerItems.size() > 0):
+		btn_use_item.disabled = false
 	btn_end.disabled = false
 	
 func disable_all():

@@ -49,11 +49,6 @@ player_test = ExtResource("17_ovy75")
 z_index = 99
 isPlayer = true
 
-[node name="Dice" parent="Character" instance=ExtResource("25_6bay7")]
-visible = false
-z_index = 100
-scale = Vector2(2, 2)
-
 [node name="Arrows" type="Node2D" parent="Character"]
 
 [node name="UpArrow" parent="Character/Arrows" instance=ExtResource("26_to6s4")]
@@ -78,6 +73,11 @@ type = Vector2i(-1, 0)
 zoom = Vector2(4, 4)
 script = ExtResource("27_vmrhw")
 target = NodePath("..")
+
+[node name="Dice" parent="Character/Camera2D" instance=ExtResource("25_6bay7")]
+visible = false
+z_index = 100
+scale = Vector2(2, 2)
 
 [node name="GameInfo" parent="Character" instance=ExtResource("27_7tcdn")]
 
