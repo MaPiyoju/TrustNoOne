@@ -1,14 +1,19 @@
-extends Control
+extends Node
+
+@onready var play_button: Button = $CanvasLayer/VBoxContainer/PlayButton
+@onready var exit_button: Button = $CanvasLayer/VBoxContainer/ExitButton
+@onready var scene_transition: SceneTransition = $SceneTransition
 
 func _ready() -> void:
-	# Conexión por código (opcional si prefieres no usar el panel de Señales)
-	$VBoxContainer/PlayButton.pressed.connect(_on_play_pressed)
-	$VBoxContainer/ExitButton.pressed.connect(_on_exit_pressed)
+	play_button.pressed.connect(_on_play_pressed)
+	exit_button.pressed.connect(_on_exit_pressed)
+	
+	scene_transition.set_modulate(1.0)
+	await get_tree().create_timer(1.0).timeout
+	scene_transition.fade_in()
 
 func _on_play_pressed() -> void:
-	# Transición hacia la selección de personajes
 	GlobalContext.change_scene("res://scenes/characters/character_selection.tscn")
 
 func _on_exit_pressed() -> void:
-	# Cierra el juego
 	get_tree().quit()

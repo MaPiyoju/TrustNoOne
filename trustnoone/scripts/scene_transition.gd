@@ -1,4 +1,5 @@
 extends CanvasLayer
+class_name SceneTransition
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var color_rect: ColorRect = $ColorRect
@@ -10,6 +11,9 @@ const SCENE_GAME := "res://scenes/level_1.tscn"
 
 func _ready() -> void:
 	color_rect.modulate.a = 0.0
+
+func set_modulate(modulate: float):
+	color_rect.modulate.a = modulate
 
 ## Transición a negro (Salida)
 func fade_out() -> void:
