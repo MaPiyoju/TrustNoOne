@@ -1,7 +1,8 @@
 extends Node2D
 class_name DiceController
 
-signal dice_ended(dice_value: int)
+signal dice_ended(dice_value: int, isPlayer: bool)
+signal next()
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -18,6 +19,11 @@ var isThrowing := false
 var lastThrow := 0.0
 var currentThrows = 0
 
+var goodActionEvent := ""
+var badActionEvent := ""
+
+var isDice = true
+
 func _ready() -> void:
 	btn_throw.disabled = true
 	rich_text_label.text = ""
@@ -31,22 +37,42 @@ func _process(delta: float) -> void:
 				throw()
 		else:
 			isThrowing = false
-			dice_ended.emit(sprite_2d.frame+1)
+			dice_ended.emit(sprite_2d.frame+1, isDice)
 
-func set_event(event: EventRes):
+func set_event(event: EventRes, character: CharacterRes, isPlayer: bool):
 	currentEvent = event
+	
+	var subjectName = character.name + " " if !isPlayer else "You "
+	
+	goodActionEvent = currentEvent.good_action.replace("{0}", "[color=#4f5277]"+subjectName+"[/color]")
+	
+	badActionEvent = currentEvent.bad_action.replace("{0}", "[color=#4f5277]"+subjectName+"[/color]")
+	badActionEvent = badActionEvent.replace("{1}", "[color=#B13E53]"+str(currentEvent.effect_value)+"[/color]")
+	badActionEvent = badActionEvent.replace("{2}", "[color=#FFCD75]"+PropertyType.PropertyEnum.find_key(currentEvent.effect)+"[/color]")
+	
 	var newTxt = event.description.replace("{0}", "[color=#38B764]"+str(event.threshold)+"[/color]")
 	newTxt = newTxt.replace("{1}", "[color=#B13E53]"+str(event.effect_value)+"[/color]")
 	newTxt = newTxt.replace("{2}", "[color=#FFCD75]"+PropertyType.PropertyEnum.find_key(event.effect)+"[/color]")
-	print(newTxt)
 	rich_text_label.text = newTxt
-	btn_throw.disabled = false
+	if(isPlayer):
+		btn_throw.disabled = false
+	else:
+		btn_throw.disabled = true
+		await get_tree().create_timer(1).timeout
+		new_throw()
+
+func set_regular(room: RoomRes, character: CharacterRes, isPlayer: bool) -> String:
+	var newTxt = character.name + " has " if !isPlayer else "You've "
+	newTxt += "entered the [color=#FFCD75]" + room.name + "[/color]"
+	rich_text_label.text = newTxt
 	
-	var viewport := get_viewport()
-	if viewport:
-		var camera := viewport.get_camera_2d() as CameraController
-		if camera:
-			camera.shake(15.0, 0.25)
+	if(!isPlayer):
+		btn_throw.disabled = false
+		
+	return newTxt
+
+func set_msg(msg:String):
+	rich_text_label.text = msg
 
 func hide_dice():
 	btn_throw.disabled = true
@@ -66,6 +92,18 @@ func throw():
 	sprite_2d.visible = true
 	sprite_2d.frame = n
 
+func change_btn(isPlayer: bool):
+	isDice = isPlayer
+	btn_throw.text = "THROW DICE" if isDice else "NEXT ACTION"
+	btn_throw.disabled = true
+
+func enable_next():
+	btn_throw.disabled = false
+
 func _on_btn_throw_pressed() -> void:
-	new_throw()
+	if(isDice):
+		new_throw()
+	else:
+		next.emit()
+		
 	btn_throw.disabled = true

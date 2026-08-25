@@ -13,5 +13,5 @@ func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> vo
 func _on_sprite_clicked() -> void:
 	emit_signal("direction_changed", type)
 	
-func enable(enable: bool):
-	visible = enable
+func enable(value: bool):
+	visible = value

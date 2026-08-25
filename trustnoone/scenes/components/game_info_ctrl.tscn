@@ -11,14 +11,14 @@ custom_minimum_size = Vector2(350, 50)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -175.0
-offset_right = 175.0
+offset_left = -199.0
+offset_right = 199.0
 offset_bottom = 50.0
 grow_horizontal = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 40
 
 [node name="actions" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2

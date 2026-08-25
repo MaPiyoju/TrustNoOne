@@ -13,6 +13,13 @@ offset_right = 465.0
 offset_bottom = 81.0
 script = ExtResource("1_ejr55")
 
+[node name="DisableScreen" type="ColorRect" parent="."]
+z_index = 1
+layout_mode = 0
+offset_right = 465.0
+offset_bottom = 80.0
+color = Color(0.337255, 0.337255, 0.337255, 0.705882)
+
 [node name="background" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 40.0

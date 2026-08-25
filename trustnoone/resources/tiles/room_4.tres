@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_vtkoa")
-name = ""
+name = "master bed room"
 texture = "res://assets/sprites/tiles/tile5.png"
 coordinates = Vector2i(0, 0)
 connection_type = 4
