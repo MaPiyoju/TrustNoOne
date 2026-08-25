@@ -2,18 +2,24 @@ extends Node
 
 @onready var play_button: Button = $CanvasLayer/VBoxContainer/PlayButton
 @onready var exit_button: Button = $CanvasLayer/VBoxContainer/ExitButton
+@onready var credits_button: Button = $CanvasLayer/VBoxContainer/CreditsButton
 @onready var scene_transition: SceneTransition = $SceneTransition
 
+const SCENE_CHARACTER_SELECT := "res://scenes/characters/character_selection.tscn"
+const SCENE_CREDITS := "res://scenes/levels/credits.tscn"
 func _ready() -> void:
 	play_button.pressed.connect(_on_play_pressed)
 	exit_button.pressed.connect(_on_exit_pressed)
+	credits_button.pressed.connect(_on_credits_pressed)
 	
 	scene_transition.set_modulate(1.0)
 	await get_tree().create_timer(1.0).timeout
 	scene_transition.fade_in()
 
 func _on_play_pressed() -> void:
-	GlobalContext.change_scene("res://scenes/characters/character_selection.tscn")
-
+	GlobalContext.change_scene(SCENE_CHARACTER_SELECT)
+func _on_credits_pressed() -> void:
+	GlobalContext.change_scene(SCENE_CREDITS)
+	
 func _on_exit_pressed() -> void:
 	get_tree().quit()
