@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MissionRes" load_steps=2 format=3 uid="uid://dsh5wyejipgsn"]
+
+[ext_resource type="Script" uid="uid://ms0b0ma6out1" path="res://resources/mission.gd" id="1_dc3bd"]
+
+[resource]
+script = ExtResource("1_dc3bd")
+title = "Weekend with friends"
+description = "It’s always refreshing to escape for a getaway with “friends.” I’d love to return to that house in the woods—it certainly wasn’t cheap. Perhaps next time with different company. These “friends” are a little unhinged, but they were the only ones willing to split the cost of the place."
+good_ending_txt = "The nightmare is over. You made it out alive. you're safe."
+good_ending_img = "res://assets/sprites/endings/win.png"
+bad_ending_txt = "Your blood stains the pavement. Darkness swallows the rest."
+bad_ending_img = "res://assets/sprites/endings/game_over_bad.png"
+survive_ending_txt = "The nightmare is over. You made it out alive. you're safe."
+survive_ending_img = "res://assets/sprites/endings/win.png"
+traitor_threshold = 2
+survive_threshold = 3
+metadata/_custom_type_script = "uid://ms0b0ma6out1"
