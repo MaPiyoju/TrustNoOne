@@ -3,6 +3,7 @@ class_name  MissionRes
 
 @export var title: String
 @export var description: String
+@export var description_img: String
 
 @export var good_ending_txt: String
 @export var good_ending_img: String
