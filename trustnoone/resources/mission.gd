@@ -14,3 +14,7 @@ class_name  MissionRes
 
 @export var traitor_threshold: int#Number of turns in which the traitor is revealed
 @export var survive_threshold: int#Number of turn to "escape"
+@export var traitor_excuse: String
+
+@export var allies_txt: Array[String]
+@export var traitor_txt: Array[String]

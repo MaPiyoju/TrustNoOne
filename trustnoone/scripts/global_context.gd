@@ -5,6 +5,8 @@ var current_turn := 20
 var player: CharacterRes
 var playerItems: Array[ItemRes]
 var mission: MissionRes
+var startPlayer:=0
+var isInHunt:= false
 
 const MISSIONS_PATH := "res://resources/missions/"
 
@@ -49,3 +51,15 @@ func select_random_mission() -> void:
 	mission = load(random_path) as MissionRes
 	print("Misión asignada: ", mission.resource_path)
 	
+func player_msg():
+	if(!isInHunt):
+		var rnd = randi_range(0, mission.allies_txt.size()-1)
+		return mission.allies_txt[rnd]
+	else:
+		var rnd = randi_range(0, mission.traitor_txt.size()-1)
+		return mission.traitor_txt[rnd]
+
+func check_hunt():
+	if(max_turns - current_turn > mission.traitor_threshold):
+		isInHunt = true
+		print("There is a traitor")

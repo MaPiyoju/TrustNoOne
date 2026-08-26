@@ -38,10 +38,14 @@ var baseRoomDistance := Vector2(48,40)
 
 @export var player_test: CharacterRes
 var currSpeed: int
-
 var isInEvent := false
 
+@export var mision_test: MissionRes
+
 func _ready() -> void:
+	if(GlobalContext.mission == null):
+		GlobalContext.mission = mision_test
+	
 	mission_canvas.add_misssion_description(GlobalContext.mission.description)
 	npcs = [npc_1, npc_2, npc_3]
 	room_prefab = preload("res://scenes/components/room.tscn")	
@@ -94,7 +98,7 @@ func _ready() -> void:
 	action_canvas.btn_end_signal.connect(end_action)
 	
 	game_info.update_actions(character.CharacterConfig.speed, currSpeed)
-	game_info.update_turns()
+	game_info.update_turns(true)
 	
 func explore_room(newDir: Vector2i):
 	var new_coordinates := currentRoom + newDir
@@ -138,8 +142,8 @@ func explore_room(newDir: Vector2i):
 		playerCurrentRoom = new_coordinates
 		move_room.emit(new_coordinates, current_player())
 		perform_action(check_if_player())
-	else:
-		character_sheets.sheets[character_sheets.currentPlayer].current_room = new_coordinates
+	
+	character_sheets.sheets[character_sheets.currentPlayer].current_room = new_coordinates
 
 func set_room(room_coord: Vector2i):
 	var room_type = randi_range(0, 3)
@@ -258,13 +262,28 @@ func inspect_action(isPlayer: bool = true):
 		log_canvas.add_log("There's nothing in this room")
 	else:
 		character_sheets.add_item((rooms[currentRoom] as RoomRes).item)
+		GlobalContext.playerItems = character_sheets.ordered_list[0].items
 		log_canvas.add_log("[color=#38B764]"+itemUser+"[/color] found: [color=#FFCD75]"+(rooms[currentRoom] as RoomRes).item.name+"[/color]")
 	
 	perform_action(isPlayer)
 
 func talk_action(isPlayer: bool = true):
-	pass
+	#Implement dialogic as well
+	var currentCoords = character_sheets.sheets[character_sheets.currentPlayer].current_room
+	var roomPlayers = []
+	for i in range(character_sheets.sheets.size()):
+		if i != character_sheets.currentPlayer && character_sheets.sheets[i].current_room == currentCoords:
+			roomPlayers.append(character_sheets.ordered_list[i])
 
+	var nameColor = "38B764" if !GlobalContext.isInHunt else "A73E53"
+	if(roomPlayers.size() > 0):
+		for roomPlayer in roomPlayers:
+			log_canvas.add_log("[color=#"+nameColor+"]"+roomPlayer.name+"[/color] says: [color=#FFCD75]"+GlobalContext.player_msg()+"[/color]")
+	else:
+		log_canvas.add_log("There's no one to talk with here" if isPlayer else current_player().name + " tried talking to the walls (Got no response)")
+	
+	perform_action(isPlayer)
+	
 func use_item_action(isPlayer: bool = true):
 	pass
 
@@ -301,8 +320,7 @@ func npc_action_turn():
 			1:
 				inspect_action(false)
 			2:
-				move_action(false)
-				#talk_action(false)
+				talk_action(false)
 			3:
 				move_action(false)
 				#use_item_action(false)
@@ -310,6 +328,11 @@ func npc_action_turn():
 func next_player_turn(first_turn: bool = false):
 	if(!first_turn):
 		character_sheets.next_player()
+		if(GlobalContext.startPlayer == character_sheets.currentPlayer):
+			game_info.update_turns()
+			GlobalContext.check_hunt()
+	else:
+		GlobalContext.startPlayer = character_sheets.currentPlayer
 		
 	action_canvas.disable_all()
 	check_arrows(0,true)

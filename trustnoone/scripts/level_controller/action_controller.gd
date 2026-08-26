@@ -31,7 +31,7 @@ func enable_btns():
 func disable_all():
 	btn_move.disabled = true
 	btn_inspect.disabled = true
-	btn_talk	.disabled = true
+	btn_talk.disabled = true
 	btn_use_item.disabled = true
 	btn_end.disabled = true
 
