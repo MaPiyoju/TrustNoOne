@@ -16,7 +16,7 @@
 [ext_resource type="Script" uid="uid://b2e7225olpkio" path="res://resources/character.gd" id="14_prmli"]
 [ext_resource type="Resource" uid="uid://cd34cwwd1xix3" path="res://resources/characters/Dimitri.tres" id="15_dwx2n"]
 [ext_resource type="Resource" uid="uid://c747qjr8ictqu" path="res://resources/characters/Dorian.tres" id="16_wtkl1"]
-[ext_resource type="Resource" uid="uid://cij4e37thpcv3" path="res://resources/characters/Rolando.tres" id="17_ovy75"]
+[ext_resource type="Resource" uid="uid://cij4e37thpcv3" path="res://resources/characters/rolando.tres" id="17_ovy75"]
 [ext_resource type="Resource" uid="uid://b4q02kw3ha5pm" path="res://resources/characters/Yasuri.tres" id="18_wk6bc"]
 [ext_resource type="Script" uid="uid://beejdb5dcjh44" path="res://resources/item.gd" id="19_ugk5q"]
 [ext_resource type="Resource" uid="uid://cr33dopc5vto" path="res://resources/items/dagger.tres" id="20_4u6u3"]
@@ -24,7 +24,7 @@
 [ext_resource type="Resource" uid="uid://c30srrtom8l40" path="res://resources/events/event_0.tres" id="22_yvv08"]
 [ext_resource type="PackedScene" uid="uid://noo5ex5gwiwj" path="res://scenes/components/room.tscn" id="23_bccrp"]
 [ext_resource type="Resource" uid="uid://dsh5wyejipgsn" path="res://resources/missions/mission_0.tres" id="23_o8s4s"]
-[ext_resource type="Script" path="res://scripts/level_controller/audio_player_controller.gd" id="23_wvtie"]
+[ext_resource type="Script" uid="uid://chrvvwrn1oojo" path="res://scripts/level_controller/audio_player_controller.gd" id="23_wvtie"]
 [ext_resource type="PackedScene" uid="uid://ddcjk4xflf7ef" path="res://scenes/characters/character.tscn" id="24_20f45"]
 [ext_resource type="PackedScene" uid="uid://8vlrf8p21aeu" path="res://scenes/components/dice.tscn" id="25_6bay7"]
 [ext_resource type="PackedScene" uid="uid://xi5dvi5ehx1g" path="res://scenes/components/select_arrow.tscn" id="26_to6s4"]
@@ -34,7 +34,7 @@
 [ext_resource type="PackedScene" uid="uid://b4m54ua8ishvm" path="res://scenes/components/action_canvas_ctrl.tscn" id="29_y73h4"]
 [ext_resource type="PackedScene" uid="uid://dbplx2n80v8fr" path="res://scenes/characters/complete_sheets.tscn" id="30_yhfkw"]
 [ext_resource type="PackedScene" uid="uid://10s4dnkmurqr" path="res://scenes/components/item_ctrl.tscn" id="31_klc0n"]
-[ext_resource type="PackedScene" uid="uid://caaveio72skfm" path="res://scenes/components/mission_canvas.tscn" id="33_cfnpk"]
+[ext_resource type="PackedScene" path="res://scenes/components/mission_canvas.tscn" id="33_cfnpk"]
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_4yk0h")
