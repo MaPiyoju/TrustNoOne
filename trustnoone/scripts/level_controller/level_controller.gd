@@ -280,9 +280,10 @@ func talk_action(isPlayer: bool = true):
 		for roomPlayer in roomPlayers:
 			log_canvas.add_log("[color=#"+nameColor+"]"+roomPlayer.name+"[/color] says: [color=#FFCD75]"+GlobalContext.player_msg()+"[/color]")
 	else:
-		log_canvas.add_log("There's no one to talk with here" if isPlayer else current_player().name + " tried talking to the walls (Got no response)")
+		log_canvas.add_log("There's no one to talk with here" if isPlayer else current_player().name + " tried talking to the walls - Got no response")
 	
-	perform_action(isPlayer)
+	if(!isPlayer):
+		perform_action(isPlayer)
 	
 func use_item_action(isPlayer: bool = true):
 	pass
