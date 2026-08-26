@@ -261,13 +261,9 @@ func inspect_action(isPlayer: bool = true):
 	if((rooms[currentRoom] as RoomRes).item == null):
 		log_canvas.add_log("There's nothing in this room")
 	else:
-		if(character_sheets.ordered_list[character_sheets.currentPlayer].items.size() < 4):#4 items max
-			item_canvas.add_item((rooms[currentRoom] as RoomRes).item)
-			character_sheets.add_item((rooms[currentRoom] as RoomRes).item)
-			GlobalContext.playerItems = character_sheets.ordered_list[0].items
-			log_canvas.add_log("[color=#38B764]"+itemUser+"[/color] found: [color=#FFCD75]"+(rooms[currentRoom] as RoomRes).item.name+"[/color]")
-		else:
-			log_canvas.add_log("[color=#38B764]"+itemUser+"[/color] can't hold any more items")
+		character_sheets.add_item((rooms[currentRoom] as RoomRes).item)
+		GlobalContext.playerItems = character_sheets.ordered_list[0].items
+		log_canvas.add_log("[color=#38B764]"+itemUser+"[/color] found: [color=#FFCD75]"+(rooms[currentRoom] as RoomRes).item.name+"[/color]")
 	
 	perform_action(isPlayer)
 
@@ -284,10 +280,9 @@ func talk_action(isPlayer: bool = true):
 		for roomPlayer in roomPlayers:
 			log_canvas.add_log("[color=#"+nameColor+"]"+roomPlayer.name+"[/color] says: [color=#FFCD75]"+GlobalContext.player_msg()+"[/color]")
 	else:
-		log_canvas.add_log("There's no one to talk with here" if isPlayer else current_player().name + " tried talking to the walls - Got no response")
+		log_canvas.add_log("There's no one to talk with here" if isPlayer else current_player().name + " tried talking to the walls (Got no response)")
 	
-	if(!isPlayer):
-		perform_action(isPlayer)
+	perform_action(isPlayer)
 	
 func use_item_action(isPlayer: bool = true):
 	pass
@@ -317,6 +312,7 @@ func npc_action_turn():
 	if(rnd < 0.1):
 		end_action()
 	else:
+<<<<<<< HEAD
 		if(GlobalContext.traitor == character_sheets.currentPlayer):#Traitor
 			#var currentCoords = character_sheets.sheets[character_sheets.currentPlayer].current_room
 			#var roomPlayers = []
@@ -347,15 +343,27 @@ func npc_action_turn():
 				3:
 					move_action(false)
 					#use_item_action(false)
+=======
+		#Avoid use item if NPC has no items
+		var rndAction = randi_range(0,(3 if current_player().items.size() > 0 else 2))
+		match rndAction:
+			0:
+				move_action(false)
+			1:
+				inspect_action(false)
+			2:
+				talk_action(false)
+			3:
+				move_action(false)
+				#use_item_action(false)
+>>>>>>> 6d5900d9cb470345fb9bac8bbf720f93659992f9
 
 func next_player_turn(first_turn: bool = false):
 	if(!first_turn):
 		character_sheets.next_player()
 		if(GlobalContext.startPlayer == character_sheets.currentPlayer):
 			game_info.update_turns()
-			if(GlobalContext.check_hunt()):
-				log_canvas.add_log("[color=#A73E53]"+GlobalContext.mission.traitor_excuse+"[/color]")
-				await get_tree().create_timer(4).timeout
+			GlobalContext.check_hunt()
 	else:
 		GlobalContext.startPlayer = character_sheets.currentPlayer
 		

@@ -7,7 +7,6 @@ var playerItems: Array[ItemRes]
 var mission: MissionRes
 var startPlayer:=0
 var isInHunt:= false
-var traitor: int
 
 const MISSIONS_PATH := "res://resources/missions/"
 
@@ -60,12 +59,7 @@ func player_msg():
 		var rnd = randi_range(0, mission.traitor_txt.size()-1)
 		return mission.traitor_txt[rnd]
 
-func check_hunt() -> bool:
+func check_hunt():
 	if(max_turns - current_turn > mission.traitor_threshold):
 		isInHunt = true
-		traitor = randi_range(1,3)
-		print("There is a traitor, ",traitor)
-		
-		return true
-	else:
-		return false
+		print("There is a traitor")
