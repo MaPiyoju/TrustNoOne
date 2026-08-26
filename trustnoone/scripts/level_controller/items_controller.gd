@@ -32,3 +32,8 @@ func render_items(items_list: Array[ItemRes]) -> void:
 
 func _on_card_clicked(item_res: ItemRes) -> void:
 	item_used.emit(item_res)
+
+func add_item(item: ItemRes):
+	render_items(GlobalContext.playerItems)
+	print (GlobalContext.playerItems.size())
+	print("llega aca")

@@ -1,12 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://o1nm8a3c7who"]
+[gd_scene load_steps=3 format=3 uid="uid://o1nm8a3c7who"]
 
 [ext_resource type="Script" uid="uid://cdkditu2da1ei" path="res://scripts/level_controller/item_card.gd" id="1_03epw"]
+[ext_resource type="Texture2D" uid="uid://bh0kisnunxkog" path="res://assets/items/dagger.png" id="1_b87s4"]
 
 [node name="ItemCard" type="TextureRect"]
-custom_minimum_size = Vector2(39, 60)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 39.0
+offset_bottom = 60.0
+texture = ExtResource("1_b87s4")
+expand_mode = 3
 script = ExtResource("1_03epw")

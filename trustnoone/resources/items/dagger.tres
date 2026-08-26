@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_mkiuy")
 name = "dagger"
-item_pic = ""
+item_pic = "res://assets/items/dagger.png"
 description = "Apuñala a tus amigos"
 effect = "0"
 effect_value = "2"

@@ -6,17 +6,19 @@
 script = ExtResource("1_6wybu")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-custom_minimum_size = Vector2(330, 120)
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -165.0
-offset_top = -100.0
-offset_right = 165.0
+offset_left = -250.295
+offset_top = -153.305
+offset_right = 79.705
+offset_bottom = -53.3049
 grow_horizontal = 2
 grow_vertical = 0
+scale = Vector2(1.5, 1.5)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+alignment = 1
