@@ -263,9 +263,9 @@ func inspect_action(isPlayer: bool = true):
 	else:
 		#Test
 		if(character_sheets.ordered_list[character_sheets.currentPlayer].items.size() < 4):#4 items max
-			item_canvas.add_item((rooms[currentRoom] as RoomRes).item)
-			character_sheets.add_item((rooms[currentRoom] as RoomRes).item)
 			GlobalContext.playerItems = character_sheets.ordered_list[0].items
+			character_sheets.add_item((rooms[currentRoom] as RoomRes).item)
+			item_canvas.add_item((rooms[currentRoom] as RoomRes).item)
 			log_canvas.add_log("[color=#38B764]"+itemUser+"[/color] found: [color=#FFCD75]"+(rooms[currentRoom] as RoomRes).item.name+"[/color]")
 		else:
 			log_canvas.add_log("[color=#38B764]"+itemUser+"[/color] can't hold any more items")
