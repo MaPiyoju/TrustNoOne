@@ -7,6 +7,7 @@ class_name GameInfoController
 func update_actions(maxVal:int, current:int):
 	actions.text = "ACTIONS: " + str(current) + " / " + str(maxVal)
 	
-func update_turns():
-	GlobalContext.current_turn-=1
+func update_turns(firstTurn:=false):
+	if(!firstTurn):
+		GlobalContext.current_turn-=1
 	turns.text = "TURNS: " + str(GlobalContext.current_turn) + " / " + str(GlobalContext.max_turns)
