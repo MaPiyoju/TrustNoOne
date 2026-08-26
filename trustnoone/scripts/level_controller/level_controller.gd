@@ -262,6 +262,7 @@ func inspect_action(isPlayer: bool = true):
 		log_canvas.add_log("There's nothing in this room")
 	else:
 		if(character_sheets.ordered_list[character_sheets.currentPlayer].items.size() < 4):#4 items max
+			item_canvas.add_item((rooms[currentRoom] as RoomRes).item)
 			character_sheets.add_item((rooms[currentRoom] as RoomRes).item)
 			GlobalContext.playerItems = character_sheets.ordered_list[0].items
 			log_canvas.add_log("[color=#38B764]"+itemUser+"[/color] found: [color=#FFCD75]"+(rooms[currentRoom] as RoomRes).item.name+"[/color]")
@@ -316,25 +317,30 @@ func npc_action_turn():
 	if(rnd < 0.1):
 		end_action()
 	else:
-		#Avoid use item if NPC has no items
-		var rndAction = randi_range(0,(3 if current_player().items.size() > 0 else 2))
-		match rndAction:
-			0:
-				move_action(false)
-			1:
-				inspect_action(false)
-			2:
-				talk_action(false)
-			3:
-				move_action(false)
-				#use_item_action(false)
+		if(GlobalContext.traitor == character_sheets.currentPlayer):#Traitor
+			use_item_action(false)
+		else:#Ally
+			#Avoid use item if NPC has no items
+			var rndAction = randi_range(0,(3 if current_player().items.size() > 0 else 2))
+			match rndAction:
+				0:
+					move_action(false)
+				1:
+					inspect_action(false)
+				2:
+					talk_action(false)
+				3:
+					move_action(false)
+					#use_item_action(false)
 
 func next_player_turn(first_turn: bool = false):
 	if(!first_turn):
 		character_sheets.next_player()
 		if(GlobalContext.startPlayer == character_sheets.currentPlayer):
 			game_info.update_turns()
-			GlobalContext.check_hunt()
+			if(GlobalContext.check_hunt()):
+				log_canvas.add_log("[color=#A73E53]"+GlobalContext.mission.traitor_excuse+"[/color]")
+				await get_tree().create_timer(4).timeout
 	else:
 		GlobalContext.startPlayer = character_sheets.currentPlayer
 		
