@@ -1,5 +1,5 @@
 extends CanvasLayer
-class_name  CompleteSheet
+class_name CompleteSheet
 
 @onready var sheet_1: SheetControl = $MarginContainer/VBoxContainer/Control
 @onready var sheet_2: SheetControl = $MarginContainer/VBoxContainer/Control2
@@ -45,3 +45,18 @@ func next_player():
 func add_item(newItem: ItemRes):
 	if(ordered_list[currentPlayer].items.size() < 4):#4 items max
 		ordered_list[currentPlayer].items.append(newItem)
+
+func update_stats(characterIdx: int, stat: PropertyType.PropertyEnum, value: int):
+	match stat:
+		PropertyType.PropertyEnum.AURA:
+			if(ordered_list[characterIdx].aura + value < ordered_list[characterIdx].aura_max && ordered_list[characterIdx].aura + value > ordered_list[characterIdx].aura_min):
+				ordered_list[characterIdx].aura += value
+		PropertyType.PropertyEnum.KNOWLEDGE:
+			if(ordered_list[characterIdx].knowledge + value < ordered_list[characterIdx].knowledge_max && ordered_list[characterIdx].aura + value > ordered_list[characterIdx].knowledge_min):
+				ordered_list[characterIdx].knowledge += value
+		PropertyType.PropertyEnum.SPEED:
+			if(ordered_list[characterIdx].speed + value < ordered_list[characterIdx].speed_max && ordered_list[characterIdx].aura + value > ordered_list[characterIdx].speed_min):
+				ordered_list[characterIdx].speed += value
+		PropertyType.PropertyEnum.STRENGTH:
+			if(ordered_list[characterIdx].strenght + value < ordered_list[characterIdx].strenght_max && ordered_list[characterIdx].aura + value > ordered_list[characterIdx].strenght_min):
+				ordered_list[characterIdx].strenght += value
