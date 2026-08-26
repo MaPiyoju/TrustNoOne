@@ -261,6 +261,7 @@ func inspect_action(isPlayer: bool = true):
 	if((rooms[currentRoom] as RoomRes).item == null):
 		log_canvas.add_log("There's nothing in this room")
 	else:
+		#Test
 		if(character_sheets.ordered_list[character_sheets.currentPlayer].items.size() < 4):#4 items max
 			item_canvas.add_item((rooms[currentRoom] as RoomRes).item)
 			character_sheets.add_item((rooms[currentRoom] as RoomRes).item)
