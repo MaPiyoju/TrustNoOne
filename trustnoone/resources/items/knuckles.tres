@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ItemRes" load_steps=2 format=3 uid="uid://b5fo7fg4wq3yn"]
+
+[ext_resource type="Script" uid="uid://beejdb5dcjh44" path="res://resources/item.gd" id="1_047tq"]
+
+[resource]
+script = ExtResource("1_047tq")
+name = "Knuckles"
+item_pic = "res://assets/items/knuckles.png"
+description = ""
+effect = 3
+effect_value = 1
+dice_condition = 4
+min_knowledge = 4
+threshold = 0.15
+target_type = 0
+is_damaging = false
+metadata/_custom_type_script = "uid://beejdb5dcjh44"

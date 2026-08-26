@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ItemRes" load_steps=2 format=3 uid="uid://moh4krskjs6e"]
+
+[ext_resource type="Script" uid="uid://beejdb5dcjh44" path="res://resources/item.gd" id="1_ysch7"]
+
+[resource]
+script = ExtResource("1_ysch7")
+name = "Book"
+item_pic = "res://assets/items/book.png"
+description = ""
+effect = 1
+effect_value = 1
+dice_condition = 2
+min_knowledge = 1
+threshold = 0.15
+target_type = 0
+is_damaging = false
+metadata/_custom_type_script = "uid://beejdb5dcjh44"

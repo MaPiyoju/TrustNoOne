@@ -256,20 +256,37 @@ func move_action(isPlayer: bool = true):
 
 func inspect_action(isPlayer: bool = true):
 	var itemUser = "You " if check_if_player() else current_player().name
-	log_canvas.add_log("[color=#38B764]"+itemUser+"[/color] check the [color=#FFCD75]"+(rooms[currentRoom] as RoomRes).name+"[/color]")
+	log_canvas.add_log(
+		"[color=#38B764]" + itemUser + "[/color] check the [color=#FFCD75]" +
+		(rooms[currentRoom] as RoomRes).name + "[/color]"
+	)
 	await get_tree().create_timer(0.5).timeout
-	if((rooms[currentRoom] as RoomRes).item == null):
+	if (rooms[currentRoom] as RoomRes).item == null:
 		log_canvas.add_log("There's nothing in this room")
 	else:
-		#Test
-		if(character_sheets.ordered_list[character_sheets.currentPlayer].items.size() < 4):#4 items max
-			GlobalContext.playerItems = character_sheets.ordered_list[0].items
-			character_sheets.add_item((rooms[currentRoom] as RoomRes).item)
-			item_canvas.add_item((rooms[currentRoom] as RoomRes).item)
-			log_canvas.add_log("[color=#38B764]"+itemUser+"[/color] found: [color=#FFCD75]"+(rooms[currentRoom] as RoomRes).item.name+"[/color]")
+		var current_char = current_player()
+		if current_char.items.size() < 4:
+			var item = (rooms[currentRoom] as RoomRes).item
+			# El item se agrega al personaje cuyo turno está activo
+			character_sheets.add_item(item)
+			# Solo actualizamos el inventario visual si es el jugador
+			if isPlayer:
+				GlobalContext.playerItems = current_char.items
+				item_canvas.render_items(current_char.items)
+				# --- SOLUCIÓN AQUÍ ---
+				# Garantiza que la tarjeta recién recogida nazca oscurecida/deshabilitada
+				# hasta que el jugador decida presionar la acción de "Usar Item".
+				item_canvas.set_items_enabled(false)
+				
+			log_canvas.add_log(
+				"[color=#38B764]" + itemUser + "[/color] found: [color=#FFCD75]" +
+				item.name + "[/color]"
+			)
 		else:
-			log_canvas.add_log("[color=#38B764]"+itemUser+"[/color] can't hold any more items")
-	
+			log_canvas.add_log(
+				"[color=#38B764]" + itemUser +
+				"[/color] can't hold any more items"
+			)
 	perform_action(isPlayer)
 
 func talk_action(isPlayer: bool = true):
@@ -290,8 +307,24 @@ func talk_action(isPlayer: bool = true):
 	if(!isPlayer):
 		perform_action(isPlayer)
 	
-func use_item_action(isPlayer: bool = true):
-	pass
+func use_item_action(isPlayer: bool = true) -> void:
+	if isPlayer:
+		if GlobalContext.playerItems.size() == 0:
+			log_canvas.add_log("You have no items to use!")
+		elif item_canvas.can_use_items():
+			item_canvas.set_items_enabled(true)
+			log_canvas.add_log("Select an item from your hand below.")
+		else:
+			log_canvas.add_log("You have no action points left to use items!")
+	else:
+		var current_char = current_player()
+
+		if current_char.items.size() > 0:
+			item_canvas.set_items_enabled(false)
+			item_canvas.use_item_by_index(0)
+		else:
+			log_canvas.add_log(current_char.name + " has no items to use.")
+			perform_action(isPlayer)
 
 func end_action():
 	if(check_if_player()):
@@ -327,7 +360,7 @@ func npc_action_turn():
 					attack = true
 					print("Asesinar")
 					character_sheets.update_stats(i,PropertyType.PropertyEnum.AURA,-1)
-					#use_item_action(false)
+
 			
 			if(!attack):
 				var rndAction = randi_range(0,2)
@@ -374,12 +407,14 @@ func next_player_turn(first_turn: bool = false):
 		log_canvas.add_log("Your turn: ")
 		currentRoom = playerCurrentRoom
 		action_canvas.enable_btns()
+		item_canvas.set_items_enabled(false)
 	else:
 		dice.change_btn(false)
 		currSpeed = current_player().speed	
 		game_info.update_actions(currSpeed, currSpeed)
 		currentRoom = character_sheets.sheets[character_sheets.currentPlayer].current_room
 		log_canvas.add_log(current_player().name + "'s turn: ")
+		item_canvas.set_items_enabled(false)
 		
 		move_action(false)
 

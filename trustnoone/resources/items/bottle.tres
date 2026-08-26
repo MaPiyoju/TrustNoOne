@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemRes" load_steps=2 format=3 uid="uid://did2g1t146jrr"]
+
+[ext_resource type="Script" uid="uid://beejdb5dcjh44" path="res://resources/item.gd" id="1_g0qcv"]
+
+[resource]
+script = ExtResource("1_g0qcv")
+name = "Bottle"
+item_pic = "res://assets/items/bottle.png"
+description = "dfsdfds"
+effect = 0
+effect_value = -2
+dice_condition = 4
+min_knowledge = 3
+threshold = 0.15
+target_type = 1
+metadata/_custom_type_script = "uid://beejdb5dcjh44"

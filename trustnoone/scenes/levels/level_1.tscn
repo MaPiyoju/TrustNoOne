@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cex6pjjisul1s"]
+[gd_scene load_steps=43 format=3 uid="uid://cex6pjjisul1s"]
 
 [ext_resource type="Script" uid="uid://b5fp487xdkdsu" path="res://scripts/level_controller/level_controller.gd" id="1_4yk0h"]
 [ext_resource type="Script" uid="uid://bfwg6dcgwhawp" path="res://resources/room.gd" id="2_vmrhw"]
@@ -19,28 +19,35 @@
 [ext_resource type="Resource" uid="uid://cij4e37thpcv3" path="res://resources/characters/Rolando.tres" id="17_ovy75"]
 [ext_resource type="Resource" uid="uid://b4q02kw3ha5pm" path="res://resources/characters/Yasuri.tres" id="18_wk6bc"]
 [ext_resource type="Script" uid="uid://beejdb5dcjh44" path="res://resources/item.gd" id="19_ugk5q"]
+[ext_resource type="Resource" uid="uid://moh4krskjs6e" path="res://resources/items/book.tres" id="20_2to4m"]
 [ext_resource type="Resource" uid="uid://cr33dopc5vto" path="res://resources/items/dagger.tres" id="20_4u6u3"]
 [ext_resource type="Script" uid="uid://bnix6barmivun" path="res://resources/event.gd" id="21_i3rdk"]
+[ext_resource type="Resource" uid="uid://ykx7wmf8f181" path="res://resources/items/boots.tres" id="21_kc3v0"]
+[ext_resource type="Resource" uid="uid://did2g1t146jrr" path="res://resources/items/bottle.tres" id="22_prmli"]
 [ext_resource type="Resource" uid="uid://c30srrtom8l40" path="res://resources/events/event_0.tres" id="22_yvv08"]
 [ext_resource type="PackedScene" uid="uid://noo5ex5gwiwj" path="res://scenes/components/room.tscn" id="23_bccrp"]
 [ext_resource type="Resource" uid="uid://dsh5wyejipgsn" path="res://resources/missions/mission_0.tres" id="23_o8s4s"]
 [ext_resource type="Script" path="res://scripts/level_controller/audio_player_controller.gd" id="23_wvtie"]
 [ext_resource type="PackedScene" uid="uid://ddcjk4xflf7ef" path="res://scenes/characters/character.tscn" id="24_20f45"]
+[ext_resource type="Resource" uid="uid://gyeedk4jb6sy" path="res://resources/items/gun.tres" id="24_dwx2n"]
 [ext_resource type="PackedScene" uid="uid://8vlrf8p21aeu" path="res://scenes/components/dice.tscn" id="25_6bay7"]
+[ext_resource type="Resource" uid="uid://b5fo7fg4wq3yn" path="res://resources/items/knuckles.tres" id="25_wtkl1"]
+[ext_resource type="Resource" uid="uid://c0s08ohce0f1s" path="res://resources/items/potion.tres" id="26_ovy75"]
 [ext_resource type="PackedScene" uid="uid://xi5dvi5ehx1g" path="res://scenes/components/select_arrow.tscn" id="26_to6s4"]
 [ext_resource type="PackedScene" uid="uid://b7tlixb161wf5" path="res://scenes/components/game_info_ctrl.tscn" id="27_7tcdn"]
 [ext_resource type="Script" uid="uid://cm7pd1skw6401" path="res://scripts/level_controller/camera_controller.gd" id="27_vmrhw"]
 [ext_resource type="PackedScene" uid="uid://cc7g7loep3swn" path="res://scenes/components/log_ctrl.tscn" id="28_4gp5p"]
-[ext_resource type="PackedScene" uid="uid://b4m54ua8ishvm" path="res://scenes/components/action_canvas_ctrl.tscn" id="29_y73h4"]
+[ext_resource type="PackedScene" uid="uid://b4m54ua8ishvm" path="res://scenes/components/target_selection_ctrl.tscn" id="29_y73h4"]
 [ext_resource type="PackedScene" uid="uid://dbplx2n80v8fr" path="res://scenes/characters/complete_sheets.tscn" id="30_yhfkw"]
 [ext_resource type="PackedScene" uid="uid://10s4dnkmurqr" path="res://scenes/components/item_ctrl.tscn" id="31_klc0n"]
 [ext_resource type="PackedScene" uid="uid://caaveio72skfm" path="res://scenes/components/mission_canvas.tscn" id="33_cfnpk"]
+[ext_resource type="PackedScene" uid="uid://ck5q6wcytvdkh" path="res://scenes/components/action_canvas_ctrl.tscn" id="36_ebb2h"]
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_4yk0h")
 base_tiles = Array[ExtResource("2_vmrhw")]([ExtResource("3_cfnpk"), ExtResource("4_wvtie"), ExtResource("5_o8s4s"), ExtResource("6_ebb2h"), ExtResource("7_row31"), ExtResource("8_ytidy"), ExtResource("9_hvllt"), ExtResource("10_dp4fg"), ExtResource("11_svqqs"), ExtResource("12_2to4m"), ExtResource("13_kc3v0")])
 characters = Array[ExtResource("14_prmli")]([ExtResource("15_dwx2n"), ExtResource("16_wtkl1"), ExtResource("17_ovy75"), ExtResource("18_wk6bc")])
-items = Array[ExtResource("19_ugk5q")]([ExtResource("20_4u6u3")])
+items = Array[ExtResource("19_ugk5q")]([ExtResource("20_2to4m"), ExtResource("21_kc3v0"), ExtResource("22_prmli"), ExtResource("20_4u6u3"), ExtResource("24_dwx2n"), ExtResource("25_wtkl1"), ExtResource("26_ovy75")])
 events = Array[ExtResource("21_i3rdk")]([ExtResource("22_yvv08")])
 player_test = ExtResource("17_ovy75")
 mision_test = ExtResource("23_o8s4s")
@@ -93,7 +100,7 @@ scale = Vector2(2, 2)
 
 [node name="LogCanvas" parent="Character" instance=ExtResource("28_4gp5p")]
 
-[node name="ActionCanvas" parent="Character" instance=ExtResource("29_y73h4")]
+[node name="TargetCanvas" parent="Character" instance=ExtResource("29_y73h4")]
 
 [node name="CharacterSheets" parent="Character" node_paths=PackedStringArray("npc_sprite_figure") instance=ExtResource("30_yhfkw")]
 npc_sprite_figure = [null, null, null]
@@ -101,6 +108,8 @@ npc_sprite_figure = [null, null, null]
 [node name="ItemCanvas" parent="Character" instance=ExtResource("31_klc0n")]
 
 [node name="MissionCanvas" parent="Character" instance=ExtResource("33_cfnpk")]
+
+[node name="ActionCanvas" parent="Character" instance=ExtResource("36_ebb2h")]
 
 [node name="NPC" type="Node" parent="."]
 

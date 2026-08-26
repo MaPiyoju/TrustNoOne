@@ -29,7 +29,7 @@ func update_card_info(res: CharacterRes) -> void:
 	rich_text_label.text += "[b]STATS:[/b]\n"
 	rich_text_label.text += "  AURA: %d\n" % res.aura
 	rich_text_label.text += "  KNOWLEDGE: %d\n" % res.knowledge
-	rich_text_label.text += "  STRENGHT: %d\n" % res.strenght
+	rich_text_label.text += "  STRENGTH: %d\n" % res.strength
 	rich_text_label.text += "  SPEED: %d\n" % res.speed
 	rich_text_label.text += "[b]DESCRIPTION:[/b] %s" % res.description
 

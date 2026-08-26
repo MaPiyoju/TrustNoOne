@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="CharacterRes" load_steps=2 format=3 uid="uid://b4q02kw3ha5pm"]
+[gd_resource type="Resource" script_class="CharacterRes" load_steps=3 format=3 uid="uid://b4q02kw3ha5pm"]
 
+[ext_resource type="Script" uid="uid://beejdb5dcjh44" path="res://resources/item.gd" id="1_dmr7w"]
 [ext_resource type="Script" uid="uid://b2e7225olpkio" path="res://resources/character.gd" id="1_ki88v"]
 
 [resource]
@@ -12,13 +13,14 @@ age = 43
 speed = 4
 speed_min = 1
 speed_max = 6
-strenght = 1
-strenght_min = 1
-strenght_max = 4
+strength = 1
+strength_min = 1
+strength_max = 2
 aura = 7
 aura_min = 0
 aura_max = 10
 knowledge = 4
 knowledge_min = 1
 knowledge_max = 10
+items = Array[ExtResource("1_dmr7w")]([])
 metadata/_custom_type_script = "uid://b2e7225olpkio"

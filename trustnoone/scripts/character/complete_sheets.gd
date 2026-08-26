@@ -24,7 +24,14 @@ func setup_sheets(selected_character: CharacterRes, all_characters: Array[Charac
 			
 	for i in range(sheets.size()):
 		if i < ordered_list.size() and sheets[i] != null:
-			sheets[i].load_character_data(ordered_list[i])
+			var character_res := ordered_list[i]
+			var sheet_ui := sheets[i]
+			
+			sheet_ui.load_character_data(character_res)
+			
+			# Connect signal to refresh UI when stats change on this resource
+			if not character_res.stat_changed.is_connected(_on_character_stat_changed):
+				character_res.stat_changed.connect(_on_character_stat_changed)
 	
 	set_start_player()
 	
@@ -38,25 +45,13 @@ func set_start_player():
 func next_player():
 	sheets[currentPlayer].enable_turn(false)
 	currentPlayer = currentPlayer+1 if currentPlayer < sheets.size() - 1 else 0
-	for i in range(sheets.size()):
-		if(i != currentPlayer):
-			sheets[currentPlayer].enable_turn(true)
+	sheets[currentPlayer].enable_turn(true)
 
 func add_item(newItem: ItemRes):
-	if(ordered_list[currentPlayer].items.size() < 4):#4 items max
+	if(ordered_list[currentPlayer].items.size() < 4):
 		ordered_list[currentPlayer].items.append(newItem)
 
-func update_stats(characterIdx: int, stat: PropertyType.PropertyEnum, value: int):
-	match stat:
-		PropertyType.PropertyEnum.AURA:
-			if(ordered_list[characterIdx].aura + value < ordered_list[characterIdx].aura_max && ordered_list[characterIdx].aura + value > ordered_list[characterIdx].aura_min):
-				ordered_list[characterIdx].aura += value
-		PropertyType.PropertyEnum.KNOWLEDGE:
-			if(ordered_list[characterIdx].knowledge + value < ordered_list[characterIdx].knowledge_max && ordered_list[characterIdx].aura + value > ordered_list[characterIdx].knowledge_min):
-				ordered_list[characterIdx].knowledge += value
-		PropertyType.PropertyEnum.SPEED:
-			if(ordered_list[characterIdx].speed + value < ordered_list[characterIdx].speed_max && ordered_list[characterIdx].aura + value > ordered_list[characterIdx].speed_min):
-				ordered_list[characterIdx].speed += value
-		PropertyType.PropertyEnum.STRENGTH:
-			if(ordered_list[characterIdx].strenght + value < ordered_list[characterIdx].strenght_max && ordered_list[characterIdx].aura + value > ordered_list[characterIdx].strenght_min):
-				ordered_list[characterIdx].strenght += value
+func _on_character_stat_changed(_stat: PropertyType.PropertyEnum, _new_value: int):
+	for i in range(sheets.size()):
+		if i < ordered_list.size() and sheets[i] != null:
+			sheets[i].load_character_data(ordered_list[i])
