@@ -1,15 +1,14 @@
-extends CanvasLayer # O Control, según el tipo de nodo raíz de ItemCanvas
-class_name ItemCanvasController
+extends CanvasLayer
+class_name ItemController
 
 signal item_used(item_res: ItemRes)
 
-# Ruta exacta según tu árbol de nodos
+
 @onready var item_hand: HBoxContainer = $MarginContainer/HBoxContainer
 
 
 var card_scene: PackedScene = preload("res://scenes/components/item_card.tscn")
 
-## Actualiza y llena dinámicamente el HBoxContainer (de 0 a 4 cartas)
 func render_items(items_list: Array[ItemRes]) -> void:
 	if item_hand == null:
 		return
