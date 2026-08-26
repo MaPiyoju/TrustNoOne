@@ -318,6 +318,21 @@ func npc_action_turn():
 		end_action()
 	else:
 		if(GlobalContext.traitor == character_sheets.currentPlayer):#Traitor
+			#var currentCoords = character_sheets.sheets[character_sheets.currentPlayer].current_room
+			#var roomPlayers = []
+			#for i in range(character_sheets.sheets.size()):
+				#if i != character_sheets.currentPlayer && character_sheets.sheets[i].current_room == currentCoords:
+					#roomPlayers.append(character_sheets.ordered_list[i])
+#
+			#var nameColor = "38B764" if !GlobalContext.isInHunt else "A73E53"
+			#if(roomPlayers.size() > 0):
+				#for roomPlayer in roomPlayers:
+					#log_canvas.add_log("[color=#"+nameColor+"]"+roomPlayer.name+"[/color] says: [color=#FFCD75]"+GlobalContext.player_msg()+"[/color]")
+			#else:
+				#log_canvas.add_log("There's no one to talk with here" if isPlayer else current_player().name + " tried talking to the walls - Got no response")
+
+			
+			
 			use_item_action(false)
 		else:#Ally
 			#Avoid use item if NPC has no items
