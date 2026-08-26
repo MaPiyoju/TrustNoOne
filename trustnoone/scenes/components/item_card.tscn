@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://o1nm8a3c7who"]
+
+[ext_resource type="Script" uid="uid://cdkditu2da1ei" path="res://scripts/level_controller/item_card.gd" id="1_03epw"]
+
+[node name="ItemCard" type="TextureRect"]
+custom_minimum_size = Vector2(39, 60)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_03epw")

@@ -20,19 +20,3 @@ grow_vertical = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
-
-[node name="ColorRect2" type="ColorRect" parent="MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
-
-[node name="ColorRect3" type="ColorRect" parent="MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
-
-[node name="ColorRect4" type="ColorRect" parent="MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2

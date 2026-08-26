@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemRes" load_steps=2 format=3 uid="uid://gyeedk4jb6sy"]
+
+[ext_resource type="Script" uid="uid://beejdb5dcjh44" path="res://resources/item.gd" id="1_2pg3p"]
+
+[resource]
+script = ExtResource("1_2pg3p")
+name = "Gun"
+item_pic = "res://assets/items/gun.png"
+description = "shoot another player"
+effect = "0"
+effect_value = "3"
+dice_condition = 0
+min_knowledge = 6
+threshold = 0.0
+metadata/_custom_type_script = "uid://beejdb5dcjh44"
