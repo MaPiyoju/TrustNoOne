@@ -51,7 +51,17 @@ func add_item(newItem: ItemRes):
 	if(ordered_list[currentPlayer].items.size() < 4):
 		ordered_list[currentPlayer].items.append(newItem)
 
+func get_random_player(ignore: int, coords: Vector2i) -> int:
+	var random_index := randi_range(0, ordered_list.size() - 1)
+	while random_index == ignore || sheets[random_index].current_room != coords:
+		random_index = randi_range(0, ordered_list.size() - 1)	
+	
+	return random_index
+
 func _on_character_stat_changed(_stat: PropertyType.PropertyEnum, _new_value: int):
+	if(ordered_list[0].aura == 0):
+		GlobalContext.change_scene("res://scenes/levels/bad_ending.tscn")
+		
 	for i in range(sheets.size()):
 		if i < ordered_list.size() and sheets[i] != null:
 			sheets[i].load_character_data(ordered_list[i])

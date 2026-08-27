@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://c1faq0kdx551g"]
+[gd_scene load_steps=4 format=3 uid="uid://csy8tyuykxt21"]
 
 [ext_resource type="Script" uid="uid://dtursooveyfnn" path="res://scripts/level_controller/bad_ending.gd" id="1_8hucs"]
 [ext_resource type="Texture2D" uid="uid://btk87fueqn0u4" path="res://assets/sprites/endings/game_over_bad.png" id="1_rhsxj"]

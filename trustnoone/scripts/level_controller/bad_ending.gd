@@ -1,7 +1,7 @@
 extends Node
 
 @onready var main_menu_button: Button = $MainMenuButton
-@onready var credits_button: Button = $CreditsButton
+@onready var credits_button: Button = $Credits
 
 const SCENE_MAIN_MENU := "res://scenes/levels/main_menu.tscn"
 const SCENE_CREDITS := "res://scenes/levels/credits.tscn"

@@ -20,6 +20,7 @@ signal move_room(dir: Vector2i, character: CharacterRes)
 @onready var game_info: GameInfoController = $Character/GameInfo
 @onready var item_canvas: ItemController = $Character/ItemCanvas
 @onready var mission_canvas: MissionController = $Character/MissionCanvas
+@onready var screen_effect: ScreenEffect = $Character/ScreenEffect
 
 @onready var rooms_node: Node = $Rooms
 
@@ -215,6 +216,7 @@ func validate_event(dice_value: int, isPlayer: bool):
 	if(dice_value > curEvent.threshold):
 		log_canvas.add_log(dice.goodActionEvent)
 	else:
+		character_sheets.ordered_list[character_sheets.currentPlayer].modify_stat(curEvent.effect,curEvent.effect_value)
 		log_canvas.add_log(dice.badActionEvent)
 		var viewport := get_viewport()
 		if viewport:
@@ -264,18 +266,14 @@ func inspect_action(isPlayer: bool = true):
 	if (rooms[currentRoom] as RoomRes).item == null:
 		log_canvas.add_log("There's nothing in this room")
 	else:
-		var current_char = current_player()
-		if current_char.items.size() < 4:
+		if current_player().items.size() < 4:
 			var item = (rooms[currentRoom] as RoomRes).item
 			# El item se agrega al personaje cuyo turno está activo
 			character_sheets.add_item(item)
 			# Solo actualizamos el inventario visual si es el jugador
 			if isPlayer:
-				GlobalContext.playerItems = current_char.items
-				item_canvas.render_items(current_char.items)
-				# --- SOLUCIÓN AQUÍ ---
-				# Garantiza que la tarjeta recién recogida nazca oscurecida/deshabilitada
-				# hasta que el jugador decida presionar la acción de "Usar Item".
+				GlobalContext.playerItems = current_player().items
+				item_canvas.render_items(current_player().items)
 				item_canvas.set_items_enabled(false)
 				
 			log_canvas.add_log(
@@ -329,6 +327,7 @@ func use_item_action(isPlayer: bool = true) -> void:
 
 func end_action():
 	if(check_if_player()):
+		action_canvas.disable_all()
 		log_canvas.add_log("You ended your turn")
 	else:
 		log_canvas.add_log(current_player().name + " ended their turn")
@@ -348,30 +347,41 @@ func perform_action(isPlayer):
 			dice.enable_next()
 
 func npc_action_turn():
-	var rnd = randf_range(0,1)
-	if(rnd < 0.1):
-		end_action()
-	else:
-		if(GlobalContext.traitor == character_sheets.currentPlayer):#Traitor
-			var currentCoords = character_sheets.sheets[character_sheets.currentPlayer].current_room
-			var roomPlayers = []
-			var attack = false
-			for i in range(character_sheets.sheets.size()):
-				if i != character_sheets.currentPlayer && character_sheets.sheets[i].current_room == currentCoords:
-					attack = true
-					print("Asesinar")
-					character_sheets.ordered_list[i].modify_stat(PropertyType.PropertyEnum.AURA,-1)
+	if(GlobalContext.traitor == character_sheets.currentPlayer):#Traitor
+		var currentCoords = character_sheets.sheets[character_sheets.currentPlayer].current_room
+		var filteredCoord = character_sheets.sheets.filter(func(x):
+			return x.current_room == currentCoords
+		)
+		if(filteredCoord.size() > 1):
+			var rdnIdx = character_sheets.get_random_player(character_sheets.currentPlayer,currentCoords)
+			character_sheets.ordered_list[rdnIdx].modify_stat(PropertyType.PropertyEnum.AURA,-1)
+			if(rdnIdx == 0):
+				log_canvas.add_log("[color=#A73E53]Ouch, you've been damaged, be careful who you trust[/color]")
+				screen_effect.show_damage()
+			else:
+				log_canvas.add_log("[color=#A73E53]Someone has been hurt, be careful with the people in the house[/color]")
 			
-			if(!attack):
-				var rndAction = randi_range(0,2)
-				match rndAction:
-					0:
-						move_action(false)
-					1:
-						inspect_action(false)
-					2:
-						talk_action(false)
-		else:#Ally
+			var viewport := get_viewport()
+			if viewport:
+				var camera := viewport.get_camera_2d() as CameraController
+				if camera:
+					camera.shake(15.0, 0.25)
+			
+			perform_action(false)
+		else:
+			var rndAction = randi_range(0,2)
+			match rndAction:
+				0:
+					move_action(false)
+				1:
+					inspect_action(false)
+				2:
+					talk_action(false)
+	else:#Ally
+		var rnd = randf_range(0,1)
+		if(rnd < 0.1):
+			end_action()
+		else:
 			#Avoid use item if NPC has no items
 			var rndAction = randi_range(0,(3 if current_player().items.size() > 0 else 2))
 			match rndAction:
@@ -390,9 +400,13 @@ func next_player_turn(first_turn: bool = false):
 		character_sheets.next_player()
 		if(GlobalContext.startPlayer == character_sheets.currentPlayer):
 			game_info.update_turns()
-			if(GlobalContext.check_hunt()):
-				log_canvas.add_log("[color=#A73E53]"+GlobalContext.mission.traitor_excuse+"[/color]")
-				await get_tree().create_timer(4).timeout
+			if(!GlobalContext.isInHunt):
+				if(GlobalContext.check_hunt()):
+					log_canvas.add_log("[color=#A73E53]"+GlobalContext.mission.traitor_excuse+"[/color]")
+					await get_tree().create_timer(4).timeout
+					var newMission = "Choose between: \n\n~Find and [color=#A73E53]kill the ?? traitor[/color]"
+					newMission += "\n~Hide and survive for [color=#ffcc75]"+str(GlobalContext.mission.survive_threshold)+" turns from now on[/color]"
+					mission_canvas.add_misssion_description(newMission, true)
 	else:
 		GlobalContext.startPlayer = character_sheets.currentPlayer
 		
