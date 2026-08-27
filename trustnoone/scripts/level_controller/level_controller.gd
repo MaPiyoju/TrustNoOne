@@ -350,11 +350,8 @@ func perform_action(isPlayer):
 func npc_action_turn():
 	if(GlobalContext.traitor == character_sheets.currentPlayer):#Traitor
 		var currentCoords = character_sheets.sheets[character_sheets.currentPlayer].current_room
-		var filteredCoord = character_sheets.sheets.filter(func(x):
-			return x.current_room == currentCoords
-		)
-		if(filteredCoord.size() > 1):
-			var rdnIdx = character_sheets.get_random_player(character_sheets.currentPlayer,currentCoords)
+		var rdnIdx = character_sheets.get_random_player(character_sheets.currentPlayer,currentCoords)
+		if(rdnIdx > 0):
 			character_sheets.ordered_list[rdnIdx].modify_stat(PropertyType.PropertyEnum.AURA,-1)
 			if(rdnIdx == 0):
 				log_canvas.add_log("[color=#A73E53]Ouch, you've been damaged, be careful who you trust[/color]")

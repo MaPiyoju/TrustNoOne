@@ -45,6 +45,9 @@ func set_start_player():
 func next_player():
 	sheets[currentPlayer].enable_turn(false)
 	currentPlayer = currentPlayer+1 if currentPlayer < sheets.size() - 1 else 0
+	while(ordered_list[currentPlayer].isDead()):
+		currentPlayer = currentPlayer+1 if currentPlayer < sheets.size() - 1 else 0
+	
 	sheets[currentPlayer].enable_turn(true)
 
 func add_item(newItem: ItemRes):
@@ -52,11 +55,16 @@ func add_item(newItem: ItemRes):
 		ordered_list[currentPlayer].items.append(newItem)
 
 func get_random_player(ignore: int, coords: Vector2i) -> int:
-	var random_index := randi_range(0, ordered_list.size() - 1)
-	while random_index == ignore || sheets[random_index].current_room != coords:
-		random_index = randi_range(0, ordered_list.size() - 1)	
-	
-	return random_index
+	var available_players := range(sheets.size()).filter(
+		func(i):
+			return i != ignore \
+				and sheets[i].current_room == coords \
+				and not ordered_list[i].isDead()
+	)
+	if available_players.is_empty():
+		return -1
+
+	return available_players.pick_random()
 
 func _on_character_stat_changed(_stat: PropertyType.PropertyEnum, _new_value: int):
 	if(ordered_list[0].aura == 0):
@@ -68,6 +76,7 @@ func _on_character_stat_changed(_stat: PropertyType.PropertyEnum, _new_value: in
 	for i in range(sheets.size()):
 		#Regular player death
 		if(ordered_list[i].aura == 0 && i != 0 && i != GlobalContext.traitor):
+			sheets[i].dead_character()
 			print(ordered_list[i].name + " has died")
 		if i < ordered_list.size() and sheets[i] != null:
 			sheets[i].load_character_data(ordered_list[i])

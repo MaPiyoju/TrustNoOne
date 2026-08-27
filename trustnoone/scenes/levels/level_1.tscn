@@ -139,9 +139,12 @@ npc_sprite_figure = [null, null, null]
 
 [node name="NPC_1" parent="NPC" instance=ExtResource("24_20f45")]
 position = Vector2(-16, 0)
+baseXOffset = -16.0
 
 [node name="NPC_2" parent="NPC" instance=ExtResource("24_20f45")]
 position = Vector2(-8, 0)
+baseXOffset = -8.0
 
 [node name="NPC_3" parent="NPC" instance=ExtResource("24_20f45")]
 position = Vector2(8, 0)
+baseXOffset = 8.0

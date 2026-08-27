@@ -30,3 +30,7 @@ func load_character_data(res: CharacterRes) -> void:
 
 func enable_turn(_enable: bool):
 	disable_screen.visible = !_enable	
+
+func dead_character():
+	disable_screen.color = Color("#ff3e539f")
+	disable_screen.visible = true

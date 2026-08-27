@@ -2,6 +2,7 @@ extends Resource
 class_name CharacterRes
 
 signal stat_changed(stat: PropertyType.PropertyEnum, new_value: int)
+signal die
 
 @export var name: String
 @export var mini_figure: String
@@ -33,6 +34,8 @@ func modify_stat(stat: PropertyType.PropertyEnum, amount: int):
 		PropertyType.PropertyEnum.AURA:
 			aura = clampi(aura + amount, aura_min, aura_max)
 			stat_changed.emit(PropertyType.PropertyEnum.AURA, aura)
+			if(aura == 0):
+				die.emit()
 		PropertyType.PropertyEnum.KNOWLEDGE:
 			knowledge = clampi(knowledge + amount, knowledge_min, knowledge_max)
 			stat_changed.emit(PropertyType.PropertyEnum.KNOWLEDGE, knowledge)
@@ -50,3 +53,6 @@ func get_stat(stat: PropertyType.PropertyEnum) -> int:
 		PropertyType.PropertyEnum.SPEED: return speed
 		PropertyType.PropertyEnum.STRENGTH: return strength
 		_: return 0
+
+func isDead() -> bool:
+	return aura == 0
