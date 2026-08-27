@@ -50,7 +50,6 @@ func select_random_mission() -> void:
 		return
 	var random_path: String = mission_files.pick_random()
 	mission = load(random_path) as MissionRes
-	print("Misión asignada: ", mission.resource_path)
 	
 func player_msg():
 	if(!isInHunt):
@@ -61,6 +60,9 @@ func player_msg():
 		return mission.traitor_txt[rnd]
 
 func check_hunt() -> bool:
+	if(isInHunt):
+		pass
+		
 	if(max_turns - current_turn > mission.traitor_threshold):
 		isInHunt = true
 		traitor = randi_range(1,3)

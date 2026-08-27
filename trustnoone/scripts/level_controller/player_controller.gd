@@ -13,7 +13,7 @@ func _ready() -> void:
 			char_res.stats_changed.connect(_on_character_changed.bind(i, char_res))
 			char_res.died.connect(_on_character_died.bind(i, char_res))
 
-func change_stat(character_index: int, stat: PropertyType, amount: int) -> void:
+func change_stat(character_index: int, stat: PropertyType.PropertyEnum, amount: int) -> void:
 	if character_index >= 0 and character_index < player_characters.size():
 		var target: CharacterRes = player_characters[character_index]
 		if target:

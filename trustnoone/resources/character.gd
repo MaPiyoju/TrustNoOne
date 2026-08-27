@@ -28,22 +28,20 @@ signal stat_changed(stat: PropertyType.PropertyEnum, new_value: int)
 @export var items: Array[ItemRes]
 
 
-func modify_stat(stat: PropertyType.PropertyEnum, amount: int) -> int:
+func modify_stat(stat: PropertyType.PropertyEnum, amount: int):
 	match stat:
 		PropertyType.PropertyEnum.AURA:
 			aura = clampi(aura + amount, aura_min, aura_max)
-			return aura
+			stat_changed.emit(PropertyType.PropertyEnum.AURA, aura)
 		PropertyType.PropertyEnum.KNOWLEDGE:
 			knowledge = clampi(knowledge + amount, knowledge_min, knowledge_max)
-			return knowledge
+			stat_changed.emit(PropertyType.PropertyEnum.KNOWLEDGE, knowledge)
 		PropertyType.PropertyEnum.SPEED:
 			speed = clampi(speed + amount, speed_min, speed_max)
-			return speed
+			stat_changed.emit(PropertyType.PropertyEnum.SPEED, speed)
 		PropertyType.PropertyEnum.STRENGTH:
 			strength = clampi(strength + amount, strength_min, strength_max)
-			return strength
-		_:
-			return 0
+			stat_changed.emit(PropertyType.PropertyEnum.STRENGTH, strength)
 
 func get_stat(stat: PropertyType.PropertyEnum) -> int:
 	match stat:

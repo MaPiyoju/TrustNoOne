@@ -13,5 +13,4 @@ dice_condition = 4
 min_knowledge = 4
 threshold = 0.15
 target_type = 0
-is_damaging = false
 metadata/_custom_type_script = "uid://beejdb5dcjh44"

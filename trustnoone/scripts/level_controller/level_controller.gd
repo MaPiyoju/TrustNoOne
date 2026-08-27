@@ -282,6 +282,7 @@ func inspect_action(isPlayer: bool = true):
 				"[color=#38B764]" + itemUser + "[/color] found: [color=#FFCD75]" +
 				item.name + "[/color]"
 			)
+			(rooms[currentRoom] as RoomRes).item = null
 		else:
 			log_canvas.add_log(
 				"[color=#38B764]" + itemUser +
@@ -359,8 +360,7 @@ func npc_action_turn():
 				if i != character_sheets.currentPlayer && character_sheets.sheets[i].current_room == currentCoords:
 					attack = true
 					print("Asesinar")
-					character_sheets.update_stats(i,PropertyType.PropertyEnum.AURA,-1)
-
+					character_sheets.ordered_list[i].modify_stat(PropertyType.PropertyEnum.AURA,-1)
 			
 			if(!attack):
 				var rndAction = randi_range(0,2)
@@ -415,8 +415,10 @@ func next_player_turn(first_turn: bool = false):
 		currentRoom = character_sheets.sheets[character_sheets.currentPlayer].current_room
 		log_canvas.add_log(current_player().name + "'s turn: ")
 		item_canvas.set_items_enabled(false)
-		
-		move_action(false)
+		if(!GlobalContext.isInHunt):
+			move_action(false)
+		else:
+			npc_action_turn()
 
 func move_npc(dir: Vector2i):
 	explore_room(dir)
