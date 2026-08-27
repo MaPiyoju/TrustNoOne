@@ -228,7 +228,6 @@ func validate_event(dice_value: int, isPlayer: bool):
 	await get_tree().create_timer(1.5).timeout
 	isInEvent = false
 	if(!isPlayer):
-		dice.hide_dice()
 		await get_tree().create_timer(1).timeout
 		dice.enable_next()
 	else:
@@ -242,7 +241,6 @@ func log_room_event(event: EventRes):
 		dice.set_event(event, current_player(), character_sheets.currentPlayer == 0)
 
 func enable_next_action():
-	dice.hide_dice()
 	if(character_sheets.currentPlayer == 0):#Player next action
 		if(currSpeed > 0):
 			action_canvas.enable_btns()
@@ -319,7 +317,7 @@ func use_item_action(isPlayer: bool = true) -> void:
 			log_canvas.add_log("You have no action points left to use items!")
 	else:
 		var current_char = current_player()
-
+		log_canvas.add_log(current_char.name + " is trying to use an item")
 		if current_char.items.size() > 0:
 			item_canvas.set_items_enabled(false)
 			item_canvas.use_item_by_index(0)
@@ -391,7 +389,7 @@ func npc_action_turn():
 				1:
 					inspect_action(false)
 				2:
-					talk_action(false)
+					use_item_action(false)
 				3:
 					use_item_action(false)
 

@@ -2,6 +2,7 @@ extends Node2D
 class_name DiceController
 
 signal dice_ended(dice_value: int, isPlayer: bool)
+signal dice_item_ended(dice_value: int, isPlayer: bool, item: ItemRes)
 signal next()
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
@@ -23,6 +24,7 @@ var goodActionEvent := ""
 var badActionEvent := ""
 
 var isDice = true
+var currentItem: ItemRes
 
 func _ready() -> void:
 	btn_throw.disabled = true
@@ -36,8 +38,16 @@ func _process(delta: float) -> void:
 			if(currentTime - lastThrow > 0.05):
 				throw()
 		else:
+			if(currentItem):
+				dice_item_ended.emit(sprite_2d.frame+1, isDice, currentItem)
+			else:
+				dice_ended.emit(sprite_2d.frame+1, isDice)
+			currentItem = null
 			isThrowing = false
-			dice_ended.emit(sprite_2d.frame+1, isDice)
+			
+			await get_tree().create_timer(1.5).timeout
+			hide_dice()
+			
 
 func set_event(event: EventRes, character: CharacterRes, isPlayer: bool):
 	currentEvent = event
@@ -70,6 +80,16 @@ func set_regular(room: RoomRes, character: CharacterRes, isPlayer: bool) -> Stri
 		btn_throw.disabled = false
 		
 	return newTxt
+
+func set_item_dice(msg: String, isPlayer: bool, item: ItemRes):
+	currentItem = item
+	rich_text_label.text = msg
+	if(isPlayer):
+		btn_throw.disabled = false
+	else:
+		btn_throw.disabled = true
+		await get_tree().create_timer(1).timeout
+		new_throw()
 
 func set_msg(msg:String):
 	rich_text_label.text = msg

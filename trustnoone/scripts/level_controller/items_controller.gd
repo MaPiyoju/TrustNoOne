@@ -40,6 +40,9 @@ func render_items(items_list: Array[ItemRes]) -> void:
 			
 		if main_level.target_control.has_signal("target_selected"):
 			(main_level.target_control as TargetController).target_selected.connect(affect_target)
+			
+		if main_level.dice.has_signal("dice_item_ended"):
+			(main_level.dice as DiceController).dice_item_ended.connect(complete_dice_item)
 
 func add_item(item_res: ItemRes) -> void:
 	var current_char = main_level.current_player()
@@ -49,30 +52,32 @@ func _on_card_clicked(item_res: ItemRes) -> void:
 	use_item(item_res)
 
 func use_item(item_res: ItemRes) -> void:
-	if not items_enabled:
+	var current_char = main_level.current_player()
+	var char_index = main_level.character_sheets.currentPlayer
+	
+	if !items_enabled && char_index == 0:
 		return
 	if not main_level:
 		push_error("MainLevel reference not set")
 		return
-	
-	var current_char = main_level.current_player()
-	var char_index = main_level.character_sheets.currentPlayer
 	
 	#Disable items to enforce use of actions again 
 	set_items_enabled(false)
 	
 	# 1. Requirements Validation
 	if current_char.knowledge < item_res.min_knowledge:
-		main_level.log_canvas.add_log("[color=#FF6B6B]Not enough knowledge to use " + item_res.name + "![/color]")
+		if(char_index == 0):
+			main_level.log_canvas.add_log("[color=#FF6B6B]Not enough knowledge to use " + item_res.name + "![/color]")
+		else:
+			main_level.log_canvas.add_log(current_char.name + "[color=#FF6B6B] doesn't have enough knowledge to use " + item_res.name + "![/color]")
 		return
 	
 	# 2. Dice Check Condition
 	if item_res.dice_condition > 0:
-		var dice_roll = randi_range(1, 6)
-		if dice_roll < item_res.dice_condition:
-			main_level.log_canvas.add_log("[color=#FF6B6B]Dice roll failed (" + str(dice_roll) + "/" + str(item_res.dice_condition) + ")! " + item_res.name + " wasted.[/color]")
-			_consume_item_and_action(current_char, item_res)
-			return
+		var diceMsg = "Yoy need to throw a " if char_index == 0 else current_char.name + " needs to throw a "
+		diceMsg += str(item_res.dice_condition) + " to use the " + item_res.name
+		main_level.dice.set_item_dice(diceMsg, char_index == 0, item_res)
+		return
 	
 	# 3. Resolve Target Characters
 	var targets: Array[CharacterRes] = _get_target_characters(item_res.target_type, char_index)
@@ -98,11 +103,23 @@ func use_item(item_res: ItemRes) -> void:
 		item_used.emit(item_res)
 
 func affect_target(idx: int, item: ItemRes):
-	# 4. Apply Effect across Targets
 	var applied_any := false
 	if _apply_stat_effect(item, main_level.character_sheets.ordered_list[idx], idx):
 		applied_any = true
 
+	if applied_any:
+		_consume_item_and_action(main_level.current_player(), item)
+		item_used.emit(item)
+
+func complete_dice_item(dice_value: int, isPlayer: bool, item: ItemRes):
+	var applied_any := false
+	if _apply_stat_effect(item, main_level.character_sheets.ordered_list[main_level.character_sheets.currentPlayer], main_level.character_sheets.currentPlayer):
+		applied_any = true
+		
+	if dice_value < item.dice_condition:
+		var nameDice = "You " if isPlayer else main_level.current_player().name
+		main_level.log_canvas.add_log("[color=#FF6B6B]"+nameDice+" failed (" + str(dice_value) + "/" + str(item.dice_condition) + ")! " + item.name + " wasted.[/color]")
+	
 	if applied_any:
 		_consume_item_and_action(main_level.current_player(), item)
 		item_used.emit(item)
