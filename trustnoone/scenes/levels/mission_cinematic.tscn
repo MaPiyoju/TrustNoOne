@@ -15,9 +15,9 @@ offset_bottom = 663.0
 color = Color(0, 0, 0, 1)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = 313.0
+offset_left = 193.0
 offset_top = 367.0
-offset_right = 825.0
+offset_right = 958.0
 offset_bottom = 520.0
 theme_override_fonts/normal_font = ExtResource("2_hlg15")
 theme_override_fonts/mono_font = ExtResource("2_hlg15")

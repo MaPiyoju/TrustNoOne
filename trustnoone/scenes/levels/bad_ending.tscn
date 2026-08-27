@@ -14,7 +14,7 @@ offset_right = 1177.0
 offset_bottom = 663.0
 color = Color(0, 0, 0, 1)
 
-[node name="GameOverBad" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(576, 202)
 scale = Vector2(5, 5)
 texture = ExtResource("1_rhsxj")

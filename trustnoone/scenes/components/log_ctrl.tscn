@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cc7g7loep3swn"]
 
 [ext_resource type="FontFile" uid="uid://cnbhdxi81hf6w" path="res://ui/Early GameBoy.ttf" id="1_o864i"]
-[ext_resource type="Script" path="res://scripts/level_controller/log_controller.gd" id="1_vwsf2"]
+[ext_resource type="Script" uid="uid://cx8vi22b3pjp0" path="res://scripts/level_controller/log_controller.gd" id="1_vwsf2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wbtxt"]
 font = ExtResource("1_o864i")
