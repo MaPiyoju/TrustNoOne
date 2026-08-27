@@ -10,4 +10,6 @@ func update_actions(maxVal:int, current:int):
 func update_turns(firstTurn:=false):
 	if(!firstTurn):
 		GlobalContext.current_turn-=1
+		GlobalContext.check_escape()
+		
 	turns.text = "TURNS: " + str(GlobalContext.current_turn) + " / " + str(GlobalContext.max_turns)

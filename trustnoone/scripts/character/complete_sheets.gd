@@ -66,5 +66,8 @@ func _on_character_stat_changed(_stat: PropertyType.PropertyEnum, _new_value: in
 		GlobalContext.change_scene("res://scenes/levels/good_ending.tscn")
 		
 	for i in range(sheets.size()):
+		#Regular player death
+		if(ordered_list[i].aura == 0 && i != 0 && i != GlobalContext.traitor):
+			print(ordered_list[i].name + " has died")
 		if i < ordered_list.size() and sheets[i] != null:
 			sheets[i].load_character_data(ordered_list[i])

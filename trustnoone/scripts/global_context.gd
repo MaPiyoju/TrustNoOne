@@ -71,3 +71,10 @@ func check_hunt() -> bool:
 		return true
 	else:
 		return false
+
+func check_escape():
+	if(isInHunt):
+		#Check good ending
+		if(max_turns - mission.traitor_threshold - mission.survive_threshold > current_turn):
+			print(max_turns - mission.traitor_threshold - mission.survive_threshold, " - ", current_turn)
+			GlobalContext.change_scene("res://scenes/levels/good_ending.tscn")
