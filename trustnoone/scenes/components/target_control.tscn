@@ -1,0 +1,109 @@
+[gd_scene load_steps=5 format=3 uid="uid://y8ug2yyyqo23"]
+
+[ext_resource type="Texture2D" uid="uid://d2wukp3s23hnm" path="res://assets/sprites/characters/bluecharacter.png" id="1_js5sf"]
+[ext_resource type="Script" uid="uid://woeselpa17yd" path="res://scripts/level_controller/target_control.gd" id="1_scq1q"]
+[ext_resource type="Texture2D" uid="uid://20m4p34jb7o" path="res://assets/sprites/characters/greencharacter.png" id="2_scq1q"]
+[ext_resource type="Texture2D" uid="uid://crnxxy3uqfy3l" path="res://assets/sprites/characters/purplecharacter.png" id="3_et4ya"]
+
+[node name="TargetControl" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_scq1q")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="modal_blocker" type="MarginContainer" parent="CanvasLayer"]
+z_index = -3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/modal_blocker"]
+z_index = -3
+layout_mode = 2
+color = Color(0.192157, 0.192157, 0.192157, 0.443137)
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -211.0
+offset_top = -20.0
+offset_right = -107.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+
+[node name="character_0" type="TextureRect" parent="CanvasLayer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_js5sf")
+stretch_mode = 4
+
+[node name="bg" type="ColorRect" parent="CanvasLayer/MarginContainer/HBoxContainer/character_0"]
+z_index = -1
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 33.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="overlay" type="ColorRect" parent="CanvasLayer/MarginContainer/HBoxContainer/character_0"]
+z_index = 1
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 33.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.670588)
+
+[node name="character_1" type="TextureRect" parent="CanvasLayer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_scq1q")
+stretch_mode = 4
+
+[node name="bg" type="ColorRect" parent="CanvasLayer/MarginContainer/HBoxContainer/character_1"]
+z_index = -1
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 33.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="overlay" type="ColorRect" parent="CanvasLayer/MarginContainer/HBoxContainer/character_1"]
+z_index = 1
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 33.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.670588)
+
+[node name="character_2" type="TextureRect" parent="CanvasLayer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_et4ya")
+stretch_mode = 4
+
+[node name="bg" type="ColorRect" parent="CanvasLayer/MarginContainer/HBoxContainer/character_2"]
+z_index = -1
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 33.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="overlay" type="ColorRect" parent="CanvasLayer/MarginContainer/HBoxContainer/character_2"]
+z_index = 1
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 33.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.670588)

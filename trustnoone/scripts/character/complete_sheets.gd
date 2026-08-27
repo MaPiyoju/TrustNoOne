@@ -1,6 +1,8 @@
 extends CanvasLayer
 class_name CompleteSheet
 
+signal character_setup()
+
 @onready var sheet_1: SheetControl = $MarginContainer/VBoxContainer/Control
 @onready var sheet_2: SheetControl = $MarginContainer/VBoxContainer/Control2
 @onready var sheet_3: SheetControl = $MarginContainer/VBoxContainer/Control3
@@ -34,6 +36,8 @@ func setup_sheets(selected_character: CharacterRes, all_characters: Array[Charac
 				character_res.stat_changed.connect(_on_character_stat_changed)
 	
 	set_start_player()
+	
+	character_setup.emit()
 	
 	return ordered_list
 

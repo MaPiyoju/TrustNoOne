@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://cex6pjjisul1s"]
+[gd_scene load_steps=46 format=3 uid="uid://cex6pjjisul1s"]
 
 [ext_resource type="Script" uid="uid://b5fp487xdkdsu" path="res://scripts/level_controller/level_controller.gd" id="1_4yk0h"]
 [ext_resource type="Script" uid="uid://bfwg6dcgwhawp" path="res://resources/room.gd" id="2_vmrhw"]
@@ -43,6 +43,7 @@
 [ext_resource type="PackedScene" uid="uid://dj56iehtbnb7w" path="res://scenes/components/mission_canvas.tscn" id="33_cfnpk"]
 [ext_resource type="Script" uid="uid://dfmljqfbmlpui" path="res://scripts/level_controller/screen_effect.gd" id="33_kc3v0"]
 [ext_resource type="PackedScene" uid="uid://b4m54ua8ishvm" path="res://scenes/components/action_canvas_ctrl.tscn" id="36_ebb2h"]
+[ext_resource type="PackedScene" uid="uid://y8ug2yyyqo23" path="res://scenes/components/target_control.tscn" id="44_prmli"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kc3v0"]
 shader = ExtResource("33_2to4m")
@@ -126,14 +127,16 @@ scale = Vector2(2, 2)
 
 [node name="TargetCanvas" parent="Character" instance=ExtResource("36_ebb2h")]
 
-[node name="CharacterSheets" parent="Character" node_paths=PackedStringArray("npc_sprite_figure") instance=ExtResource("30_yhfkw")]
-npc_sprite_figure = [null, null, null]
+[node name="CharacterSheets" parent="Character" instance=ExtResource("30_yhfkw")]
 
 [node name="ItemCanvas" parent="Character" instance=ExtResource("31_klc0n")]
 
 [node name="MissionCanvas" parent="Character" instance=ExtResource("33_cfnpk")]
 
 [node name="ActionCanvas" parent="Character" instance=ExtResource("36_ebb2h")]
+
+[node name="TargetControl" parent="Character" node_paths=PackedStringArray("characterSheets") instance=ExtResource("44_prmli")]
+characterSheets = NodePath("../CharacterSheets")
 
 [node name="NPC" type="Node" parent="."]
 

@@ -37,6 +37,9 @@ func render_items(items_list: Array[ItemRes]) -> void:
 			
 		if card_instance.has_signal("card_clicked"):
 			card_instance.card_clicked.connect(_on_card_clicked)
+			
+		if main_level.target_control.has_signal("target_selected"):
+			(main_level.target_control as TargetController).target_selected.connect(affect_target)
 
 func add_item(item_res: ItemRes) -> void:
 	var current_char = main_level.current_player()
@@ -77,16 +80,19 @@ func use_item(item_res: ItemRes) -> void:
 		main_level.log_canvas.add_log("[color=#FF6B6B]No valid targets for " + item_res.name + "![/color]")
 		return
 
+	# 4. Select target
+	(main_level.target_control as TargetController).enable_targets(item_res)
+
+
+func affect_target(idx: int, item: ItemRes):
 	# 4. Apply Effect across Targets
 	var applied_any := false
-	for target in targets:
-		var target_idx = main_level.character_sheets.ordered_list.find(target)
-		if _apply_stat_effect(item_res, target, target_idx):
-			applied_any = true
+	if _apply_stat_effect(item, main_level.character_sheets.ordered_list[idx], idx):
+		applied_any = true
 
 	if applied_any:
-		_consume_item_and_action(current_char, item_res)
-		item_used.emit(item_res)
+		_consume_item_and_action(main_level.current_player(), item)
+		item_used.emit(item)
 
 func _consume_item_and_action(character: CharacterRes, item_res: ItemRes) -> void:
 	character.items.erase(item_res)
@@ -156,7 +162,7 @@ func _get_target_characters(target_type: TargetType.TargetEnum, current_idx: int
 				
 		TargetType.TargetEnum.ALL_IN_ROOM:
 			for i in range(sheets.sheets.size()):
-				if sheets.sheets[i].current_room == current_room:
+				if sheets.sheets[i].current_room == current_room && !sheets.ordered_list[i].isDead():
 					result.append(sheets.ordered_list[i])
 					
 		TargetType.TargetEnum.ALL_PLAYERS:
