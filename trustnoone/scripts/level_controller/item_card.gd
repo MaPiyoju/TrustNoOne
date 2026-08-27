@@ -32,10 +32,12 @@ func setup(res: ItemRes, enabled: bool = true) -> void:
 		]
 			
 		tooltip_text = description_text
-
+		position.y = 50
+		
 	_update_visuals()
 
 func set_enabled(enabled: bool) -> void:
+	position.y = 50 if !enabled else 0
 	is_enabled = enabled
 	_update_visuals()
 

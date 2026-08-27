@@ -55,6 +55,9 @@ func use_item(item_res: ItemRes) -> void:
 	var current_char = main_level.current_player()
 	var char_index = main_level.character_sheets.currentPlayer
 	
+	#Disable items to enforce use of actions again 
+	set_items_enabled(false)
+	
 	# 1. Requirements Validation
 	if current_char.knowledge < item_res.min_knowledge:
 		main_level.log_canvas.add_log("[color=#FF6B6B]Not enough knowledge to use " + item_res.name + "![/color]")

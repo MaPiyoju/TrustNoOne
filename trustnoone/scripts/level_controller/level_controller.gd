@@ -274,6 +274,7 @@ func inspect_action(isPlayer: bool = true):
 			if isPlayer:
 				GlobalContext.playerItems = current_player().items
 				item_canvas.render_items(current_player().items)
+				await get_tree().create_timer(0.5).timeout
 				item_canvas.set_items_enabled(false)
 				
 			log_canvas.add_log(
