@@ -21,6 +21,7 @@ signal move_room(dir: Vector2i, character: CharacterRes)
 @onready var item_canvas: ItemController = $Character/ItemCanvas
 @onready var mission_canvas: MissionController = $Character/MissionCanvas
 @onready var screen_effect: ScreenEffect = $Character/ScreenEffect
+@onready var target_control: Control = $Character/TargetControl
 
 @onready var rooms_node: Node = $Rooms
 
