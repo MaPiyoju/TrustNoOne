@@ -6,7 +6,7 @@
 script = ExtResource("1_dc3bd")
 title = "Weekend with friends"
 description = "It’s always refreshing to escape for a getaway with “friends.” I’d love to return to that house in the woods—it certainly wasn’t cheap. Perhaps next time with different company. These “friends” are a little unhinged, but they were the only ones willing to split the cost of the place."
-description_img = ""
+description_img = "res://assets/sprites/endings/mission_lore.png"
 good_ending_txt = "The nightmare is over. You made it out alive. you're safe."
 good_ending_img = "res://assets/sprites/endings/win.png"
 bad_ending_txt = "Your blood stains the pavement. Darkness swallows the rest."

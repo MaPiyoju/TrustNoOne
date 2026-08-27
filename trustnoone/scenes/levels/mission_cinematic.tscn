@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://den0378ng81lj"]
+
+[ext_resource type="Script" uid="uid://k2s3284fibvo" path="res://scripts/level_controller/mission_cinematic_controller.gd" id="1_s5qxq"]
+[ext_resource type="FontFile" uid="uid://cnbhdxi81hf6w" path="res://ui/Early GameBoy.ttf" id="2_hlg15"]
+[ext_resource type="Texture2D" uid="uid://k4rhw6la5x4k" path="res://assets/sprites/endings/win.png" id="3_kfbfx"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_s5qxq")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -12.0
+offset_top = -19.0
+offset_right = 1177.0
+offset_bottom = 663.0
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 313.0
+offset_top = 367.0
+offset_right = 825.0
+offset_bottom = 520.0
+theme_override_fonts/normal_font = ExtResource("2_hlg15")
+theme_override_fonts/mono_font = ExtResource("2_hlg15")
+theme_override_fonts/italics_font = ExtResource("2_hlg15")
+theme_override_fonts/bold_italics_font = ExtResource("2_hlg15")
+theme_override_fonts/bold_font = ExtResource("2_hlg15")
+theme_override_font_sizes/normal_font_size = 24
+text = "text"
+scroll_following = true
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(576, 202)
+scale = Vector2(5, 5)
+texture = ExtResource("3_kfbfx")
+
+[node name="PlayButton" type="Button" parent="."]
+offset_left = 453.0
+offset_top = 548.0
+offset_right = 692.0
+offset_bottom = 627.0
+theme_override_fonts/font = ExtResource("2_hlg15")
+text = "Play"
