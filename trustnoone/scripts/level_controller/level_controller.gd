@@ -322,6 +322,8 @@ func use_item_action(isPlayer: bool = true) -> void:
 		if current_char.items.size() > 0:
 			item_canvas.set_items_enabled(false)
 			item_canvas.use_item_by_index(0)
+			await get_tree().create_timer(1.5).timeout
+			perform_action(isPlayer)
 		else:
 			log_canvas.add_log(current_char.name + " has no items to use.")
 			perform_action(isPlayer)
@@ -351,7 +353,7 @@ func npc_action_turn():
 	if(GlobalContext.traitor == character_sheets.currentPlayer):#Traitor
 		var currentCoords = character_sheets.sheets[character_sheets.currentPlayer].current_room
 		var rdnIdx = character_sheets.get_random_player(character_sheets.currentPlayer,currentCoords)
-		if(rdnIdx > 0):
+		if(rdnIdx > -1):
 			character_sheets.ordered_list[rdnIdx].modify_stat(PropertyType.PropertyEnum.AURA,-1)
 			if(rdnIdx == 0):
 				log_canvas.add_log("[color=#A73E53]Ouch, you've been damaged, be careful who you trust[/color]")
@@ -390,8 +392,7 @@ func npc_action_turn():
 				2:
 					talk_action(false)
 				3:
-					move_action(false)
-					#use_item_action(false)
+					use_item_action(false)
 
 func next_player_turn(first_turn: bool = false):
 	if(!first_turn):

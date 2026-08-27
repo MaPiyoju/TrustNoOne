@@ -61,6 +61,7 @@ func get_random_player(ignore: int, coords: Vector2i) -> int:
 				and sheets[i].current_room == coords \
 				and not ordered_list[i].isDead()
 	)
+		
 	if available_players.is_empty():
 		return -1
 
