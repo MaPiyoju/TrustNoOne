@@ -6,13 +6,13 @@
 script = ExtResource("1_dc3bd")
 title = "Weekend with friends"
 description = "It’s always refreshing to escape for a getaway with “friends.” I’d love to return to that house in the woods—it certainly wasn’t cheap. Perhaps next time with different company. These “friends” are a little unhinged, but they were the only ones willing to split the cost of the place."
-description_img = "res://assets/sprites/endings/mission_lore.png"
+description_img = "res://assets/sprites/endings/intro_mission_0.png"
 good_ending_txt = "The nightmare is over. You made it out alive. you're safe."
-good_ending_img = "res://assets/sprites/endings/win.png"
+good_ending_img = "res://assets/sprites/endings/win_mission_0.png"
 bad_ending_txt = "Your blood stains the pavement. Darkness swallows the rest."
-bad_ending_img = "res://assets/sprites/endings/game_over_bad.png"
+bad_ending_img = "res://assets/sprites/endings/game_over_mission_0.png"
 survive_ending_txt = "The nightmare is over. You made it out alive. you're safe."
-survive_ending_img = "res://assets/sprites/endings/win.png"
+survive_ending_img = "res://assets/sprites/endings/survive_mission_0.png"
 traitor_threshold = 1
 survive_threshold = 6
 traitor_excuse = "You hear a scream. Apparently, someone is paying for every corpse. So much for splitting the rent"

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btk87fueqn0u4"
-path="res://.godot/imported/game_over_bad.png-188d6415d1433ffece615edb1f29a785.ctex"
+uid="uid://dsduaw2rv4wtl"
+path="res://.godot/imported/intro_mission_0.png-e81f95c71021166e471d31f7c5fbe0d6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/endings/game_over_bad.png"
-dest_files=["res://.godot/imported/game_over_bad.png-188d6415d1433ffece615edb1f29a785.ctex"]
+source_file="res://assets/sprites/endings/intro_mission_0.png"
+dest_files=["res://.godot/imported/intro_mission_0.png-e81f95c71021166e471d31f7c5fbe0d6.ctex"]
 
 [params]
 

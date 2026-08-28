@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://k4rhw6la5x4k"
-path="res://.godot/imported/win.png-cc2ef057d435fcdc46bb298f48827ec8.ctex"
+uid="uid://dy0eikegsh6v4"
+path="res://.godot/imported/win_mission_0.png-652a70639dc557120ac1005fb1c8370e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/endings/win.png"
-dest_files=["res://.godot/imported/win.png-cc2ef057d435fcdc46bb298f48827ec8.ctex"]
+source_file="res://assets/sprites/endings/win_mission_0.png"
+dest_files=["res://.godot/imported/win_mission_0.png-652a70639dc557120ac1005fb1c8370e.ctex"]
 
 [params]
 

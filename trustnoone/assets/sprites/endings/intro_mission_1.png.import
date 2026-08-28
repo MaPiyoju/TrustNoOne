@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsduaw2rv4wtl"
-path="res://.godot/imported/mission_lore.png-9ec33dd348878a9cd8bff594f4761d03.ctex"
+uid="uid://hx438lljqlxq"
+path="res://.godot/imported/intro_mission_1.png-206ec9e77af86f6cdcf43b827e3cb1f3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/endings/mission_lore.png"
-dest_files=["res://.godot/imported/mission_lore.png-9ec33dd348878a9cd8bff594f4761d03.ctex"]
+source_file="res://assets/sprites/endings/intro_mission_1.png"
+dest_files=["res://.godot/imported/intro_mission_1.png-206ec9e77af86f6cdcf43b827e3cb1f3.ctex"]
 
 [params]
 
