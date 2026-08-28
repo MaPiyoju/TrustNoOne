@@ -16,6 +16,7 @@ var ordered_list: Array[CharacterRes]
 var currentPlayer := 0
 
 func setup_sheets(selected_character: CharacterRes, all_characters: Array[CharacterRes]) -> Array[CharacterRes]:
+	ordered_list = []
 	sheets = [sheet_1, sheet_2, sheet_3, sheet_4]
 	if selected_character != null:
 		ordered_list.append(selected_character)
@@ -34,6 +35,8 @@ func setup_sheets(selected_character: CharacterRes, all_characters: Array[Charac
 			# Connect signal to refresh UI when stats change on this resource
 			if not character_res.stat_changed.is_connected(_on_character_stat_changed):
 				character_res.stat_changed.connect(_on_character_stat_changed)
+			
+			ordered_list[i].items = []
 	
 	set_start_player()
 	
@@ -73,15 +76,16 @@ func get_random_player(ignore: int, coords: Vector2i) -> int:
 
 func _on_character_stat_changed(_stat: PropertyType.PropertyEnum, _new_value: int):
 	if(ordered_list[0].aura == 0):
+		GlobalContext.ending_type = 0
 		GlobalContext.change_scene("res://scenes/levels/bad_ending.tscn")
 	
 	if(ordered_list[GlobalContext.traitor].aura == 0):
+		GlobalContext.ending_type = 2
 		GlobalContext.change_scene("res://scenes/levels/good_ending.tscn")
 		
 	for i in range(sheets.size()):
 		#Regular player death
 		if(ordered_list[i].aura == 0 && i != 0 && i != GlobalContext.traitor):
 			sheets[i].dead_character()
-			print(ordered_list[i].name + " has died")
 		if i < ordered_list.size() and sheets[i] != null:
 			sheets[i].load_character_data(ordered_list[i])

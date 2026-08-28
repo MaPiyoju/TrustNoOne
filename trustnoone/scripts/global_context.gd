@@ -8,6 +8,7 @@ var mission: MissionRes
 var startPlayer:=0
 var isInHunt:= false
 var traitor: int
+var ending_type: int
 
 const MISSIONS_PATH := "res://resources/missions/"
 
@@ -83,7 +84,17 @@ func check_hunt() -> bool:
 
 func check_escape():
 	if(isInHunt):
-		#Check good ending
+		#Check escape ending
 		if(max_turns - mission.traitor_threshold - mission.survive_threshold > current_turn):
 			print(max_turns - mission.traitor_threshold - mission.survive_threshold, " - ", current_turn)
+			GlobalContext.ending_type = 1
 			GlobalContext.change_scene("res://scenes/levels/good_ending.tscn")
+
+func reset_game():
+	max_turns = 20
+	current_turn = 20
+	playerItems = []
+	startPlayer = 0
+	isInHunt = false
+	traitor = -1
+	ending_type = -1

@@ -66,3 +66,6 @@ text = "Credits"
 position = Vector2(576, 202)
 scale = Vector2(5, 5)
 texture = ExtResource("3_kggp7")
+
+[connection signal="mouse_entered" from="MainMenuButton" to="." method="_on_main_menu_button_mouse_entered"]
+[connection signal="mouse_entered" from="Credits" to="." method="_on_credits_mouse_entered"]

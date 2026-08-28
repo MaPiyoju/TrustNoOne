@@ -74,7 +74,6 @@ audio/channel_defaults={
 
 [display]
 
-window/size/mode=3
 window/stretch/mode="canvas_items"
 mouse_cursor/custom_image="uid://bmyncjeovil42"
 

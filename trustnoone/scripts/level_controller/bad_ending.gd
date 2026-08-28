@@ -20,9 +20,7 @@ func _ready() -> void:
 	main_menu_button.pressed.connect(_on_main_menu_pressed)
 	credits_button.pressed.connect(_on_credits_pressed)
 	
-
-	_set_buttons_disabled(true)
-	
+	_set_buttons_disabled(true)	
 
 	if GlobalContext.mission == null:
 		GlobalContext.mission = TEST_MISSION_RES
@@ -41,7 +39,6 @@ func _ready() -> void:
 		_set_buttons_disabled(false)
 
 func _unhandled_input(event: InputEvent) -> void:
-
 	if _waiting_for_input and event.is_action_pressed("ui_accept"):
 		_waiting_for_input = false
 
@@ -54,7 +51,6 @@ func start_narrative_typewriter(text_to_display: String) -> void:
 		_set_buttons_disabled(false)
 		return
 	
-
 	var sentences: Array[String] = _split_by_sentences(text_to_display)
 	
 	var tween: Tween = create_tween()
@@ -91,6 +87,14 @@ func _split_by_sentences(raw_text: String) -> Array[String]:
 
 func _on_main_menu_pressed() -> void:
 	GlobalContext.change_scene(SCENE_MAIN_MENU)
+	AudioManager.play_sfx(GlobalContext.select_sfx,0.7)
 
 func _on_credits_pressed() -> void:
 	GlobalContext.change_scene(SCENE_CREDITS)
+	AudioManager.play_sfx(GlobalContext.select_sfx,0.7)
+	
+func _on_main_menu_button_mouse_entered() -> void:
+	AudioManager.play_sfx(GlobalContext.hover_sfx,0.7)
+	
+func _on_credits_mouse_entered() -> void:
+	AudioManager.play_sfx(GlobalContext.hover_sfx,0.7)

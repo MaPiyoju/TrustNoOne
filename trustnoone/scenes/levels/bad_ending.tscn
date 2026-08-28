@@ -66,3 +66,6 @@ offset_right = 859.0
 offset_bottom = 605.0
 theme_override_fonts/font = ExtResource("2_8hucs")
 text = "Credits"
+
+[connection signal="mouse_entered" from="MainMenuButton" to="." method="_on_main_menu_button_mouse_entered"]
+[connection signal="mouse_entered" from="Credits" to="." method="_on_credits_mouse_entered"]

@@ -24,12 +24,19 @@ func _ready() -> void:
 	if GlobalContext.mission == null:
 		GlobalContext.mission = TEST_MISSION_RES
 	if GlobalContext.mission and not GlobalContext.mission.good_ending_img.is_empty():
-		sprite_2d.texture = load(GlobalContext.mission.good_ending_img)
+		match GlobalContext.ending_type:
+			1:
+				sprite_2d.texture = load(GlobalContext.mission.survive_ending_img)
+			2:
+				sprite_2d.texture = load(GlobalContext.mission.good_ending_img)
 	
-
 	var full_text: String = ""
 	if GlobalContext.mission:
-		full_text = GlobalContext.mission.good_ending_txt
+		match GlobalContext.ending_type:
+			1:
+				full_text = GlobalContext.mission.survive_ending_txt
+			2:
+				full_text = GlobalContext.mission.good_ending_txt
 
 	if not full_text.is_empty():
 		start_narrative_typewriter(full_text)
@@ -48,7 +55,6 @@ func start_narrative_typewriter(text_to_display: String) -> void:
 	if total_chars == 0:
 		_set_buttons_disabled(false)
 		return
-	
 
 	var sentences: Array[String] = _split_by_sentences(text_to_display)
 	
@@ -71,7 +77,6 @@ func _set_buttons_disabled(disabled: bool) -> void:
 	main_menu_button.disabled = disabled
 	credits_button.disabled = disabled
 
-
 func _split_by_sentences(raw_text: String) -> Array[String]:
 	var result: Array[String] = []
 	var parts: PackedStringArray = raw_text.split(".")
@@ -87,6 +92,14 @@ func _split_by_sentences(raw_text: String) -> Array[String]:
 
 func _on_main_menu_pressed() -> void:
 	GlobalContext.change_scene(SCENE_MAIN_MENU)
+	AudioManager.play_sfx(GlobalContext.select_sfx,0.7)
 
 func _on_credits_pressed() -> void:
 	GlobalContext.change_scene(SCENE_CREDITS)
+	AudioManager.play_sfx(GlobalContext.select_sfx,0.7)
+
+func _on_main_menu_button_mouse_entered() -> void:
+	AudioManager.play_sfx(GlobalContext.hover_sfx,0.7)
+
+func _on_credits_mouse_entered() -> void:
+	AudioManager.play_sfx(GlobalContext.hover_sfx,0.7)
