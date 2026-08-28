@@ -28,10 +28,13 @@ signal die
 
 @export var items: Array[ItemRes]
 
+var screams := ["res://assets/audio/damage_0.ogg", "res://assets/audio/damage_1.ogg"]
 
 func modify_stat(stat: PropertyType.PropertyEnum, amount: int):
 	match stat:
 		PropertyType.PropertyEnum.AURA:
+			var rnd = randi_range(0, screams.size()-1)
+			AudioManager.play_sfx(load(screams[rnd]),0.7)
 			aura = clampi(aura + amount, aura_min, aura_max)
 			stat_changed.emit(PropertyType.PropertyEnum.AURA, aura)
 			if(aura == 0):

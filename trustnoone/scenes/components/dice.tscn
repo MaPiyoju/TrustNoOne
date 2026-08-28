@@ -106,4 +106,5 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_yk8ku")
 theme_override_styles/normal = SubResource("StyleBoxFlat_oi81l")
 text = "THROW DICE"
 
+[connection signal="mouse_entered" from="EventCanvas/MarginContainer/VBoxContainer/BtnThrow" to="." method="_on_btn_throw_mouse_entered"]
 [connection signal="pressed" from="EventCanvas/MarginContainer/VBoxContainer/BtnThrow" to="." method="_on_btn_throw_pressed"]

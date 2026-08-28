@@ -40,11 +40,13 @@ func load():
 	
 func move(newDir: Vector2i, character: CharacterRes):
 	if(CharacterConfig == character):
+		AudioManager.play_sfx(GlobalContext.walk_sfx,0.2)
 		isMoving = true
 		current_dir = baseRoomDistance * Vector2(newDir)
 
 func move_npc(newDir: Vector2i, character: CharacterRes):
 	if(CharacterConfig == character):
+		AudioManager.play_sfx(GlobalContext.walk_sfx,0.2)
 		isMoving = true
 		var new_dir = baseRoomDistance * Vector2(newDir)
 		new_dir = new_dir + baseOffsetDistance

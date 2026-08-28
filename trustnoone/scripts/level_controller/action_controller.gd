@@ -36,15 +36,40 @@ func disable_all():
 
 func _on_btn_move_pressed() -> void:
 	btn_move_signal.emit()
+	AudioManager.play_sfx(GlobalContext.select_sfx,0.7)
 
 func _on_btn_inspect_pressed() -> void:
 	btn_inspect_signal.emit()
+	AudioManager.play_sfx(GlobalContext.select_sfx,0.7)
 
 func _on_btn_talk_pressed() -> void:
 	btn_talk_signal.emit()
+	AudioManager.play_sfx(GlobalContext.select_sfx,0.7)
 
 func _on_btn_use_item_pressed() -> void:
 	btn_use_item_signal.emit()
+	AudioManager.play_sfx(GlobalContext.select_sfx,0.7)
 
 func _on_btn_end_pressed() -> void:
 	btn_end_signal.emit()
+	AudioManager.play_sfx(GlobalContext.select_sfx,0.7)
+
+func _on_btn_move_mouse_entered() -> void:
+	if(!btn_move.disabled):
+		AudioManager.play_sfx(GlobalContext.hover_sfx,0.2)
+
+func _on_btn_inspect_mouse_entered() -> void:
+	if(!btn_inspect.disabled):
+		AudioManager.play_sfx(GlobalContext.hover_sfx,0.2)
+
+func _on_btn_talk_mouse_entered() -> void:
+	if(!btn_talk.disabled):
+		AudioManager.play_sfx(GlobalContext.hover_sfx,0.2)
+
+func _on_btn_use_item_mouse_entered() -> void:
+	if(!btn_use_item.disabled):
+		AudioManager.play_sfx(GlobalContext.hover_sfx,0.2)
+
+func _on_btn_end_mouse_entered() -> void:
+	if(!btn_end.disabled):
+		AudioManager.play_sfx(GlobalContext.hover_sfx,0.2)

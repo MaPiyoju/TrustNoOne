@@ -115,7 +115,7 @@ func complete_dice_item(dice_value: int, isPlayer: bool, item: ItemRes):
 	var applied_any := false
 	if _apply_stat_effect(item, main_level.character_sheets.ordered_list[main_level.character_sheets.currentPlayer], main_level.character_sheets.currentPlayer):
 		applied_any = true
-		
+		 
 	if dice_value < item.dice_condition:
 		var nameDice = "You " if isPlayer else main_level.current_player().name
 		main_level.log_canvas.add_log("[color=#FF6B6B]"+nameDice+" failed (" + str(dice_value) + "/" + str(item.dice_condition) + ")! " + item.name + " wasted.[/color]")

@@ -26,10 +26,13 @@ var badActionEvent := ""
 var isDice = true
 var currentItem: ItemRes
 
+var diceSfx: AudioStream
+
 func _ready() -> void:
 	btn_throw.disabled = true
 	rich_text_label.text = ""
 	visible = false
+	diceSfx = load("res://assets/audio/dice.ogg")
 
 func _process(delta: float) -> void:
 	if(isThrowing):
@@ -47,7 +50,6 @@ func _process(delta: float) -> void:
 			
 			await get_tree().create_timer(1.5).timeout
 			hide_dice()
-			
 
 func set_event(event: EventRes, character: CharacterRes, isPlayer: bool):
 	currentEvent = event
@@ -99,6 +101,7 @@ func hide_dice():
 	sprite_2d.visible = false
 
 func new_throw():
+	AudioManager.play_sfx(diceSfx,0.4)
 	currentThrows = 0
 	visible = true
 	animation_player.play("throw")
@@ -121,9 +124,14 @@ func enable_next():
 	btn_throw.disabled = false
 
 func _on_btn_throw_pressed() -> void:
+	AudioManager.play_sfx(GlobalContext.select_sfx,0.7)
 	if(isDice):
 		new_throw()
 	else:
 		next.emit()
 		
 	btn_throw.disabled = true
+
+func _on_btn_throw_mouse_entered() -> void:
+	if(!btn_throw.disabled):
+		AudioManager.play_sfx(GlobalContext.hover_sfx,0.2)

@@ -11,6 +11,15 @@ var traitor: int
 
 const MISSIONS_PATH := "res://resources/missions/"
 
+var select_sfx: AudioStream
+var hover_sfx: AudioStream
+var walk_sfx: AudioStream
+
+func _ready() -> void:
+	select_sfx = load("res://assets/audio/select.ogg")
+	hover_sfx = load("res://assets/audio/hover.wav")
+	walk_sfx = load("res://assets/audio/walk.ogg")
+
 var transition_scene = preload("res://scenes/levels/scene_transition.tscn")
 
 func change_scene(target_scene_path: String) -> void:

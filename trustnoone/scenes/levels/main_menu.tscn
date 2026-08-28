@@ -85,3 +85,7 @@ volume_db = -10.0
 autoplay = true
 
 [node name="SceneTransition" parent="." instance=ExtResource("5_fkd6t")]
+
+[connection signal="mouse_entered" from="CanvasLayer/VBoxContainer/PlayButton" to="." method="_on_play_button_mouse_entered"]
+[connection signal="mouse_entered" from="CanvasLayer/VBoxContainer/CreditsButton" to="." method="_on_credits_button_mouse_entered"]
+[connection signal="mouse_entered" from="CanvasLayer/VBoxContainer/ExitButton" to="." method="_on_exit_button_mouse_entered"]

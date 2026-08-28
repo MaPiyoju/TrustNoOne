@@ -18,8 +18,19 @@ func _ready() -> void:
 
 func _on_play_pressed() -> void:
 	GlobalContext.change_scene(SCENE_CHARACTER_SELECT)
+	AudioManager.play_sfx(GlobalContext.select_sfx,0.7)
 func _on_credits_pressed() -> void:
 	GlobalContext.change_scene(SCENE_CREDITS)
-	
+	AudioManager.play_sfx(GlobalContext.select_sfx,0.7)
+		
 func _on_exit_pressed() -> void:
 	get_tree().quit()
+
+func _on_play_button_mouse_entered() -> void:
+	AudioManager.play_sfx(GlobalContext.hover_sfx,0.7)
+
+func _on_credits_button_mouse_entered() -> void:
+	AudioManager.play_sfx(GlobalContext.hover_sfx,0.7)
+
+func _on_exit_button_mouse_entered() -> void:
+	AudioManager.play_sfx(GlobalContext.hover_sfx,0.7)

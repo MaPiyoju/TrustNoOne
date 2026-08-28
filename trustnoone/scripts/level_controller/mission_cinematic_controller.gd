@@ -71,3 +71,8 @@ func _split_by_sentences(raw_text: String) -> Array[String]:
 	
 func _on_play_pressed() -> void:
 	GlobalContext.change_scene(PLAY_SCENE)
+	AudioManager.play_sfx(GlobalContext.select_sfx,0.7)
+
+func _on_play_button_mouse_entered() -> void:
+	if(!play_button.disabled):
+		AudioManager.play_sfx(GlobalContext.hover_sfx,0.7)

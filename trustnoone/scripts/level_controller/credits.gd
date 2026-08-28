@@ -9,3 +9,7 @@ func _ready() -> void:
 
 func _on_main_menu_pressed() -> void:
 	GlobalContext.change_scene(SCENE_MAIN_MENU)
+	AudioManager.play_sfx(GlobalContext.select_sfx,0.7)
+
+func _on_main_menu_button_mouse_entered() -> void:
+	AudioManager.play_sfx(GlobalContext.hover_sfx,0.7)

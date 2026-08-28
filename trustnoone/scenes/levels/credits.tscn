@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://b4a4p1fr6s03e"]
+[gd_scene load_steps=4 format=3 uid="uid://dngwpapspe1xx"]
 
 [ext_resource type="Script" uid="uid://cv7pt0utmsd0l" path="res://scripts/level_controller/credits.gd" id="1_fhg1p"]
 [ext_resource type="FontFile" uid="uid://cnbhdxi81hf6w" path="res://ui/Early GameBoy.ttf" id="1_kxfi0"]
@@ -37,14 +37,21 @@ theme_override_fonts/mono_font = ExtResource("1_kxfi0")
 theme_override_fonts/italics_font = ExtResource("1_kxfi0")
 theme_override_fonts/bold_italics_font = ExtResource("1_kxfi0")
 theme_override_fonts/bold_font = ExtResource("1_kxfi0")
-theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
 text = "MADE WITH LOVE BY:
-PIYOJU
-JUANROD31
+[color=#7c94a1]PIYOJU[/color]
+[color=#7c94a1]JUANROD31[/color]
 
 TOOLS:
-GODOT
-KRITA
-LMMS
-GRAPHICS GALE"
+[color=#77744f]GODOT[/color]
+[color=#77744f]KRITA[/color]
+[color=#77744f]LMMS[/color]
+[color=#77744f]GRAPHICS GALE[/color]
+
+CREATED FOR THE [color=#77744f]Brackeys Game Jam 2026.2[/color]
+
+THEME: [color=#7c94a1]TRUST NO ONE[/color]"
 horizontal_alignment = 1
+
+[connection signal="mouse_entered" from="MainMenuButton" to="." method="_on_main_menu_button_mouse_entered"]

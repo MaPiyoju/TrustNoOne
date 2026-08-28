@@ -65,12 +65,20 @@ func change_character(direction: int) -> void:
 
 func _on_right_pressed() -> void:
 	change_character(1)
+	AudioManager.play_sfx(GlobalContext.select_sfx,0.7)
 
 func _on_left_pressed() -> void:
 	change_character(-1)
+	AudioManager.play_sfx(GlobalContext.select_sfx,0.7)
 
 func _on_select_pressed() -> void:
 	if not characters.is_empty():
 		GlobalContext.select_random_mission()
 		GlobalContext.player = characters[current_index]
 		GlobalContext.change_scene("res://scenes/levels/mission_cinematic.tscn")
+
+	AudioManager.play_sfx(GlobalContext.select_sfx,0.7)	
+	
+
+func _on_select_character_button_mouse_entered() -> void:
+	AudioManager.play_sfx(GlobalContext.hover_sfx,0.7)

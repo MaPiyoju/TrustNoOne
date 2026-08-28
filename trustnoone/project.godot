@@ -13,12 +13,15 @@ config_version=5
 config/name="TrustNoOne"
 run/main_scene="uid://duwgtvhjum480"
 config/features=PackedStringArray("4.4", "Forward Plus")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/show_image=false
 config/icon="res://icon.svg"
 
 [autoload]
 
 GlobalContext="*res://scripts/global_context.gd"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
+AudioManager="*res://scenes/components/audio_manager.tscn"
 
 [dialogic]
 
@@ -71,6 +74,7 @@ audio/channel_defaults={
 
 [display]
 
+window/size/mode=3
 window/stretch/mode="canvas_items"
 
 [editor_plugins]
