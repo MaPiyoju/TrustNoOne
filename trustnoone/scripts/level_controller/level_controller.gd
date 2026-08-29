@@ -221,16 +221,23 @@ func check_arrows(room_type: int, disable_all: bool = false, isPlayer: bool = tr
 
 func validate_event(dice_value: int, isPlayer: bool):
 	var curEvent = dice.currentEvent
-	if(curEvent == null || dice_value > curEvent.threshold):
-		log_canvas.add_log(dice.goodActionEvent)
+	if(curEvent.effect > 0):#Positive effect
+		if(dice_value > curEvent.threshold):
+			character_sheets.ordered_list[character_sheets.currentPlayer].modify_stat(curEvent.effect,curEvent.effect_value)
+			log_canvas.add_log(dice.badActionEvent)
+		else:
+			log_canvas.add_log(dice.goodActionEvent)
 	else:
-		character_sheets.ordered_list[character_sheets.currentPlayer].modify_stat(curEvent.effect,curEvent.effect_value)
-		log_canvas.add_log(dice.badActionEvent)
-		var viewport := get_viewport()
-		if viewport:
-			var camera := viewport.get_camera_2d() as CameraController
-			if camera:
-				camera.shake(15.0, 0.25)
+		if(dice_value > curEvent.threshold):
+			log_canvas.add_log(dice.badActionEvent)
+			character_sheets.ordered_list[character_sheets.currentPlayer].modify_stat(curEvent.effect,curEvent.effect_value)
+			var viewport := get_viewport()
+			if viewport:
+				var camera := viewport.get_camera_2d() as CameraController
+				if camera:
+					camera.shake(15.0, 0.25)
+		else:
+			log_canvas.add_log(dice.goodActionEvent)
 	
 	await get_tree().create_timer(1.5).timeout
 	isInEvent = false

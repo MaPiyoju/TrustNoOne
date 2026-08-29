@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://8rswpyjnnchq"]
+[gd_scene load_steps=15 format=3 uid="uid://8rswpyjnnchq"]
 
 [ext_resource type="Script" uid="uid://cq2qirm05dsv0" path="res://scripts/character/character_selection.gd" id="1_7xed0"]
 [ext_resource type="FontFile" uid="uid://cnbhdxi81hf6w" path="res://ui/Early GameBoy.ttf" id="1_dd54q"]
@@ -10,6 +10,9 @@
 [ext_resource type="Resource" uid="uid://cij4e37thpcv3" path="res://resources/characters/rolando.tres" id="5_gckxq"]
 [ext_resource type="Resource" uid="uid://b4q02kw3ha5pm" path="res://resources/characters/Yasuri.tres" id="6_li4x4"]
 [ext_resource type="Texture2D" uid="uid://bbomh1amxoufy" path="res://assets/sprites/arrows.png" id="6_wh1ae"]
+[ext_resource type="Script" uid="uid://ms0b0ma6out1" path="res://resources/mission.gd" id="7_7ebpb"]
+[ext_resource type="Resource" uid="uid://dsh5wyejipgsn" path="res://resources/missions/mission_0.tres" id="8_0ngay"]
+[ext_resource type="Resource" uid="uid://bsmsebr6klhnw" path="res://resources/missions/mission_1.tres" id="9_3dn1x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cqj7k"]
 atlas = ExtResource("6_wh1ae")
@@ -24,6 +27,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7xed0")
 characters = Array[ExtResource("2_v724p")]([ExtResource("3_7rsvw"), ExtResource("4_y8tcv"), ExtResource("5_gckxq"), ExtResource("6_li4x4")])
+missions = Array[ExtResource("7_7ebpb")]([ExtResource("8_0ngay"), ExtResource("9_3dn1x")])
 
 [node name="SelectCharacterButton" type="Button" parent="."]
 layout_mode = 0

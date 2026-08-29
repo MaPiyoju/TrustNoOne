@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EventRes" load_steps=2 format=3 uid="uid://bgrfig3d1oik"]
+
+[ext_resource type="Script" uid="uid://bnix6barmivun" path="res://resources/event.gd" id="1_tp8wl"]
+
+[resource]
+script = ExtResource("1_tp8wl")
+title = "The Heavy Door"
+description = "The door looks ordinary, but it refuses to move an inch. Roll more than {0} and give it a proper push. Fighting with stubborn architecture can cost {1} in {2}"
+effect = 3
+effect_value = -1
+threshold = 4
+bad_action = "{0} throws their entire body against the door. The door wins. {1} in {2} lost"
+good_action = "{0} finally gets the door open without sacrificing a shoulder"
+metadata/_custom_type_script = "uid://bnix6barmivun"

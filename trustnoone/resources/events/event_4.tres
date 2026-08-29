@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EventRes" load_steps=2 format=3 uid="uid://bweypw6toqggf"]
+
+[ext_resource type="Script" uid="uid://bnix6barmivun" path="res://resources/event.gd" id="1_v253j"]
+
+[resource]
+script = ExtResource("1_v253j")
+title = "Secret Study"
+description = "Behind a bookshelf lies a tiny study filled with old books. Finally, something useful. Roll more than {0} to learn something, otherwise miss the opportunity to gain {1} in {2}"
+effect = 1
+effect_value = 1
+threshold = 4
+bad_action = "{0} finds an interesting book and learns something useful. {1} in {2} gained"
+good_action = "{0} couldn't figure out how to open the bookshelf. The books remain disappointingly educational"
+metadata/_custom_type_script = "uid://bnix6barmivun"

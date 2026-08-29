@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EventRes" load_steps=2 format=3 uid="uid://dswabt5j4sc23"]
+
+[ext_resource type="Script" uid="uid://bnix6barmivun" path="res://resources/event.gd" id="1_bll0q"]
+
+[resource]
+script = ExtResource("1_bll0q")
+title = "Home Gym"
+description = "Someone left a pair of dumbbells here. Finally, a perfectly normal object in this house. Roll more than {0} to prove those arms aren't decorative, otherwise suffer {1} in {2}"
+effect = 3
+effect_value = -1
+threshold = 2
+bad_action = "{0} couldn't lift the dumbbells. They were 2 kg. Let's never mention this again. {1} in {2}"
+good_action = "{0} lifted them effortlessly. Completely unnecessary, but impressive"
+metadata/_custom_type_script = "uid://bnix6barmivun"

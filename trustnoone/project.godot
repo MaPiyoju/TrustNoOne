@@ -15,7 +15,7 @@ run/main_scene="uid://duwgtvhjum480"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
-config/icon="res://icon.svg"
+config/icon="uid://drmdu3mtng4yo"
 
 [autoload]
 
@@ -74,6 +74,7 @@ audio/channel_defaults={
 
 [display]
 
+window/size/mode=3
 window/stretch/mode="canvas_items"
 mouse_cursor/custom_image="uid://bt72qwprdcosr"
 

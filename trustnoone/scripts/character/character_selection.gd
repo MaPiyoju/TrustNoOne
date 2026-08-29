@@ -7,6 +7,8 @@ extends Control
 @onready var character_texture: TextureRect = $ID/character
 @onready var rich_text_label: RichTextLabel = $ID/RichTextLabel
 
+@export var missions: Array[MissionRes]
+
 var current_index: int = 0
 var is_animating: bool = false
 var default_position: Vector2
@@ -73,7 +75,7 @@ func _on_left_pressed() -> void:
 
 func _on_select_pressed() -> void:
 	if not characters.is_empty():
-		GlobalContext.select_random_mission()
+		GlobalContext.select_random_mission(missions)
 		GlobalContext.player = characters[current_index]
 		GlobalContext.change_scene("res://scenes/levels/mission_cinematic.tscn")
 

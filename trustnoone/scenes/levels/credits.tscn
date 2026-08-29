@@ -14,24 +14,24 @@ texture = ExtResource("2_uvwux")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = 103.0
-offset_top = 30.0
+offset_top = 27.0
 offset_right = 1060.0
-offset_bottom = 622.0
+offset_bottom = 628.0
 color = Color(0, 0, 0, 0.737255)
 
 [node name="MainMenuButton" type="Button" parent="."]
 offset_left = 471.0
-offset_top = 496.0
+offset_top = 567.0
 offset_right = 710.0
-offset_bottom = 575.0
+offset_bottom = 613.0
 theme_override_fonts/font = ExtResource("1_kxfi0")
 text = "Main menu"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = 326.0
-offset_top = 87.0
-offset_right = 873.0
-offset_bottom = 503.0
+offset_left = 182.0
+offset_top = 43.0
+offset_right = 992.0
+offset_bottom = 560.0
 theme_override_fonts/normal_font = ExtResource("1_kxfi0")
 theme_override_fonts/mono_font = ExtResource("1_kxfi0")
 theme_override_fonts/italics_font = ExtResource("1_kxfi0")
@@ -39,19 +39,27 @@ theme_override_fonts/bold_italics_font = ExtResource("1_kxfi0")
 theme_override_fonts/bold_font = ExtResource("1_kxfi0")
 theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
-text = "MADE WITH LOVE BY:
-[color=#7c94a1]PIYOJU[/color]
+text = "< MADE WITH LOVE <
+
+A GAME BY [color=#7c94a1]PIYOJU[/color]
+
+GAME DESIGN - PROGRAMMING - MUSIC 
+ [color=#7c94a1]PIYOJU[/color]
+
+ILLUSTRATIONS - ADDITIONAL PROGRAMMING
 [color=#7c94a1]JUANROD31[/color]
 
 TOOLS:
 [color=#77744f]GODOT[/color]
+[color=#77744f]GRAPHICS GALE[/color]
 [color=#77744f]KRITA[/color]
 [color=#77744f]LMMS[/color]
-[color=#77744f]GRAPHICS GALE[/color]
+[color=#77744f]AUDACITY[/color]
 
 CREATED FOR THE [color=#77744f]Brackeys Game Jam 2026.2[/color]
 
 THEME: [color=#7c94a1]TRUST NO ONE[/color]"
+scroll_active = false
 horizontal_alignment = 1
 
 [connection signal="mouse_entered" from="MainMenuButton" to="." method="_on_main_menu_button_mouse_entered"]

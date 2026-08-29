@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EventRes" load_steps=2 format=3 uid="uid://bnkol4kp16bsv"]
+
+[ext_resource type="Script" uid="uid://bnix6barmivun" path="res://resources/event.gd" id="1_8j0t7"]
+
+[resource]
+script = ExtResource("1_8j0t7")
+title = "The Locked Drawer"
+description = "There's a small drawer that refuses to open. Of course, that only makes you want to open it more. Roll more than {0} to open it, otherwise lose {1} in {2}"
+effect = 0
+effect_value = -1
+threshold = 2
+bad_action = "{0} struggles with the drawer and loses {1} in {2}"
+good_action = "{0} manages to force the drawer open. There's nothing inside"
+metadata/_custom_type_script = "uid://bnix6barmivun"

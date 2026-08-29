@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EventRes" load_steps=2 format=3 uid="uid://dv1kc2105urth"]
+
+[ext_resource type="Script" uid="uid://bnix6barmivun" path="res://resources/event.gd" id="1_8yfee"]
+
+[resource]
+script = ExtResource("1_8yfee")
+title = "Suspicious Protein"
+description = "There's a jar of protein powder in the pantry. It expired years ago, but that's never stopped anyone before. Roll more than {0} to gain {1} in {2}"
+effect = 3
+effect_value = 1
+threshold = 2
+bad_action = "{0} drinks the ancient protein shake and immediately feels stronger. Science remains undefeated. {1} in {2} gained"
+good_action = "{0} decided that expired protein was probably fine. It was not"
+metadata/_custom_type_script = "uid://bnix6barmivun"

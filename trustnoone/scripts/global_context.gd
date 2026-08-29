@@ -41,7 +41,12 @@ func change_scene(target_scene_path: String) -> void:
 	await transition_instance.fade_in()
 	transition_instance.queue_free()
 	
-func select_random_mission() -> void:
+func select_random_mission(missions: Array[MissionRes]) -> void:
+	if(missions):
+		var random_mission: MissionRes = missions.pick_random()
+		mission = random_mission
+		return
+		
 	var dir := DirAccess.open(MISSIONS_PATH)
 	if dir == null:
 		push_error("No se pudo abrir la carpeta de misiones: " + MISSIONS_PATH)

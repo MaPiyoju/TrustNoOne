@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EventRes" load_steps=2 format=3 uid="uid://c6qpf4bdm0gmn"]
+
+[ext_resource type="Script" uid="uid://bnix6barmivun" path="res://resources/event.gd" id="1_ash5f"]
+
+[resource]
+script = ExtResource("1_ash5f")
+title = "Emergency Coffee"
+description = "Someone left a surprisingly fresh cup of coffee on the kitchen counter. In this house, that's basically a miracle. Roll more than {0} to enjoy it, otherwise lose the chance to recover {1} in {2}"
+effect = 2
+effect_value = 1
+threshold = 4
+bad_action = "{0} drinks the coffee and somehow feels more energetic. {1} in {2} gained"
+good_action = "{0} failed to resist the suspicious coffee. Honestly, it tasted terrible anyway"
+metadata/_custom_type_script = "uid://bnix6barmivun"
