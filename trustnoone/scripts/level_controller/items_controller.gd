@@ -52,6 +52,12 @@ func _on_card_clicked(item_res: ItemRes) -> void:
 	use_item(item_res)
 
 func use_item(item_res: ItemRes) -> void:
+	if main_level.target_control.has_signal("target_selected"):
+		(main_level.target_control as TargetController).target_selected.connect(affect_target)
+			
+	if main_level.dice.has_signal("dice_item_ended"):
+		(main_level.dice as DiceController).dice_item_ended.connect(complete_dice_item)
+			
 	var current_char = main_level.current_player()
 	var char_index = main_level.character_sheets.currentPlayer
 	
@@ -113,40 +119,31 @@ func affect_target(idx: int, item: ItemRes):
 
 func complete_dice_item(dice_value: int, isPlayer: bool, item: ItemRes):
 	var applied_any := false
-	if _apply_stat_effect(item, main_level.character_sheets.ordered_list[main_level.character_sheets.currentPlayer], main_level.character_sheets.currentPlayer):
-		applied_any = true
-		 
+	
 	if dice_value < item.dice_condition:
 		var nameDice = "You " if isPlayer else main_level.current_player().name
 		main_level.log_canvas.add_log("[color=#FF6B6B]"+nameDice+" failed (" + str(dice_value) + "/" + str(item.dice_condition) + ")! " + item.name + " wasted.[/color]")
-	
+	else:
+		if _apply_stat_effect(item, main_level.character_sheets.ordered_list[main_level.character_sheets.currentPlayer], main_level.character_sheets.currentPlayer):
+			applied_any = true
+			
 	if applied_any:
 		_consume_item_and_action(main_level.current_player(), item)
 		item_used.emit(item)
+	
+	await get_tree().create_timer(1.5).timeout
+	main_level.perform_action(main_level.check_if_player())
 
 func _consume_item_and_action(character: CharacterRes, item_res: ItemRes) -> void:
-	print(character.name)
 	character.items.erase(item_res)
 
 	if main_level.check_if_player():
 		GlobalContext.playerItems = character.items
+		# 1. Renderizar la nueva lista de tarjetas
+		render_items(character.items)
 
-	# 1. Renderizar la nueva lista de tarjetas
-	render_items(character.items)
-
-	# 2. Forzar la desactivación visual y lógica de las tarjetas restantes
-	set_items_enabled(false)
-
-	main_level.currSpeed -= 1
-	main_level.game_info.update_actions(character.speed, main_level.currSpeed)
-
-	if main_level.currSpeed < 1:
-		main_level.action_canvas.disable_all()
-		await main_level.get_tree().create_timer(1.0).timeout
-		main_level.end_action()
-	else:
-		if main_level.check_if_player():
-			main_level.action_canvas.enable_btns()
+		# 2. Forzar la desactivación visual y lógica de las tarjetas restantes
+		set_items_enabled(false)
 
 func _apply_stat_effect(item_res: ItemRes, target: CharacterRes, target_idx: int) -> bool:
 	var stat_type: PropertyType.PropertyEnum = item_res.effect

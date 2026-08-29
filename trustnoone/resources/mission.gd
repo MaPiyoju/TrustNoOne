@@ -18,3 +18,4 @@ class_name  MissionRes
 
 @export var allies_txt: Array[String]
 @export var traitor_txt: Array[String]
+@export var dead_txt: String

@@ -53,6 +53,9 @@ func next_player():
 	sheets[currentPlayer].enable_turn(false)
 	currentPlayer = currentPlayer+1 if currentPlayer < sheets.size() - 1 else 0
 	while(ordered_list[currentPlayer].isDead()):
+		if(currentPlayer == GlobalContext.startPlayer):#Update start player
+			GlobalContext.startPlayer = GlobalContext.startPlayer + 1 if GlobalContext.startPlayer < sheets.size()-1 else 0
+
 		currentPlayer = currentPlayer+1 if currentPlayer < sheets.size() - 1 else 0
 	
 	sheets[currentPlayer].enable_turn(true)

@@ -334,7 +334,10 @@ func talk_action(isPlayer: bool = true):
 	var nameColor = "38B764" if !GlobalContext.isInHunt else "A73E53"
 	if(roomPlayers.size() > 0):
 		for roomPlayer in roomPlayers:
-			log_canvas.add_log("[color=#"+nameColor+"]"+roomPlayer.name+"[/color] says: [color=#FFCD75]"+GlobalContext.player_msg()+"[/color]")
+			if(roomPlayer.aura == 0):
+				log_canvas.add_log("[color=#"+nameColor+"]"+roomPlayer.name+"[/color] says: [color=#FFCD75]"+GlobalContext.mission.dead_txt+"[/color]")
+			else:
+				log_canvas.add_log("[color=#"+nameColor+"]"+roomPlayer.name+"[/color] says: [color=#FFCD75]"+GlobalContext.player_msg()+"[/color]")
 	else:
 		log_canvas.add_log("There's no one to talk with here" if isPlayer else current_player().name + " tried talking to the walls - Got no response")
 	

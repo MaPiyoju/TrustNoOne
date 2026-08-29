@@ -18,4 +18,5 @@ survive_threshold = 7
 traitor_excuse = "You think I destroyed the gate mechanism? I was trying to seal us IN! The thing outside is wearing one of our faces!"
 allies_txt = Array[String](["The Tall Man in the velvet suit twitches uncontrollably, whispering that the paintings are watching us move.", "The Veiled Lady refuses to show her hands, but she offered you a rusted brass key she found in the conservatory.", "The Bandaged Jester keeps humming a lullaby, pointing frantically at the wet footprints leading toward the basement."])
 traitor_txt = Array[String](["The Veiled Lady’s fingers are too long... haven't you noticed how she glides without taking steps?", "The Tall Man tried to lock me in the pantry—he's trying to separate us so he can pick us off one by one!", "Don't listen to the Jester! His bandages aren't hiding wounds, they're hiding teeth!"])
+dead_txt = "Keep going, i 'm already dead"
 metadata/_custom_type_script = "uid://ms0b0ma6out1"
