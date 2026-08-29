@@ -45,8 +45,6 @@ var isInEvent := false
 @export var mision_test: MissionRes
 
 func _ready() -> void:
-	AudioManager.set_play_rnd(["res://assets/audio/trusnoone_pursuit.wav"],40)
-	
 	if(GlobalContext.mission == null):
 		GlobalContext.mission = mision_test
 	
@@ -450,10 +448,13 @@ func next_player_turn(first_turn: bool = false):
 			game_info.update_turns()
 			if(!GlobalContext.isInHunt):
 				if(GlobalContext.check_hunt()):
+					AudioManager.stop_music()
 					action_canvas.enable_hunt(true)
 					AudioManager.play_sfx(load("res://assets/audio/scream.ogg"),0.7)
 					log_canvas.add_log("[color=#A73E53]"+GlobalContext.mission.traitor_excuse+"[/color]")
-					await get_tree().create_timer(4).timeout
+					AudioManager.play_music(load("res://assets/audio/trusnoone_pursuit.wav"),false)
+					await get_tree().create_timer(3).timeout
+					AudioManager.set_play_rnd(["res://assets/audio/trusnoone_pursuit.wav"],40)
 					var newMission = "Choose between: \n\n~Find and [color=#A73E53]kill the ?? traitor[/color]"
 					newMission += "\n~Hide and survive for [color=#ffcc75]"+str(GlobalContext.mission.survive_threshold)+" turns from now on[/color]"
 					mission_canvas.add_misssion_description(newMission, true)

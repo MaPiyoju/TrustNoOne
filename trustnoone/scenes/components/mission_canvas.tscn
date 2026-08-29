@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://dj56iehtbnb7w"]
+[gd_scene load_steps=10 format=3 uid="uid://dj56iehtbnb7w"]
 
 [ext_resource type="Script" uid="uid://d1jo0608qx67t" path="res://scripts/level_controller/mission_canvas_controller.gd" id="1_wkvv4"]
 [ext_resource type="FontFile" uid="uid://cnbhdxi81hf6w" path="res://ui/Early GameBoy.ttf" id="2_2qwt6"]
+[ext_resource type="Texture2D" uid="uid://1h4osqrjtfia" path="res://assets/sprites/menu/Music_0.png" id="3_2qwt6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wbtxt"]
 font = ExtResource("2_2qwt6")
@@ -96,3 +97,13 @@ text = "USE ESC TO PAUSE AND
 MIDDLE MOUSE BUTTON
 TO MOVE THE CAMERA"
 label_settings = SubResource("LabelSettings_wkvv4")
+
+[node name="music_btn" type="TextureButton" parent="."]
+offset_left = 4.0
+offset_top = 323.0
+offset_right = 40.0
+offset_bottom = 359.0
+texture_normal = ExtResource("3_2qwt6")
+stretch_mode = 5
+
+[connection signal="pressed" from="music_btn" to="." method="_on_music_btn_pressed"]

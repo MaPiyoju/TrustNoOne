@@ -72,3 +72,7 @@ func set_play_rnd(tracks: Array[String],play_margin: float):
 
 func _reset_music_volume() -> void:
 	music_player.volume_db = 0.0
+
+func set_mute(should_mute: bool):
+	var bus_index = AudioServer.get_bus_index("Master")
+	AudioServer.set_bus_mute(bus_index, should_mute)

@@ -14,6 +14,8 @@ var is_animating: bool = false
 var default_position: Vector2
 
 func _ready() -> void:
+	AudioManager.play_music(load("res://assets/audio/trusnoone_soundtrack.ogg"),true)
+	
 	default_position = id_card.position
 	
 	if characters.size() > 0:

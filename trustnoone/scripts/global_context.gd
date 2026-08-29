@@ -11,6 +11,7 @@ var traitor: int
 var ending_type: int
 
 var tutorial_check = false
+var isMuted = false
 
 const MISSIONS_PATH := "res://resources/missions/"
 
