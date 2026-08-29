@@ -33,10 +33,15 @@ func shake(strength: float, duration: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_MIDDLE:
-
 			if event.pressed:
+				ProjectSettings.set_setting("display/mouse_cursor/custom_image", "res://assets/sprites/cursor2.png")
+				var new_texture = load("res://assets/sprites/cursor2.png")
+				Input.set_custom_mouse_cursor(new_texture, Input.CURSOR_ARROW, Vector2(0, 0))
 				start_drag()
 			else:
+				ProjectSettings.set_setting("display/mouse_cursor/custom_image", "res://assets/sprites/cursor1.png")
+				var new_texture = load("res://assets/sprites/cursor1.png")
+				Input.set_custom_mouse_cursor(new_texture, Input.CURSOR_ARROW, Vector2(0, 0))
 				end_drag()
 
 	elif event is InputEventMouseMotion and is_dragging:
