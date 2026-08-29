@@ -15,10 +15,10 @@ offset_bottom = 663.0
 color = Color(0, 0, 0, 1)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = 321.0
+offset_left = 203.0
 offset_top = 367.0
-offset_right = 825.0
-offset_bottom = 480.0
+offset_right = 952.0
+offset_bottom = 463.0
 theme_override_fonts/normal_font = ExtResource("3_lry0g")
 theme_override_fonts/mono_font = ExtResource("3_lry0g")
 theme_override_fonts/italics_font = ExtResource("3_lry0g")
@@ -29,10 +29,10 @@ text = "The nightmare is over. You made it out alive. you’re safe."
 horizontal_alignment = 1
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="."]
-offset_left = 331.0
-offset_top = 463.0
-offset_right = 835.0
-offset_bottom = 507.0
+offset_left = 333.0
+offset_top = 470.0
+offset_right = 837.0
+offset_bottom = 517.0
 theme_override_colors/default_color = Color(0.309804, 0.466667, 0.329412, 1)
 theme_override_fonts/normal_font = ExtResource("3_lry0g")
 theme_override_fonts/mono_font = ExtResource("3_lry0g")

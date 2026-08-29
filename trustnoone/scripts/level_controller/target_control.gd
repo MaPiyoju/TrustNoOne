@@ -2,6 +2,7 @@ extends Control
 class_name TargetController
 
 signal target_selected(target: int, item: ItemRes)
+signal target_punch_selected(target: int)
 
 @export var characterSheets: CompleteSheet
 @onready var character_0: TextureRect = $CanvasLayer/MarginContainer/HBoxContainer/character_0
@@ -13,6 +14,7 @@ signal target_selected(target: int, item: ItemRes)
 
 var characters: Array[TextureRect]
 var currentItem: ItemRes
+var isPunch := false
 
 func _ready() -> void:
 	if(characterSheets):
@@ -40,6 +42,13 @@ func setup_target():
 	
 func enable_targets(item: ItemRes):
 	currentItem = item
+	enable_targets_base()
+
+func enable_targets_punch():
+	isPunch = true
+	enable_targets_base()
+
+func enable_targets_base():
 	canvas_layer.visible = true
 	(color_rect as Control).MOUSE_FILTER_STOP
 	for i in range(characters.size()):
@@ -50,11 +59,16 @@ func enable_targets(item: ItemRes):
 			if(!characterSheets.ordered_list[i+1].isDead()):
 				textures[1].visible = false
 				characters[i].MOUSE_FILTER_STOP
-		
+
 func _on_character_clicked(event: InputEvent, idx: int) -> void:
 	var textures = characters[idx].get_children()
 	if(!textures[1].visible):
 		if event is InputEventMouseButton:
 			if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 				canvas_layer.visible = false
-				target_selected.emit(idx+1, currentItem)
+				if(!isPunch):
+					target_selected.emit(idx+1, currentItem)
+				else:
+					target_punch_selected.emit(idx+1)
+				currentItem = null
+				isPunch = false

@@ -67,8 +67,18 @@ theme_override_fonts/font = ExtResource("2_rgbur")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_8lv1d")
 text = "Use item"
 
-[node name="btnEnd" type="Button" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(150, 50)
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="btnPunch" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(172, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_rgbur")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_abd8a")
+text = " PUNCH"
+
+[node name="btnEnd" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(350, 50)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_rgbur")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_abd8a")
@@ -82,5 +92,7 @@ text = "End turn"
 [connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/btnTalk" to="." method="_on_btn_talk_pressed"]
 [connection signal="mouse_entered" from="MarginContainer/VBoxContainer/GridContainer/btnUseItem" to="." method="_on_btn_use_item_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/btnUseItem" to="." method="_on_btn_use_item_pressed"]
-[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/btnEnd" to="." method="_on_btn_end_mouse_entered"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/btnEnd" to="." method="_on_btn_end_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/HBoxContainer/btnPunch" to="." method="_on_btn_end_mouse_entered"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/btnPunch" to="." method="_on_btn_punch_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/HBoxContainer/btnEnd" to="." method="_on_btn_end_mouse_entered"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/btnEnd" to="." method="_on_btn_end_pressed"]

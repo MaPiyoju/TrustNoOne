@@ -6,12 +6,16 @@ signal btn_inspect_signal
 signal btn_talk_signal
 signal btn_use_item_signal
 signal btn_end_signal
+signal btn_punch_signal
 
 @onready var btn_move: Button = $MarginContainer/VBoxContainer/GridContainer/btnMove
 @onready var btn_inspect: Button = $MarginContainer/VBoxContainer/GridContainer/btnInspect
 @onready var btn_talk: Button = $MarginContainer/VBoxContainer/GridContainer/btnTalk
 @onready var btn_use_item: Button = $MarginContainer/VBoxContainer/GridContainer/btnUseItem
-@onready var btn_end: Button = $MarginContainer/VBoxContainer/btnEnd
+@onready var btn_end: Button = $MarginContainer/VBoxContainer/HBoxContainer/btnEnd
+@onready var btn_punch: Button = $MarginContainer/VBoxContainer/HBoxContainer/btnPunch
+@onready var grid_container: GridContainer = $MarginContainer/VBoxContainer/GridContainer
+@onready var h_box_container: HBoxContainer = $MarginContainer/VBoxContainer/HBoxContainer
 
 func _ready() -> void:
 	btn_move.disabled = true
@@ -19,6 +23,7 @@ func _ready() -> void:
 	btn_talk.disabled = true
 	btn_use_item.disabled = true
 	btn_end.disabled = true
+	enable_hunt(false)
 
 func enable_btns():
 	btn_move.disabled = false
@@ -26,13 +31,29 @@ func enable_btns():
 	btn_talk.disabled = false
 	btn_use_item.disabled = false
 	btn_end.disabled = false
+	btn_punch.disabled = false
 	
 func disable_all():
+	pass
 	btn_move.disabled = true
 	btn_inspect.disabled = true
 	btn_talk.disabled = true
 	btn_use_item.disabled = true
 	btn_end.disabled = true
+	btn_punch.disabled = true
+
+func enable_hunt(val: bool):
+	if val:
+		btn_punch.show()
+		btn_end.custom_minimum_size.x = 172
+	else:
+		btn_punch.hide()
+		btn_end.custom_minimum_size.x = 350
+		
+	grid_container.queue_redraw()
+	grid_container.queue_sort()
+	h_box_container.queue_redraw()
+	h_box_container.queue_sort()
 
 func _on_btn_move_pressed() -> void:
 	btn_move_signal.emit()
@@ -52,6 +73,10 @@ func _on_btn_use_item_pressed() -> void:
 
 func _on_btn_end_pressed() -> void:
 	btn_end_signal.emit()
+	AudioManager.play_sfx(GlobalContext.select_sfx,0.7)
+
+func _on_btn_punch_pressed() -> void:
+	btn_punch_signal.emit()
 	AudioManager.play_sfx(GlobalContext.select_sfx,0.7)
 
 func _on_btn_move_mouse_entered() -> void:

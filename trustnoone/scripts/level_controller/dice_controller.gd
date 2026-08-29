@@ -3,6 +3,7 @@ class_name DiceController
 
 signal dice_ended(dice_value: int, isPlayer: bool)
 signal dice_item_ended(dice_value: int, isPlayer: bool, item: ItemRes)
+signal dice_punch_ended(dice_value: int, isPlayer: bool, target: int)
 signal next()
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
@@ -25,6 +26,7 @@ var badActionEvent := ""
 
 var isDice = true
 var currentItem: ItemRes
+var punchTarget = -1
 
 var diceSfx: AudioStream
 
@@ -43,9 +45,12 @@ func _process(delta: float) -> void:
 		else:
 			if(currentItem):
 				dice_item_ended.emit(sprite_2d.frame+1, isDice, currentItem)
+			elif(punchTarget > -1):
+				dice_punch_ended.emit(sprite_2d.frame+1, isDice, punchTarget)
 			else:
 				dice_ended.emit(sprite_2d.frame+1, isDice)
 			currentItem = null
+			punchTarget = -1
 			isThrowing = false
 			
 			await get_tree().create_timer(1.5).timeout
@@ -85,6 +90,16 @@ func set_regular(room: RoomRes, character: CharacterRes, isPlayer: bool) -> Stri
 
 func set_item_dice(msg: String, isPlayer: bool, item: ItemRes):
 	currentItem = item
+	rich_text_label.text = msg
+	if(isPlayer):
+		btn_throw.disabled = false
+	else:
+		btn_throw.disabled = true
+		await get_tree().create_timer(1).timeout
+		new_throw()
+
+func set_punch_dice(msg: String, isPlayer: bool, target: int):
+	punchTarget = target
 	rich_text_label.text = msg
 	if(isPlayer):
 		btn_throw.disabled = false

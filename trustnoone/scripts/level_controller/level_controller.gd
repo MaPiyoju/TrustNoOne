@@ -77,6 +77,7 @@ func _ready() -> void:
 			npc.load()
 		
 	next_player_turn(true)
+	action_canvas.enable_hunt(false)
 	
 	if GlobalContext.player != null:
 		character.CharacterConfig = GlobalContext.player
@@ -93,13 +94,17 @@ func _ready() -> void:
 	left_arrow.direction_changed.connect(explore_room)
 	
 	dice.dice_ended.connect(validate_event)
+	dice.dice_punch_ended.connect(validate_punch)
 	dice.next.connect(enable_next_action)
+	
+	target_control.target_punch_selected.connect(check_punch)
 	
 	action_canvas.btn_move_signal.connect(move_action)
 	action_canvas.btn_inspect_signal.connect(inspect_action)
 	action_canvas.btn_talk_signal.connect(talk_action)
 	action_canvas.btn_use_item_signal.connect(use_item_action)
 	action_canvas.btn_end_signal.connect(end_action)
+	action_canvas.btn_punch_signal.connect(punch_action)
 	
 	game_info.update_actions(character.CharacterConfig.speed, currSpeed)
 	game_info.update_turns(true)
@@ -216,7 +221,7 @@ func check_arrows(room_type: int, disable_all: bool = false, isPlayer: bool = tr
 
 func validate_event(dice_value: int, isPlayer: bool):
 	var curEvent = dice.currentEvent
-	if(dice_value > curEvent.threshold):
+	if(curEvent == null || dice_value > curEvent.threshold):
 		log_canvas.add_log(dice.goodActionEvent)
 	else:
 		character_sheets.ordered_list[character_sheets.currentPlayer].modify_stat(curEvent.effect,curEvent.effect_value)
@@ -256,6 +261,34 @@ func move_action(isPlayer: bool = true):
 	check_arrows((rooms[currentRoom] as RoomRes).connection_type, false, isPlayer)
 	if(!isPlayer):
 		perform_action(isPlayer)
+
+func punch_action(isPlayer: bool = true):
+	var target: int = character_sheets.get_random_player(character_sheets.currentPlayer, character_sheets.sheets[character_sheets.currentPlayer].current_room)
+	var current = character_sheets.currentPlayer
+	
+	log_canvas.add_log(character_sheets.ordered_list[current].name + "is trying to land a punch ")
+	await get_tree().create_timer(0.5).timeout
+	
+	if target < 0:
+		log_canvas.add_log("[color=#FF6B6B]No valid targets![/color]")
+		if(!isPlayer):
+			perform_action(isPlayer)
+		return
+
+	if(current == 0):
+		(target_control as TargetController).enable_targets_punch()
+	else:
+		check_punch(target)
+
+func check_punch(target: int):
+	var diceMsg = "You need to throw more than " if character_sheets.currentPlayer == 0 else current_player().name + " needs to throw more than "
+	diceMsg += str(character_sheets.ordered_list[target].strength) + " to connect a punch into " + character_sheets.ordered_list[target].name +"'s face"
+	dice.set_punch_dice(diceMsg, character_sheets.currentPlayer == 0, target)
+
+func validate_punch(dice_value: int, isPlayer: bool, target: int):
+	item_canvas.validate_punch(dice_value > character_sheets.ordered_list[target].strength, character_sheets.currentPlayer, target)
+	await get_tree().create_timer(1).timeout
+	perform_action(isPlayer)
 
 func inspect_action(isPlayer: bool = true):
 	var itemUser = "You " if check_if_player() else current_player().name
@@ -384,7 +417,7 @@ func npc_action_turn():
 			end_action()
 		else:
 			#Avoid use item if NPC has no items
-			var rndAction = randi_range(0,(3 if current_player().items.size() > 0 else 2))
+			var rndAction = randi_range(0,(4 if GlobalContext.isInHunt else 3))
 			match rndAction:
 				0:
 					move_action(false)
@@ -394,6 +427,8 @@ func npc_action_turn():
 					use_item_action(false)
 				3:
 					use_item_action(false)
+				4:
+					punch_action(false)
 
 func next_player_turn(first_turn: bool = false):
 	if(!first_turn):
@@ -402,6 +437,7 @@ func next_player_turn(first_turn: bool = false):
 			game_info.update_turns()
 			if(!GlobalContext.isInHunt):
 				if(GlobalContext.check_hunt()):
+					action_canvas.enable_hunt(true)
 					AudioManager.play_sfx(load("res://assets/audio/scream.ogg"),0.7)
 					log_canvas.add_log("[color=#A73E53]"+GlobalContext.mission.traitor_excuse+"[/color]")
 					await get_tree().create_timer(4).timeout

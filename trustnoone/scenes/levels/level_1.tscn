@@ -119,8 +119,6 @@ scale = Vector2(2, 2)
 
 [node name="LogCanvas" parent="Character" instance=ExtResource("28_4gp5p")]
 
-[node name="TargetCanvas" parent="Character" instance=ExtResource("36_ebb2h")]
-
 [node name="CharacterSheets" parent="Character" instance=ExtResource("30_yhfkw")]
 
 [node name="ItemCanvas" parent="Character" instance=ExtResource("31_klc0n")]

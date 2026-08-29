@@ -74,7 +74,7 @@ func use_item(item_res: ItemRes) -> void:
 	
 	# 2. Dice Check Condition
 	if item_res.dice_condition > 0:
-		var diceMsg = "Yoy need to throw a " if char_index == 0 else current_char.name + " needs to throw a "
+		var diceMsg = "You need to throw a " if char_index == 0 else current_char.name + " needs to throw a "
 		diceMsg += str(item_res.dice_condition) + " to use the " + item_res.name
 		main_level.dice.set_item_dice(diceMsg, char_index == 0, item_res)
 		return
@@ -125,6 +125,7 @@ func complete_dice_item(dice_value: int, isPlayer: bool, item: ItemRes):
 		item_used.emit(item)
 
 func _consume_item_and_action(character: CharacterRes, item_res: ItemRes) -> void:
+	print(character.name)
 	character.items.erase(item_res)
 
 	if main_level.check_if_player():
@@ -246,3 +247,30 @@ func set_items_enabled(enabled: bool) -> void:
 	for card in item_hand.get_children():
 		if card.has_method("set_enabled"):
 			card.set_enabled(enabled)
+
+func validate_punch(damage: bool, _attacker: int, _target: int):
+	var stat_type = PropertyType.PropertyEnum.AURA
+	var stat_name := _stat_enum_to_string(stat_type)
+	var color := "#38B764" if !damage else "#FF6B6B"
+	var old_val: int = 0
+	var new_val: int = 0
+	
+	var attacker = main_level.character_sheets.ordered_list[_attacker]
+	var target = main_level.character_sheets.ordered_list[_target]
+	
+	if(damage):
+		old_val = _get_stat_value(target, stat_type)
+		target.modify_stat(stat_type, -1)
+		new_val = _get_stat_value(target, stat_type)
+	else:
+		old_val = _get_stat_value(attacker, stat_type)
+		attacker.modify_stat(stat_type, -1)
+		new_val = _get_stat_value(attacker, stat_type)
+	
+	var targetPunch = "back to you" if(_attacker == 0 && !damage) else "to " + (main_level.character_sheets.ordered_list[_target if damage else _attacker].name)
+	main_level.log_canvas.add_log(
+		"[color=#FFCD75]Punch landed[/color] " +
+		targetPunch + "! " +
+		stat_name + ": " + str(old_val) +
+		" → [color=" + color + "]" + str(new_val) + "[/color]"
+	)
