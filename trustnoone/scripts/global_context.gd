@@ -10,6 +10,8 @@ var isInHunt:= false
 var traitor: int
 var ending_type: int
 
+var tutorial_check = false
+
 const MISSIONS_PATH := "res://resources/missions/"
 
 var select_sfx: AudioStream

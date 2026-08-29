@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://cex6pjjisul1s"]
+[gd_scene load_steps=48 format=3 uid="uid://cex6pjjisul1s"]
 
 [ext_resource type="Script" uid="uid://b5fp487xdkdsu" path="res://scripts/level_controller/level_controller.gd" id="1_4yk0h"]
 [ext_resource type="Script" uid="uid://bfwg6dcgwhawp" path="res://resources/room.gd" id="2_vmrhw"]
@@ -44,6 +44,8 @@
 [ext_resource type="PackedScene" uid="uid://b4m54ua8ishvm" path="res://scenes/components/action_canvas_ctrl.tscn" id="36_ebb2h"]
 [ext_resource type="PackedScene" uid="uid://c8jh207avi8xf" path="res://scenes/components/pause_menu.tscn" id="44_dwx2n"]
 [ext_resource type="PackedScene" uid="uid://y8ug2yyyqo23" path="res://scenes/components/target_control.tscn" id="44_prmli"]
+[ext_resource type="FontFile" uid="uid://cnbhdxi81hf6w" path="res://ui/Early GameBoy.ttf" id="45_dwx2n"]
+[ext_resource type="Script" uid="uid://dbxtc04itxiy1" path="res://scripts/level_controller/tutorial_controller.gd" id="45_wtkl1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kc3v0"]
 shader = ExtResource("33_2to4m")
@@ -145,3 +147,369 @@ baseXOffset = -8.0
 [node name="NPC_3" parent="NPC" instance=ExtResource("24_20f45")]
 position = Vector2(8, 0)
 baseXOffset = 8.0
+
+[node name="Tutorial" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("45_wtkl1")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Tutorial"]
+layer = 2
+
+[node name="Step_0" type="Control" parent="Tutorial/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Tutorial/CanvasLayer/Step_0"]
+layout_mode = 2
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.752941)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Tutorial/CanvasLayer/Step_0"]
+layout_mode = 2
+offset_right = 1152.0
+offset_bottom = 648.0
+theme_override_fonts/normal_font = ExtResource("45_dwx2n")
+theme_override_font_sizes/normal_font_size = 52
+text = "LET'S LEARN HOW THE GAME BOARD WORKS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Step_1" type="Control" parent="Tutorial/CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Tutorial/CanvasLayer/Step_1"]
+layout_mode = 2
+offset_right = 804.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.752941)
+
+[node name="ColorRect2" type="ColorRect" parent="Tutorial/CanvasLayer/Step_1"]
+layout_mode = 2
+offset_left = 799.0
+offset_top = 239.0
+offset_right = 1151.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.752941)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Tutorial/CanvasLayer/Step_1"]
+layout_mode = 2
+offset_left = 168.0
+offset_top = 75.0
+offset_right = 797.0
+offset_bottom = 327.0
+theme_override_fonts/normal_font = ExtResource("45_dwx2n")
+theme_override_font_sizes/normal_font_size = 36
+text = "Here you can see each player's statistics, playing order, and active player."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReferenceRect" type="ReferenceRect" parent="Tutorial/CanvasLayer/Step_1"]
+layout_mode = 0
+offset_left = 805.0
+offset_right = 1149.0
+offset_bottom = 242.0
+border_color = Color(0.937255, 0.490196, 0.341176, 1)
+border_width = 5.0
+editor_only = false
+
+[node name="Step_2" type="Control" parent="Tutorial/CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Tutorial/CanvasLayer/Step_2"]
+layout_mode = 2
+offset_right = 349.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.752941)
+
+[node name="ColorRect3" type="ColorRect" parent="Tutorial/CanvasLayer/Step_2"]
+layout_mode = 2
+offset_left = 348.0
+offset_top = 63.0
+offset_right = 800.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.752941)
+
+[node name="ColorRect2" type="ColorRect" parent="Tutorial/CanvasLayer/Step_2"]
+layout_mode = 2
+offset_left = 799.0
+offset_top = 1.0
+offset_right = 1151.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.752941)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Tutorial/CanvasLayer/Step_2"]
+layout_mode = 2
+offset_left = 230.0
+offset_top = 135.0
+offset_right = 891.0
+offset_bottom = 455.0
+theme_override_fonts/normal_font = ExtResource("45_dwx2n")
+theme_override_font_sizes/normal_font_size = 36
+text = "Here you can check how many actions the current player has left, as well as the current turn of the game."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReferenceRect" type="ReferenceRect" parent="Tutorial/CanvasLayer/Step_2"]
+layout_mode = 0
+offset_left = 351.0
+offset_right = 798.0
+offset_bottom = 62.0
+border_color = Color(0.937255, 0.490196, 0.341176, 1)
+border_width = 5.0
+editor_only = false
+
+[node name="Step_3" type="Control" parent="Tutorial/CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Tutorial/CanvasLayer/Step_3"]
+layout_mode = 2
+offset_top = 429.0
+offset_right = 1153.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.752941)
+
+[node name="ColorRect3" type="ColorRect" parent="Tutorial/CanvasLayer/Step_3"]
+layout_mode = 2
+offset_top = 240.0
+offset_right = 800.0
+offset_bottom = 432.0
+color = Color(0, 0, 0, 0.752941)
+
+[node name="ColorRect2" type="ColorRect" parent="Tutorial/CanvasLayer/Step_3"]
+layout_mode = 2
+offset_left = -2.0
+offset_top = 1.0
+offset_right = 1151.0
+offset_bottom = 244.0
+color = Color(0, 0, 0, 0.752941)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Tutorial/CanvasLayer/Step_3"]
+layout_mode = 2
+offset_left = 330.0
+offset_top = 182.0
+offset_right = 789.0
+offset_bottom = 502.0
+theme_override_fonts/normal_font = ExtResource("45_dwx2n")
+theme_override_font_sizes/normal_font_size = 36
+text = "Here you can perform game actions during your turn"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReferenceRect" type="ReferenceRect" parent="Tutorial/CanvasLayer/Step_3"]
+layout_mode = 0
+offset_left = 804.0
+offset_top = 241.0
+offset_right = 1149.0
+offset_bottom = 429.0
+border_color = Color(0.937255, 0.490196, 0.341176, 1)
+border_width = 5.0
+editor_only = false
+
+[node name="Step_4" type="Control" parent="Tutorial/CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Tutorial/CanvasLayer/Step_4"]
+layout_mode = 2
+offset_top = 429.0
+offset_right = 801.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.752941)
+
+[node name="ColorRect3" type="ColorRect" parent="Tutorial/CanvasLayer/Step_4"]
+layout_mode = 2
+offset_top = 242.0
+offset_right = 1151.0
+offset_bottom = 441.0
+color = Color(0, 0, 0, 0.752941)
+
+[node name="ColorRect2" type="ColorRect" parent="Tutorial/CanvasLayer/Step_4"]
+layout_mode = 2
+offset_left = -2.0
+offset_top = 1.0
+offset_right = 1151.0
+offset_bottom = 244.0
+color = Color(0, 0, 0, 0.752941)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Tutorial/CanvasLayer/Step_4"]
+layout_mode = 2
+offset_left = 388.0
+offset_top = 125.0
+offset_right = 1140.0
+offset_bottom = 432.0
+theme_override_fonts/normal_font = ExtResource("45_dwx2n")
+theme_override_font_sizes/normal_font_size = 36
+text = "Here you can track specific game actions, follow up on NPC actions, and roll the dice when appropriate."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReferenceRect" type="ReferenceRect" parent="Tutorial/CanvasLayer/Step_4"]
+layout_mode = 0
+offset_left = 804.0
+offset_top = 442.0
+offset_right = 1149.0
+offset_bottom = 646.0
+border_color = Color(0.937255, 0.490196, 0.341176, 1)
+border_width = 5.0
+editor_only = false
+
+[node name="Step_5" type="Control" parent="Tutorial/CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Tutorial/CanvasLayer/Step_5"]
+layout_mode = 2
+offset_left = 354.0
+offset_top = 440.0
+offset_right = 1153.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.752941)
+
+[node name="ColorRect3" type="ColorRect" parent="Tutorial/CanvasLayer/Step_5"]
+layout_mode = 2
+offset_top = 2.0
+offset_right = 1151.0
+offset_bottom = 441.0
+color = Color(0, 0, 0, 0.752941)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Tutorial/CanvasLayer/Step_5"]
+layout_mode = 2
+offset_left = 10.0
+offset_top = 138.0
+offset_right = 779.0
+offset_bottom = 432.0
+theme_override_fonts/normal_font = ExtResource("45_dwx2n")
+theme_override_font_sizes/normal_font_size = 36
+text = "Here you can track all game actions, who performed them, and what effect they had."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReferenceRect" type="ReferenceRect" parent="Tutorial/CanvasLayer/Step_5"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 439.0
+offset_right = 352.0
+offset_bottom = 646.0
+border_color = Color(0.937255, 0.490196, 0.341176, 1)
+border_width = 5.0
+editor_only = false
+
+[node name="Step_6" type="Control" parent="Tutorial/CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Tutorial/CanvasLayer/Step_6"]
+layout_mode = 2
+offset_left = 1.0
+offset_top = 204.0
+offset_right = 1153.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.752941)
+
+[node name="ColorRect3" type="ColorRect" parent="Tutorial/CanvasLayer/Step_6"]
+layout_mode = 2
+offset_left = 352.0
+offset_top = 2.0
+offset_right = 1151.0
+offset_bottom = 204.0
+color = Color(0, 0, 0, 0.752941)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Tutorial/CanvasLayer/Step_6"]
+layout_mode = 2
+offset_left = 37.0
+offset_top = 219.0
+offset_right = 822.0
+offset_bottom = 469.0
+theme_override_fonts/normal_font = ExtResource("45_dwx2n")
+theme_override_font_sizes/normal_font_size = 36
+text = "Here you can see a summary of the current mission; this may change throughout the game."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReferenceRect" type="ReferenceRect" parent="Tutorial/CanvasLayer/Step_6"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 352.0
+offset_bottom = 203.0
+border_color = Color(0.937255, 0.490196, 0.341176, 1)
+border_width = 5.0
+editor_only = false
+
+[node name="Step_7" type="Control" parent="Tutorial/CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Tutorial/CanvasLayer/Step_7"]
+layout_mode = 2
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.752941)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Tutorial/CanvasLayer/Step_7"]
+layout_mode = 2
+offset_right = 1152.0
+offset_bottom = 648.0
+theme_override_fonts/normal_font = ExtResource("45_dwx2n")
+theme_override_font_sizes/normal_font_size = 52
+text = "HAVE FUN AND REMEMBER, TRUST NO ONE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NextBtn" type="Button" parent="Tutorial/CanvasLayer"]
+offset_left = 453.0
+offset_top = 548.0
+offset_right = 692.0
+offset_bottom = 627.0
+theme_override_fonts/font = ExtResource("45_dwx2n")
+theme_override_font_sizes/font_size = 36
+text = "NEXT"
+
+[connection signal="mouse_entered" from="Tutorial/CanvasLayer/NextBtn" to="Tutorial" method="_on_next_btn_mouse_entered"]
+[connection signal="pressed" from="Tutorial/CanvasLayer/NextBtn" to="Tutorial" method="_on_next_btn_pressed"]

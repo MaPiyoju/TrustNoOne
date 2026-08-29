@@ -27,6 +27,7 @@ func _on_exit_pressed() -> void:
 	get_tree().quit()
 
 func _on_play_button_mouse_entered() -> void:
+	GlobalContext.reset_game()
 	AudioManager.play_sfx(GlobalContext.hover_sfx,0.7)
 
 func _on_credits_button_mouse_entered() -> void:

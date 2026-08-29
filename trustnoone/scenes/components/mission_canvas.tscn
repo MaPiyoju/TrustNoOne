@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dj56iehtbnb7w"]
+[gd_scene load_steps=9 format=3 uid="uid://dj56iehtbnb7w"]
 
 [ext_resource type="Script" uid="uid://d1jo0608qx67t" path="res://scripts/level_controller/mission_canvas_controller.gd" id="1_wkvv4"]
 [ext_resource type="FontFile" uid="uid://cnbhdxi81hf6w" path="res://ui/Early GameBoy.ttf" id="2_2qwt6"]
@@ -46,6 +46,11 @@ _data = {
 &"buzz": SubResource("Animation_wkvv4")
 }
 
+[sub_resource type="LabelSettings" id="LabelSettings_wkvv4"]
+font = ExtResource("2_2qwt6")
+font_size = 10
+font_color = Color(0.937255, 0.490196, 0.341176, 1)
+
 [node name="MissionCanvas" type="CanvasLayer"]
 script = ExtResource("1_wkvv4")
 
@@ -80,3 +85,14 @@ bbcode_enabled = true
 libraries = {
 &"": SubResource("AnimationLibrary_byrd1")
 }
+
+[node name="Label2" type="Label" parent="."]
+custom_minimum_size = Vector2(200, 0)
+offset_left = 4.0
+offset_top = 215.0
+offset_right = 349.0
+offset_bottom = 263.0
+text = "USE ESC TO PAUSE AND
+MIDDLE MOUSE BUTTON
+TO MOVE THE CAMERA"
+label_settings = SubResource("LabelSettings_wkvv4")
