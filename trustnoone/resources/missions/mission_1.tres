@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_tinwb")
 title = "The Velvet Masquerade"
-description = "An invitation brought seven eccentric strangers to the Lord's estate, but the gates locked behind you. As the fog thickens into a toxic haze, an unnatural hunger spreads through the halls. One guest is not human, and they are hunting the rest."
+description = "An invitation brought four eccentric strangers to the Lord's estate, but the gates locked behind you. As the fog thickens into a toxic haze, an unnatural hunger spreads through the halls. One guest is not human, and they are hunting the rest."
 description_img = "res://assets/sprites/endings/intro_mission_1.png"
 good_ending_txt = "You unmasked the impostor before their ritual completed. Severing their grotesque tendrils, you watch the fog lift as dawn breaks over the shattered estate."
 good_ending_img = "res://assets/sprites/endings/win_mission_1.png"

@@ -150,7 +150,8 @@ func explore_room(newDir: Vector2i):
 		check_arrows(0, true)
 		playerCurrentRoom = new_coordinates
 		move_room.emit(new_coordinates, current_player())
-		perform_action(check_if_player())
+		if(!isTrigger):
+			perform_action(check_if_player())
 	
 	character_sheets.sheets[character_sheets.currentPlayer].current_room = new_coordinates
 
@@ -221,14 +222,14 @@ func check_arrows(room_type: int, disable_all: bool = false, isPlayer: bool = tr
 
 func validate_event(dice_value: int, isPlayer: bool):
 	var curEvent = dice.currentEvent
-	if(curEvent.effect > 0):#Positive effect
+	if(curEvent.effect_value > 0):#Positive effect
 		if(dice_value > curEvent.threshold):
 			character_sheets.ordered_list[character_sheets.currentPlayer].modify_stat(curEvent.effect,curEvent.effect_value)
 			log_canvas.add_log(dice.badActionEvent)
 		else:
 			log_canvas.add_log(dice.goodActionEvent)
 	else:
-		if(dice_value > curEvent.threshold):
+		if(dice_value < curEvent.threshold):
 			log_canvas.add_log(dice.badActionEvent)
 			character_sheets.ordered_list[character_sheets.currentPlayer].modify_stat(curEvent.effect,curEvent.effect_value)
 			var viewport := get_viewport()
@@ -241,11 +242,8 @@ func validate_event(dice_value: int, isPlayer: bool):
 	
 	await get_tree().create_timer(1.5).timeout
 	isInEvent = false
-	if(!isPlayer):
-		await get_tree().create_timer(1).timeout
-		dice.enable_next()
-	else:
-		enable_next_action()
+	
+	perform_action(isPlayer)
 
 func log_room_event(event: EventRes):
 	var newLog = dice.set_regular(rooms[currentRoom],current_player(), check_if_player())
@@ -381,6 +379,9 @@ func end_action():
 	next_player_turn()
 
 func perform_action(isPlayer):
+	if(isInEvent):
+		return
+		
 	currSpeed-=1
 	game_info.update_actions(current_player().speed, currSpeed)
 	
@@ -389,9 +390,11 @@ func perform_action(isPlayer):
 		await get_tree().create_timer(1.5).timeout
 		end_action()
 	else:
-		if(!isPlayer && !isInEvent):
+		if(!isPlayer):
 			await get_tree().create_timer(1).timeout
 			dice.enable_next()
+		else:
+			enable_next_action()
 
 func npc_action_turn():
 	if(GlobalContext.traitor == character_sheets.currentPlayer):#Traitor
